@@ -64,6 +64,7 @@
         .brand-titles h1 { font-size: 24px; font-weight: 900; color: var(--govt-navy); margin: 0; line-height: 1.1; font-family: 'Roboto', sans-serif; }
         .brand-titles h2 { font-size: 14px; font-weight: 700; color: var(--theme-primary); margin: 2px 0 0 0; text-transform: uppercase; }
         .brand-titles p { font-size: 12px; color: #64748b; margin: 0; font-weight: 600; text-transform: uppercase; }
+        .brand-right img { height: 60px; }
 
         /* NAVBAR & NOTICE BOARD */
         .navbar { background: var(--theme-gradient); padding: 0; box-shadow: 0 4px 10px rgba(246, 147, 29, 0.2); }
@@ -187,6 +188,13 @@
         .ts-details-text { font-size: 15.5px; color: var(--text-main); line-height: 1.8; margin-bottom: 25px; text-align: justify; }
         .ts-map-container { width: 100%; height: 350px; border-radius: 12px; overflow: hidden; border: 3px solid var(--border-light); }
 
+        /* ✨ NEW FEATURE: SCROLLING NOTICE BOARD CSS ✨ */
+        .notice-board-container { background: var(--bg-light); border: 1px solid var(--border-light); border-radius: 8px; overflow: hidden; height: 350px; position: relative; }
+        .notice-item { background: var(--card-bg); padding: 15px; border-left: 4px solid var(--theme-primary); margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border-radius: 4px; transition: 0.3s; }
+        .notice-item:hover { transform: translateX(5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .notice-date { font-size: 12px; color: #ef4444; font-weight: 800; margin-bottom: 6px; display: flex; align-items: center; gap: 5px; }
+        .notice-text { font-size: 14.5px; color: var(--text-main); font-weight: 600; margin: 0; line-height: 1.5; }
+
         /* Demographics & Stats */
         .demo-card { background: var(--card-bg); border-radius: 12px; padding: 25px 15px; border: 1px solid var(--border-light); text-align: center; transition: 0.3s; height: 100%; }
         .demo-card h3 { font-size: 26px; font-weight: 900; color: var(--govt-navy); margin: 12px 0 5px; }
@@ -284,7 +292,6 @@
             <div>
                 <a href="#"><i class="fa fa-envelope me-1"></i> tourism.psbzp@gmail.com</a>
                 <a href="#"><i class="fa fa-phone me-1"></i> 0341-2252627</a>
-                <!-- ✨ LIVE WORKING WEATHER WIDGET ✨ -->
                 <span class="ms-3 text-warning fw-bold" id="weatherWidget"><i class="fa fa-sync fa-spin me-1"></i> Asansol: Loading...</span>
             </div>
             <div class="d-flex align-items-center lang-switcher">
@@ -338,6 +345,8 @@
                     <li class="nav-item" id="nav_touristSpotsSection"><a class="nav-link" onclick="switchSPA('touristSpotsSection')"><i class="fa fa-map-marked-alt me-1"></i> Tourist Spots</a></li>
                     <li class="nav-item" id="nav_itinerarySection"><a class="nav-link" onclick="switchSPA('itinerarySection')"><i class="fa fa-route me-1"></i> Trip Planner</a></li>
                     <li class="nav-item" id="nav_tariffSection"><a class="nav-link" onclick="switchSPA('tariffSection')"><i class="fa fa-file-invoice-dollar me-1"></i> Tariffs</a></li>
+                    <!-- ✨ NEW NOTICE MENU ITEM ✨ -->
+                    <li class="nav-item" id="nav_noticeSection"><a class="nav-link" onclick="switchSPA('noticeSection')"><i class="fa fa-bullhorn me-1"></i> Notice</a></li>
                     <li class="nav-item" id="nav_contactSection"><a class="nav-link" onclick="switchSPA('contactSection')"><i class="fa fa-headset me-1"></i> Contact Us</a></li>
                 </ul>
                 <ul class="navbar-nav">
@@ -794,6 +803,28 @@
         </div>
     </section>
 
+    <!-- ✨ NEW NOTICE SECTION ✨ -->
+    <section id="noticeSection" class="spa-section container">
+        <h2 class="section-title mb-4">Official Notices & Announcements</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow-sm border-0" style="background: var(--card-bg); border-top: 4px solid var(--theme-primary) !important;">
+                    <div class="card-body p-0">
+                        <div class="bg-dark text-white p-3 fw-bold text-uppercase d-flex justify-content-between align-items-center">
+                            <span><i class="fa fa-bell me-2 text-warning"></i> Latest Notices</span>
+                            <span class="badge bg-danger">Live</span>
+                        </div>
+                        <div class="notice-board-container">
+                            <marquee direction="up" scrollamount="3" onmouseover="this.stop();" onmouseout="this.start();" height="100%" id="dynamicNoticesContainer" style="padding: 20px;">
+                                <!-- JS will dynamically inject items here -->
+                            </marquee>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- TARIFFS SECTION -->
     <section id="tariffSection" class="spa-section container">
         <h2 class="section-title mb-4">Accommodation Tariffs</h2>
@@ -1097,10 +1128,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
-        // ✨ REAL-TIME LIVE WEATHER API FUNCTION ✨
+        // LIVE WEATHER API FUNCTION
         async function fetchLiveWeather() {
             try {
-                // Asansol Coordinates: Lat 23.6833, Lon 86.9833
                 const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=23.6833&longitude=86.9833&current_weather=true');
                 const data = await response.json();
                 if(data && data.current_weather) {
@@ -1117,13 +1147,12 @@
                     document.getElementById('weatherWidget').innerHTML = `<i class="fa ${iconClass} me-1"></i> Asansol: ${temp}°C`;
                 }
             } catch (error) {
-                console.error("Weather API error:", error);
                 document.getElementById('weatherWidget').innerHTML = `<i class="fa fa-cloud-sun me-1"></i> Asansol: 32°C`;
             }
         }
 
-        // SPA ROUTING
-        const allSections = ['homeWrapper', 'touristSpotsSection', 'sabhadipatiSection', 'eoSection', 'adminSection', 'tariffSection', 'itinerarySection', 'contactSection'];
+        // ✨ SPA ROUTING (UPDATED WITH NOTICE SECTION) ✨
+        const allSections = ['homeWrapper', 'touristSpotsSection', 'sabhadipatiSection', 'eoSection', 'adminSection', 'tariffSection', 'itinerarySection', 'contactSection', 'noticeSection'];
         function switchSPA(targetId) {
             allSections.forEach(id => {
                 let el = document.getElementById(id);
@@ -1131,6 +1160,30 @@
             });
             document.getElementById(targetId).style.display = 'block';
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ✨ NEW: DYNAMIC NOTICES ARRAY ✨
+        const officialNotices = [
+            { date: "30 July 2026", text: "Online booking for Rupnarayanpur Dak Bungalow is currently suspended due to urgent renovation works." },
+            { date: "25 July 2026", text: "Revised Tariffs for all Zilla Parishad Guest Houses will be applicable strictly from 1st August 2026." },
+            { date: "15 July 2026", text: "Tender Notice No. 45/2026 issued for the maintenance and beautification of Eco-Tourism Park at Garh Jungle." },
+            { date: "10 July 2026", text: "Special Durga Puja holiday packages and discounts will be announced shortly. Keep checking the official portal." },
+            { date: "01 July 2026", text: "Mandatory Directive: All guests are requested to carry a valid original Government ID proof (Aadhar/Voter ID) during check-in." }
+        ];
+
+        function loadDynamicNotices() {
+            const container = document.getElementById('dynamicNoticesContainer');
+            if(!container) return;
+            let html = '';
+            officialNotices.forEach(notice => {
+                html += `
+                    <div class="notice-item">
+                        <div class="notice-date"><i class="fa fa-calendar-alt me-1"></i> ${notice.date}</div>
+                        <p class="notice-text">${notice.text}</p>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
         }
 
         // PERSISTENT DARK MODE
@@ -1153,7 +1206,7 @@
             }
         }
 
-        // TOURIST SPOT DATA & OVERLAY LOGIC
+        // TOURIST SPOT DATA
         const touristData = {
             'ghagarburi': {
                 title: 'Ghagarburi Mandir',
@@ -1373,8 +1426,10 @@
 
         // DOMInit
         document.addEventListener('DOMContentLoaded', () => {
-            // Fetch Weather Live API
+            // Fetch Weather API
             fetchLiveWeather();
+            // Load Notices
+            loadDynamicNotices();
 
             const savedTheme = localStorage.getItem('themePreference');
             if(savedTheme === 'dark') {
