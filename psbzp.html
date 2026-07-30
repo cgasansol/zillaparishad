@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourism Booking Portal | Paschim Bardhaman Zilla Parishad</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================================
+           IRCTC & GOVT WB STYLE VARIABLES (LIGHT & DARK THEMES)
+           ========================================================= */
+        :root {
+            --theme-primary: #f6931d;
+            --theme-dark-orange: #d97706;
+            --theme-gradient: linear-gradient(135deg, #ffb23f 0%, #f6931d 100%);
+            --govt-navy: #0f172a;
+            --govt-blue: #1e3a8a;
+            --bg-light: #f4f7f6;
+            --text-main: #1e293b;
+            --border-light: #e2e8f0;
+            --card-bg: #ffffff;
+        }
+
+        body.dark-mode {
+            --bg-light: #0f172a;
+            --text-main: #e2e8f0;
+            --govt-navy: #f8fafc;
+            --border-light: #334155;
+            --card-bg: #1e293b;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            top: 0px !important;
+        }
+
+        .goog-te-banner-frame.skiptranslate { display: none !important; }
+        .goog-tooltip { display: none !important; }
+        .goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
+        
+        /* =========================================================
+           1. TOP UTILITY BAR (WITH WEATHER & DARK MODE)
+           ========================================================= */
+        .top-bar {
+            background-color: #0f172a; /* Always dark */
+            color: #cbd5e1;
+            padding: 8px 0; 
+            font-size: 13.5px; 
+            font-weight: 500;
+        }
+        .top-bar a { color: #cbd5e1; text-decoration: none; margin-right: 15px; transition: 0.2s; cursor: pointer;}
+        .top-bar a:hover { color: var(--theme-primary); }
+        .date-time { color: var(--theme-primary); font-weight: 700; margin-right: 15px; }
+        
+        .theme-toggle-btn { background: transparent; border: 1px solid #cbd5e1; color: #fff; padding: 2px 10px; border-radius: 15px; font-size: 12px; cursor: pointer; transition: 0.3s;}
+        .theme-toggle-btn:hover { border-color: var(--theme-primary); color: var(--theme-primary);}
+
+        /* =========================================================
+           2. OFFICIAL HEADER 
+           ========================================================= */
+        .header-main { background: var(--card-bg); padding: 12px 0; border-bottom: 3px solid var(--theme-primary); transition: 0.3s;}
+        .brand-left { display: flex; align-items: center; gap: 15px; }
+        .brand-left img { height: 75px; width: auto; object-fit: contain; transition: 0.3s; }
+        .brand-titles h1 { font-size: 24px; font-weight: 900; color: var(--govt-navy); margin: 0; line-height: 1.1; font-family: 'Roboto', sans-serif; }
+        .brand-titles h2 { font-size: 14px; font-weight: 700; color: var(--theme-primary); margin: 2px 0 0 0; text-transform: uppercase; }
+        .brand-titles p { font-size: 12px; color: #64748b; margin: 0; font-weight: 600; text-transform: uppercase; }
+        .brand-right img { height: 60px; }
+
+        /* =========================================================
+           3. NAVBAR & NOTICE BOARD
+           ========================================================= */
+        .navbar { background: var(--theme-gradient); padding: 0; box-shadow: 0 4px 10px rgba(246, 147, 29, 0.2); }
+        .nav-link { color: #ffffff !important; padding: 14px 20px !important; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; transition: 0.3s; cursor: pointer; }
+        .nav-link:hover, .nav-item.active .nav-link { background: rgba(0,0,0,0.15); }
+        .dropdown-menu { border-radius: 4px; border: none; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-top: 0; background: var(--card-bg);}
+        .dropdown-item { font-size: 13px; font-weight: 600; padding: 10px 20px; color: var(--text-main); transition: 0.2s; cursor: pointer;}
+        .dropdown-item:hover { background-color: var(--theme-primary); color: #fff; padding-left: 25px;}
+        .login-btn { background: #0f172a; color: #fff !important; border-radius: 4px; padding: 8px 20px !important; margin-top: 5px; margin-bottom: 5px; }
+        .login-btn:hover { background: #000; }
+
+        .notice-board { background: var(--card-bg); border-bottom: 2px solid var(--border-light); padding: 8px 0; font-size: 13px; transition: 0.3s;}
+        .notice-title { background: #ef4444; color: #fff; font-weight: 800; padding: 4px 12px; border-radius: 3px; display: inline-block; margin-right: 15px; white-space: nowrap; }
+
+        /* =========================================================
+           4. HERO SECTION 
+           ========================================================= */
+        .hero-section { position: relative; padding: 40px 0; min-height: 550px; display: flex; align-items: center; overflow: hidden; }
+        .bg-carousel { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+        .bg-carousel img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(15,23,42,0.95) 0%, rgba(15,23,42,0.6) 50%, rgba(246,147,29,0.3) 100%); z-index: 1; }
+        .hero-section .container { position: relative; z-index: 2; }
+
+        .booking-console { background: var(--card-bg); border-radius: 8px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); overflow: hidden; }
+        .booking-console-header { background: var(--theme-gradient); color: #fff; padding: 15px 20px; text-align: center; font-weight: 800; font-size: 18px; text-transform: uppercase; }
+        .booking-console-body { padding: 25px; }
+        .form-label { font-size: 12px; font-weight: 700; color: #64748b; margin-bottom: 5px; text-transform: uppercase; }
+        .form-control, .form-select { background: var(--bg-light); border: 1px solid var(--border-light); color: var(--text-main); font-weight: 600; margin-bottom: 15px; }
+        
+        .btn-search { background: var(--theme-primary); color: #fff; font-weight: 800; font-size: 16px; width: 100%; padding: 12px; border: none; border-radius: 4px; text-transform: uppercase; transition: 0.3s; margin-top: 10px; }
+        .btn-search:hover:not(:disabled) { background: var(--theme-dark-orange); }
+        .btn-search:disabled { background: #cbd5e1; color: #64748b; cursor: not-allowed; opacity: 0.8; }
+
+        .hero-content-right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; justify-content: center; height: 100%; }
+        .cm-photo-card { background: #fff; padding: 5px; border-radius: 12px; border: 3px solid var(--theme-primary); text-align: center; width: 220px; margin-bottom: 20px; }
+        .cm-photo-card img { width: 100%; border-radius: 6px; }
+        .cm-photo-card .cm-name { font-size: 12px; font-weight: 800; color: #0f172a; margin-top: 8px; }
+
+        /* =========================================================
+           5. SHARED SECTION STYLES (SPA Logic)
+           ========================================================= */
+        .spa-section { display: none; animation: fadeIn 0.4s ease-in-out; padding: 50px 0; background: var(--bg-light); min-height: 600px; }
+        #searchResults { padding-top: 20px; background: transparent; min-height: auto; scroll-margin-top: 70px; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .section-title { text-align: center; margin-bottom: 15px; font-weight: 800; color: var(--govt-navy); text-transform: uppercase; letter-spacing: 0.5px;}
+        .section-title::after { content: ''; display: block; width: 60px; height: 4px; background: var(--theme-primary); margin: 10px auto 0; border-radius: 2px;}
+        .section-title-left { text-align: left; margin-bottom: 15px; font-weight: 800; color: var(--govt-navy); text-transform: uppercase; letter-spacing: 0.5px;}
+        .section-title-left::after { content: ''; display: block; width: 60px; height: 4px; background: var(--theme-primary); margin: 10px 0 0; border-radius: 2px;}
+
+        /* Property Cards */
+        .property-card { border: 1px solid var(--border-light); border-radius: 8px; background: var(--card-bg); height: 100%; display: flex; flex-direction: column; overflow: hidden; transition: 0.3s; }
+        .property-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: var(--theme-primary); }
+        .property-img-wrapper { position: relative; overflow: hidden; }
+        .property-img { height: 190px; object-fit: cover; width: 100%; border-bottom: 3px solid var(--theme-primary); transition: 0.4s; }
+        .property-card:hover .property-img { transform: scale(1.05); }
+        
+        .status-badge { position: absolute; top: 15px; left: 15px; padding: 5px 12px; font-size: 10px; font-weight: 700; border-radius: 4px; text-transform: uppercase; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 2;}
+        .bg-available { background: #10b981; color: #fff; }
+
+        .property-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column;}
+        .property-title { font-size: 18px; font-weight: 800; color: var(--govt-navy); margin-bottom: 8px; line-height: 1.3;}
+        .property-location { font-size: 12.5px; color: #64748b; margin-bottom: 10px; font-weight: 600; }
+        .amenities { display: flex; gap: 10px; margin-bottom: 15px; color: #475569; font-size: 11px; font-weight: 600;}
+        .amenities i { color: var(--theme-primary); }
+        
+        .btn-view-details { background: #e2e8f0; color: #334155; font-size: 10px; font-weight: 800; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; border: none; margin-bottom: 15px; display: inline-block; width: max-content;}
+        .btn-view-details:hover { background: #cbd5e1; }
+        body.dark-mode .btn-view-details { background: #334155; color: #e2e8f0; }
+
+        .property-footer { margin-top: auto; display: flex; justify-content: space-between; align-items: center; padding-top: 15px; border-top: 1px solid var(--border-light); }
+        .property-price { font-size: 18px; font-weight: 900; color: var(--theme-primary); }
+        .property-price span { font-size: 11px; color: #64748b; font-weight: 500; }
+        .btn-book { background: var(--theme-primary); color: #fff; border: none; font-weight: 700; font-size: 12px; text-transform: uppercase; border-radius: 4px; padding: 6px 14px; transition: 0.2s; box-shadow: 0 4px 10px rgba(246, 147, 29, 0.3);}
+        .btn-book:hover { background: var(--theme-dark-orange); transform: scale(1.05); }
+
+        /* Admin Specifics & WhatsApp-like Initials Avatar */
+        .profile-card { background: var(--card-bg); border: 1px solid var(--border-light); border-radius: 12px; padding: 25px 20px; text-align: center; height: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s; position: relative; overflow: hidden;}
+        .profile-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border-color: var(--theme-primary);}
+        .profile-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--theme-gradient); }
+        
+        .profile-avatar { width: 90px; height: 90px; border-radius: 50%; border: 3px solid #f1f5f9; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .avatar-text { background-color: var(--govt-navy) !important; color: #ffffff !important; font-weight: 800; font-size: 36px; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .profile-name { font-size: 17px; font-weight: 800; color: var(--govt-navy); margin-bottom: 5px; }
+        .profile-role { font-size: 12px; font-weight: 700; color: var(--theme-primary); margin-bottom: 15px; text-transform: uppercase; line-height: 1.4; }
+        .profile-contact { font-size: 12px; color: #64748b; margin-bottom: 5px; }
+        .profile-contact i { width: 20px; color: #94a3b8; }
+        
+        .sabhadipati-box { max-width: 500px; margin: 0 auto; background: var(--card-bg); padding: 40px; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); text-align: center; border: 1px solid var(--border-light);}
+        .sabhadipati-box img { width: 150px; height: 150px; border-radius: 50%; border: 4px solid var(--theme-primary); padding: 4px; margin-bottom: 20px; object-fit: cover;}
+
+        /* Tourist Cards Styling */
+        .tourist-card { border: none; border-radius: 12px; background: var(--card-bg); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06); transition: all 0.3s ease; height: 100%; display: flex; flex-direction: column; overflow: hidden; border-bottom: 4px solid var(--theme-primary); }
+        .tourist-card:hover { transform: translateY(-7px); box-shadow: 0 12px 30px rgba(246, 147, 29, 0.15); }
+        .tourist-img-box { position: relative; height: 210px; overflow: hidden; }
+        .tourist-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .tourist-card:hover .tourist-img-box img { transform: scale(1.08); }
+        .tourist-category-badge { position: absolute; top: 12px; right: 12px; background: rgba(15, 23, 42, 0.85); color: #fff; font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 20px; text-transform: uppercase; backdrop-filter: blur(4px); }
+        .tourist-content { padding: 22px; flex-grow: 1; display: flex; flex-direction: column; }
+        .tourist-title { font-size: 18px; font-weight: 800; color: var(--govt-navy); margin-bottom: 8px; }
+        .tourist-location { font-size: 13px; color: #64748b; font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+        .tourist-location i { color: #ef4444; }
+        .tourist-desc { font-size: 13.5px; color: #64748b; line-height: 1.6; margin-bottom: 20px; flex-grow: 1; }
+        .tourist-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 15px; border-top: 1px solid var(--border-light); margin-top: auto; }
+        .visit-tag { font-size: 11.5px; font-weight: 700; color: var(--theme-dark-orange); background: rgba(246, 147, 29, 0.1); padding: 5px 10px; border-radius: 6px; }
+        .btn-explore { background: var(--govt-navy); color: #fff; font-size: 11.5px; font-weight: 700; text-transform: uppercase; padding: 7px 14px; border-radius: 6px; border: none; transition: 0.2s; }
+        .btn-explore:hover { background: var(--theme-primary); color: #fff; }
+
+        /* Demographic Cards */
+        .demo-card { background: var(--card-bg); border-radius: 12px; padding: 25px 15px; border: 1px solid var(--border-light); text-align: center; transition: 0.3s; height: 100%; }
+        .demo-card h3 { font-size: 26px; font-weight: 900; color: var(--govt-navy); margin: 12px 0 5px; }
+        .border-blue { border-top: 5px solid #3b82f6; } .border-blue p, .border-blue i { color: #3b82f6; }
+        .border-green { border-top: 5px solid #10b981; } .border-green p, .border-green i { color: #10b981; }
+        .border-purple { border-top: 5px solid #8b5cf6; } .border-purple p, .border-purple i { color: #8b5cf6; }
+        .border-red { border-top: 5px solid #ef4444; } .border-red p, .border-red i { color: #ef4444; }
+        .border-orange { border-top: 5px solid #f59e0b; } .border-orange p, .border-orange i { color: #f59e0b; }
+        .border-teal { border-top: 5px solid #14b8a6; } .border-teal p, .border-teal i { color: #14b8a6; }
+        .pill-badge { font-size: 12px; font-weight: 700; padding: 6px 16px; border-radius: 20px; display: inline-flex; align-items: center; gap: 8px; margin: 0 5px; }
+        .bg-pill-blue { background: #2563eb; color: #fff; }
+        .bg-pill-lightgreen { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+
+        /* Initiatives & Stats */
+        .initiatives-card { background: var(--card-bg); padding: 30px 20px; border-radius: 12px; text-align: center; border: 1px solid var(--border-light); box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: 0.3s; height: 100%; }
+        .initiatives-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border-color: var(--theme-primary); }
+        .initiatives-card i { font-size: 40px; color: var(--theme-primary); margin-bottom: 15px; }
+        .initiatives-card h4 { font-size: 16px; font-weight: 800; color: var(--govt-navy); margin-bottom: 10px; text-transform: uppercase; }
+        .initiatives-card p { font-size: 13px; color: #64748b; margin: 0; }
+
+        .stats-section { background: #0f172a; background-image: url('https://images.unsplash.com/photo-1572097361719-756784d0b0bf?auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; background-attachment: fixed; position: relative; padding: 60px 0; color: #fff; }
+        .stats-section::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); }
+        .stats-item { position: relative; z-index: 2; text-align: center; }
+        .stats-item h2 { font-size: 40px; font-weight: 900; color: var(--theme-primary); margin: 10px 0 5px; }
+        .stats-item p { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #cbd5e1; }
+
+        /* Chatbot CSS */
+        .chatbot-btn { position: fixed; bottom: 30px; right: 30px; background: var(--theme-primary); color: #fff; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer; box-shadow: 0 10px 20px rgba(246, 147, 29, 0.4); z-index: 1000; transition: 0.3s; }
+        .chatbot-btn:hover { transform: scale(1.1); }
+        .chatbot-window { position: fixed; bottom: 100px; right: 30px; width: 320px; background: var(--card-bg); border-radius: 12px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); z-index: 1000; overflow: hidden; border: 1px solid var(--border-light); display: none; flex-direction: column; }
+        .chat-header { background: #0f172a; color: #fff; padding: 15px; font-weight: 800; display: flex; justify-content: space-between; align-items: center; }
+        .chat-body { padding: 15px; height: 250px; overflow-y: auto; font-size: 13px; background: var(--bg-light); }
+        .chat-msg { margin-bottom: 10px; padding: 10px 15px; border-radius: 15px; max-width: 85%; }
+        .bot-msg { background: #e2e8f0; color: #1e293b; border-bottom-left-radius: 2px; float: left; clear: both;}
+        .user-msg { background: var(--theme-primary); color: #fff; border-bottom-right-radius: 2px; float: right; clear: both;}
+        .chat-footer { padding: 10px; background: var(--card-bg); border-top: 1px solid var(--border-light); display: flex; }
+        .chat-footer input { flex-grow: 1; border: 1px solid #cbd5e1; border-radius: 20px; padding: 5px 15px; outline: none; font-size: 13px; background: var(--bg-light); color: var(--text-main); }
+        .chat-footer button { background: var(--theme-primary); border: none; color: #fff; width: 35px; height: 35px; border-radius: 50%; margin-left: 10px; cursor: pointer; }
+
+        /* Tariffs Table & Itinerary */
+        .table-custom { background: var(--card-bg); color: var(--text-main); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .table-custom thead { background: var(--govt-navy); color: #fff; }
+        .table-custom th, .table-custom td { padding: 15px; border-bottom: 1px solid var(--border-light); vertical-align: middle; }
+        body.dark-mode .table-custom td { color: #e2e8f0; }
+
+        .timeline { border-left: 3px solid var(--theme-primary); padding-left: 25px; margin-left: 15px; position: relative; }
+        .timeline-item { margin-bottom: 30px; position: relative; }
+        .timeline-item::before { content: ''; position: absolute; left: -34px; top: 0; width: 16px; height: 16px; background: var(--theme-primary); border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 3px rgba(246, 147, 29, 0.2); }
+        .timeline-card { background: var(--card-bg); padding: 20px; border-radius: 8px; border: 1px solid var(--border-light); box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+
+        /* Generic Modals */
+        .modal-content { background-color: var(--card-bg); color: var(--text-main); border: 1px solid var(--border-light); }
+        .modal-header { border-bottom: 1px solid var(--border-light); }
+        .modal-footer { border-top: 1px solid var(--border-light); }
+
+        /* Custom Modal Overlay (For Officer Details) */
+        .custom-modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(15, 23, 42, 0.85); backdrop-filter: blur(5px); align-items: center; justify-content: center; }
+        .custom-modal-content { background: var(--card-bg); padding: 40px 30px; border-radius: 16px; width: 90%; max-width: 450px; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.4); animation: modalPop 0.3s ease-out forwards; text-align: center; border-top: 5px solid var(--theme-primary); }
+        @keyframes modalPop { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+        .close-btn { position: absolute; top: 15px; left: 20px; font-size: 26px; font-weight: bold; color: #64748b; cursor: pointer; line-height: 1; transition: 0.2s; }
+        .close-btn:hover { color: var(--theme-primary); transform: scale(1.1); }
+        
+        .modal-img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid var(--theme-primary); padding: 3px; margin-bottom: 20px; }
+        
+        /* Modal Avatar Initials Class */
+        #modalInitials { display: none; align-items: center; justify-content: center; width: 120px; height: 120px; font-size: 45px; border-radius: 50%; border: 4px solid var(--theme-primary); padding: 3px; margin: 0 auto 20px; }
+
+        .modal-name { font-size: 22px; font-weight: 800; color: var(--govt-navy); margin-bottom: 5px; }
+        .modal-role { font-size: 13px; font-weight: 700; color: var(--theme-primary); margin-bottom: 25px; text-transform: uppercase; }
+        .modal-contact { background: var(--bg-light); padding: 15px; border-radius: 8px; border: 1px solid var(--border-light); text-align: left;}
+        .modal-contact p { font-size: 14px; color: var(--text-main); margin-bottom: 10px; font-weight: 600; display: flex; align-items: center; }
+        .modal-contact p:last-child { margin-bottom: 0; }
+        .modal-contact p i { width: 25px; font-size: 16px; color: var(--theme-primary); }
+
+        /* =========================================================
+           ✨ NEW PROFESSIONAL FOOTER STYLES ✨
+           ========================================================= */
+        .footer-main { background: #0f172a; color: #cbd5e1; padding: 70px 0 0 0; border-top: 5px solid var(--theme-primary); font-size: 14px; position: relative; }
+        .footer-title { color: #fff; font-size: 18px; font-weight: 800; margin-bottom: 25px; position: relative; display: inline-block; padding-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;}
+        .footer-title::after { content: ''; position: absolute; left: 0; bottom: 0; width: 40px; height: 3px; background: var(--theme-primary); border-radius: 2px; }
+        .footer-text { color: #94a3b8; line-height: 1.8; margin-bottom: 20px; font-size: 13.5px; }
+        
+        .footer-links { list-style: none; padding: 0; margin: 0; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: #94a3b8; text-decoration: none; transition: 0.3s; display: inline-block; font-weight: 500;}
+        .footer-links a:hover { color: var(--theme-primary); transform: translateX(5px); }
+        
+        .footer-contact-info { list-style: none; padding: 0; margin: 0; color: #94a3b8; font-size: 13.5px;}
+        .footer-contact-info li { margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px; line-height: 1.6;}
+        .footer-contact-info i { color: var(--theme-primary); font-size: 16px; margin-top: 3px; }
+        
+        .social-links { display: flex; gap: 10px; margin-top: 20px; }
+        .social-links a { width: 35px; height: 35px; background: rgba(255,255,255,0.05); color: #fff; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: 0.3s; text-decoration: none; }
+        .social-links a:hover { background: var(--theme-primary); transform: translateY(-3px); }
+        
+        .company-footer-card { background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 25px; backdrop-filter: blur(10px); }
+        .company-footer-card img { height: 45px; object-fit: contain; }
+        
+        .footer-bottom { background: #020617; padding: 20px 0; margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.05); }
+    </style>
+</head>
+<body>
+
+    <!-- Hidden Div for Google Translate Tool -->
+    <div id="google_translate_element" style="display:none;"></div>
+
+    <!-- 1. ENLARGED TOP UTILITY BAR (WITH TRANSLATION BUTTONS) -->
+    <div class="top-bar d-none d-md-block overflow-hidden">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div>
+                <a href="#"><i class="fa fa-envelope me-1"></i> tourism.psbzp@gmail.com</a>
+                <a href="#"><i class="fa fa-phone me-1"></i> 0341-2252627</a>
+                <span class="ms-3 text-warning fw-bold"><i class="fa fa-cloud-sun me-1"></i> Asansol: 32°C</span>
+            </div>
+            <div class="d-flex align-items-center lang-switcher">
+                <span class="date-time" id="currentDateTime"></span>
+                <span class="mx-2 text-secondary">|</span>
+                
+                <a onclick="translatePage('en')" class="text-white fw-bold">English</a>
+                <span class="mx-1 text-secondary">|</span>
+                <a onclick="translatePage('hi')" class="text-white fw-bold">हिन्दी</a>
+                <span class="mx-1 text-secondary">|</span>
+                <a onclick="translatePage('bn')" class="text-white fw-bold">বাংলা</a>
+                
+                <button class="theme-toggle-btn ms-3" onclick="toggleTheme()" id="themeBtn">
+                    <i class="fa fa-moon"></i> Dark
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. OFFICIAL HEADER -->
+    <header class="header-main">
+        <div class="container header-container">
+            <div class="brand-left">
+                <img id="headerLogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Seal_of_West_Bengal.svg/1280px-Seal_of_West_Bengal.svg.png" alt="Seal of West Bengal">
+                <div class="brand-titles">
+                    <h1>Paschim Bardhaman Zilla Parishad</h1>
+                    <h2>Official Tourism & Accommodation Portal</h2>
+                    <p>Government of West Bengal</p>
+                </div>
+            </div>
+            <div class="brand-right d-none d-lg-block">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/800px-Emblem_of_India.svg.png" alt="Emblem of India">
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <button class="navbar-toggler border-0 text-white w-100 text-start py-2" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <i class="fa fa-bars me-2"></i> MAIN MENU
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item active" id="nav_homeWrapper"><a class="nav-link" onclick="switchSPA('homeWrapper')"><i class="fa fa-home me-1"></i> Home</a></li>
+                    
+                    <li class="nav-item dropdown" id="nav_adminDropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="fa fa-users-cog me-1"></i> Administration</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" onclick="switchSPA('sabhadipatiSection')">Sabhadipati</a></li>
+                            <li><a class="dropdown-item" onclick="switchSPA('eoSection')">Executive Officer</a></li>
+                            <li><a class="dropdown-item" onclick="switchSPA('adminSection')">Administrative Officers</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item" id="nav_touristSpotsSection"><a class="nav-link" onclick="switchSPA('touristSpotsSection')"><i class="fa fa-map-marked-alt me-1"></i> Tourist Spots</a></li>
+                    <li class="nav-item" id="nav_itinerarySection"><a class="nav-link" onclick="switchSPA('itinerarySection')"><i class="fa fa-route me-1"></i> Trip Planner</a></li>
+                    <li class="nav-item" id="nav_tariffSection"><a class="nav-link" onclick="switchSPA('tariffSection')"><i class="fa fa-file-invoice-dollar me-1"></i> Tariffs</a></li>
+                    <li class="nav-item" id="nav_contactSection"><a class="nav-link" onclick="switchSPA('contactSection')"><i class="fa fa-headset me-1"></i> Contact Us</a></li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link login-btn" href="#" data-bs-toggle="modal" data-bs-target="#authModal"><i class="fa fa-user-shield me-1"></i> Admin Portal</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="notice-board d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+            <span class="notice-title">Latest Updates</span>
+            <marquee onmouseover="this.stop();" onmouseout="this.start();" class="fw-bold mb-0" style="color: var(--text-main);">
+                🔴 New Razorpay Payment Gateway integration is live. &nbsp;&nbsp; | &nbsp;&nbsp; 🔴 Download your e-receipts directly from the User Dashboard. &nbsp;&nbsp; | &nbsp;&nbsp; 🔴 Explore the new 360° View of our Premium AC Rooms.
+            </marquee>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         SPA SECTIONS CONTAINER 
+         ========================================================= -->
+    
+    <!-- 1. HOME SECTION -->
+    <div id="homeWrapper" class="spa-section" style="display: block; padding: 0; min-height: auto;">
+        
+        <section class="hero-section" id="heroSection">
+            <div id="heroBackgroundSlider" class="carousel slide carousel-fade bg-carousel" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active"><img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=1920&q=80" alt="Slide 1"></div>
+                    <div class="carousel-item"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1920&q=80" alt="Slide 2"></div>
+                </div>
+            </div>
+            <div class="hero-overlay"></div>
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="booking-console">
+                            <div class="booking-console-header"><i class="fa fa-hotel me-2"></i> Book Accommodation</div>
+                            <div class="booking-console-body">
+                                <form id="searchForm">
+                                    <label class="form-label">Destination</label>
+                                    <select class="form-select" id="destinationSelect" required>
+                                        <option value="" disabled selected>Select Destination...</option>
+                                        <option value="paschim-bardhaman">Paschim Bardhaman</option>
+                                    </select>
+                                    <div class="row mt-3">
+                                        <div class="col-6">
+                                            <label class="form-label">Check-in</label>
+                                            <input type="date" class="form-control" id="checkInDate" required>
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="form-label">Check-out</label>
+                                            <input type="date" class="form-control" id="checkOutDate" required>
+                                        </div>
+                                    </div>
+                                    <label class="form-label mt-1">Room Category</label>
+                                    <select class="form-select" id="roomCategory" required>
+                                        <option value="" disabled selected>Select Room Category...</option>
+                                        <option value="all">All Classes</option>
+                                        <option value="ac-deluxe">AC Deluxe</option>
+                                    </select>
+                                    <button type="button" class="btn-search" id="searchBtn" disabled onclick="showSearchResults()">Search <i class="fa fa-arrow-right ms-2"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-6">
+                        <div class="hero-content-right text-end">
+                            <div class="cm-photo-card">
+                                <!-- UPDATED CM IMAGE HERE -->
+                                <img src="https://cgasansol.github.io/psbzpimg/cm.jpg" alt="Hon'ble CM Shri Suvendu Adhikari">
+                                <div class="cm-name">Shri Suvendu Adhikari</div>
+                                <div class="cm-title">Hon'ble Chief Minister, West Bengal</div>
+                            </div>
+                            <div class="welcome-text">
+                                <h2 style="color: #fff; font-weight: 900; font-size: 36px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">Welcome to Bengal Tourism</h2>
+                                <p style="color: #e2e8f0; font-size: 16px; font-weight: 500; text-shadow: 1px 1px 2px rgba(0,0,0,0.8); max-width: 500px; float: right;">Book official Zilla Parishad accommodations seamlessly. Explore the heritage, culture, and nature of Paschim Bardhaman with safety and comfort.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4 HOTELS -->
+        <section id="searchResults" class="container pb-5" style="display: none;">
+            <h2 class="section-title mt-5">Search Results</h2>
+            <div class="row g-4 justify-content-center">
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="property-card">
+                        <div class="property-img-wrapper">
+                            <img src="https://cgasansol.github.io/psbzpimg/1.jpg" alt="Bardhaman Bhaban" class="property-img">
+                            <span class="status-badge bg-available">Available</span>
+                        </div>
+                        <div class="property-body">
+                            <h4 class="property-title">Bardhaman Bhaban</h4>
+                            <p class="property-location"><i class="fa fa-map-marker-alt text-danger me-1"></i> Raha Lane, Asansol</p>
+                            <div class="amenities"><span><i class="fa fa-snowflake"></i> AC</span><span><i class="fa fa-wifi"></i> Wi-Fi</span></div>
+                            <button class="btn-view-details" data-bs-toggle="modal" data-bs-target="#propertyModal" onclick="loadPropertyData('Bardhaman Bhaban')"><i class="fa fa-image me-1"></i> View 360° Details</button>
+                            <div class="property-footer">
+                                <div class="property-price">₹ 1,000 <span>/ Day</span></div>
+                                <button class="btn-book" onclick="payWithRazorpay('Bardhaman Bhaban', 1000)">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="property-card">
+                        <div class="property-img-wrapper">
+                            <img src="https://cgasansol.github.io/psbzpimg/2.jpg" alt="Rupnarayanpur Dak Bungalow" class="property-img">
+                            <span class="status-badge bg-available">Available</span>
+                        </div>
+                        <div class="property-body">
+                            <h4 class="property-title">Rupnarayanpur Dak Bungalow</h4>
+                            <p class="property-location"><i class="fa fa-map-marker-alt text-danger me-1"></i> Rupnarayanpur</p>
+                            <div class="amenities"><span><i class="fa fa-snowflake"></i> AC</span><span><i class="fa fa-utensils"></i> Dining</span></div>
+                            <button class="btn-view-details" data-bs-toggle="modal" data-bs-target="#propertyModal" onclick="loadPropertyData('Rupnarayanpur Dak Bungalow')"><i class="fa fa-image me-1"></i> View 360° Details</button>
+                            <div class="property-footer">
+                                <div class="property-price">₹ 800 <span>/ Day</span></div>
+                                <button class="btn-book" onclick="payWithRazorpay('Rupnarayanpur Dak Bungalow', 800)">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="property-card">
+                        <div class="property-img-wrapper">
+                            <img src="https://cgasansol.github.io/psbzpimg/3.jpg" alt="Molandighi Dak Bungalow" class="property-img">
+                            <span class="status-badge bg-available">Available</span>
+                        </div>
+                        <div class="property-body">
+                            <h4 class="property-title">Molandighi Dak Bungalow</h4>
+                            <p class="property-location"><i class="fa fa-map-marker-alt text-danger me-1"></i> Molandighi, Durgapur</p>
+                            <div class="amenities"><span><i class="fa fa-snowflake"></i> AC</span><span><i class="fa fa-shield-alt"></i> Security</span></div>
+                            <button class="btn-view-details" data-bs-toggle="modal" data-bs-target="#propertyModal" onclick="loadPropertyData('Molandighi Dak Bungalow')"><i class="fa fa-image me-1"></i> View 360° Details</button>
+                            <div class="property-footer">
+                                <div class="property-price">₹ 900 <span>/ Day</span></div>
+                                <button class="btn-book" onclick="payWithRazorpay('Molandighi Dak Bungalow', 900)">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="property-card">
+                        <div class="property-img-wrapper">
+                            <img src="https://cgasansol.github.io/psbzpimg/4.jpeg" alt="Bamunara Market Complex" class="property-img">
+                            <span class="status-badge bg-available">Available</span>
+                        </div>
+                        <div class="property-body">
+                            <h4 class="property-title">Bamunara Market Complex</h4>
+                            <p class="property-location"><i class="fa fa-map-marker-alt text-danger me-1"></i> Bamunara, Durgapur</p>
+                            <div class="amenities"><span><i class="fa fa-door-open"></i> 24/7</span><span><i class="fa fa-car"></i> Parking</span></div>
+                            <button class="btn-view-details" data-bs-toggle="modal" data-bs-target="#propertyModal" onclick="loadPropertyData('Bamunara Market Complex')"><i class="fa fa-image me-1"></i> View 360° Details</button>
+                            <div class="property-footer">
+                                <div class="property-price">₹ 500 <span>/ Day</span></div>
+                                <button class="btn-book" onclick="payWithRazorpay('Bamunara Market Complex', 500)">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- About District Section (WITH PROTECTED VIDEO) -->
+        <section class="container py-5 mt-4 border-top border-light">
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-4 mb-lg-0">
+                    <video src="https://cgasansol.github.io/psbzpimg/main_video.webm" class="img-fluid rounded shadow w-100" style="border: 4px solid var(--theme-primary); aspect-ratio: 16/9; object-fit: cover; pointer-events: none; -webkit-touch-callout: none; user-select: none;" autoplay loop muted playsinline oncontextmenu="return false;" controlsList="nodownload nofullscreen noremoteplayback"></video>
+                </div>
+                <div class="col-lg-7 px-lg-5">
+                    <h2 class="section-title-left">About Paschim Bardhaman</h2>
+                    <p class="text-muted" style="line-height: 1.8; font-size: 15px;">Paschim Bardhaman is a vibrant and culturally rich district in West Bengal, renowned as the industrial heartland of the state. Formed on 7th April 2017 after the bifurcation of the erstwhile Bardhaman district, it perfectly balances robust urban industrial zones like Asansol and Durgapur with serene natural beauty.</p>
+                    <p class="text-muted" style="line-height: 1.8; font-size: 15px;">The <strong>Zilla Parishad</strong> is dedicated to enhancing the socio-economic framework, promoting rural infrastructure, and preserving the heritage of the region. Through this portal, we aim to provide accessible, comfortable, and secure tourism accommodations for everyone visiting the Land of Black Diamond.</p>
+                    <button class="btn btn-outline-dark fw-bold mt-2" onclick="switchSPA('touristSpotsSection')" style="background:var(--card-bg); color:var(--text-main);">Explore Tourist Spots <i class="fa fa-arrow-right ms-2"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Demographics Section (Animated) -->
+        <section id="demographicsSection" class="container py-5 mb-4 bg-white rounded-3 shadow-sm border border-light" style="background: var(--card-bg) !important;">
+            <div class="text-center mb-4"><h2 class="section-title">Demographic Statistics</h2></div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-4 col-md-4 col-6"><div class="demo-card border-blue"><i class="fa fa-home"></i><h3 class="counter-value" data-target="8">0</h3><p>Blocks</p></div></div>
+                <div class="col-lg-4 col-md-4 col-6"><div class="demo-card border-green"><i class="fa fa-landmark"></i><h3 class="counter-value" data-target="62">0</h3><p>Gram Panchayats</p></div></div>
+                <div class="col-lg-4 col-md-4 col-6"><div class="demo-card border-purple"><i class="fa fa-book-open"></i><h3 class="counter-value" data-target="78.75">0</h3><p>Literacy Rate (%)</p></div></div>
+                <div class="col-lg-4 col-md-4 col-6"><div class="demo-card border-red"><i class="fa fa-chart-bar"></i><h3 class="counter-value" data-target="1800">0</h3><p>People / km²</p></div></div>
+                <div class="col-lg-4 col-md-4 col-6"><div class="demo-card border-orange"><i class="fa fa-map-marked-alt"></i><h3 class="counter-value" data-target="1603.17">0</h3><p>Area (km²)</p></div></div>
+                <div class="col-lg-4 col-md-4 col-6"><div class="demo-card border-teal"><i class="fa fa-users"></i><h3 class="counter-value" data-target="2882031">0</h3><p>Population</p></div></div>
+            </div>
+            <div class="text-center mt-4 pt-4 border-top border-light">
+                <span class="pill-badge bg-pill-blue"><i class="fa fa-building"></i> West Bengal Government</span>
+                <span class="pill-badge bg-pill-lightgreen"><i class="fa fa-hand-holding-usd"></i> Schemes</span>
+            </div>
+        </section>
+
+        <!-- Tourism Statistics Section -->
+        <section class="stats-section mt-4">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-md-3 col-6 stats-item"><i class="fa fa-bed fa-3x text-warning mb-2"></i><h2>12+</h2><p>Zilla Parishad Guest Houses</p></div>
+                    <div class="col-md-3 col-6 stats-item"><i class="fa fa-map-marked-alt fa-3x text-warning mb-2"></i><h2>25+</h2><p>Heritage Tourist Spots</p></div>
+                    <div class="col-md-3 col-6 stats-item"><i class="fa fa-users fa-3x text-warning mb-2"></i><h2>50k+</h2><p>Happy Tourists Yearly</p></div>
+                    <div class="col-md-3 col-6 stats-item"><i class="fa fa-tree fa-3x text-warning mb-2"></i><h2>08</h2><p>Eco-Parks & Sanctuaries</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Initiatives Section -->
+        <section class="container py-5 my-3">
+            <h2 class="section-title">Departments & Initiatives</h2>
+            <div class="row g-4 mt-2 justify-content-center">
+                <div class="col-lg-3 col-md-6"><div class="initiatives-card"><i class="fa fa-road"></i><h4>Rural Infrastructure</h4><p>Development and maintenance of connecting village roads, bridges, and local market complexes.</p></div></div>
+                <div class="col-lg-3 col-md-6"><div class="initiatives-card"><i class="fa fa-leaf"></i><h4>Eco-Tourism</h4><p>Promoting sustainable tourism around Maithon, Garh Jungle, and the Damodar riverbed.</p></div></div>
+                <div class="col-lg-3 col-md-6"><div class="initiatives-card"><i class="fa fa-hands-holding-child"></i><h4>Social Welfare</h4><p>Implementing Govt schemes for rural health, education, and women empowerment.</p></div></div>
+                <div class="col-lg-3 col-md-6"><div class="initiatives-card"><i class="fa fa-tint"></i><h4>Public Health</h4><p>Ensuring clean drinking water supply and proper sanitation facilities across villages.</p></div></div>
+            </div>
+        </section>
+
+    </div> <!-- END HOME SECTION -->
+
+    <!-- =========================================================
+         ALL ADMIN DATA RESTORED 
+         ========================================================= -->
+
+    <!-- 2. SABHADIPATI SECTION (IMAGE KEPT) -->
+    <section id="sabhadipatiSection" class="spa-section container">
+        <h2 class="section-title">Sabhadipati</h2>
+        <div class="sabhadipati-box">
+            <img src="https://www.psbzp.org/Admin/Uploads/20260206_biswanath.png" alt="Biswanath Bauri">
+            <h3 class="fw-bold" style="color: var(--govt-navy);">Biswanath Bauri</h3>
+            <p class="text-uppercase fw-bold text-muted mb-4">Sabhadipati</p>
+            <div class="d-flex flex-column gap-2 text-start mx-auto" style="max-width: 250px;">
+                <div class="d-flex align-items-center"><i class="fa fa-phone-alt text-warning me-3 fs-5"></i> <strong style="color:var(--text-main);">3412252627</strong></div>
+                <div class="d-flex align-items-center"><i class="fa fa-envelope text-warning me-3 fs-5"></i> <strong style="color:var(--text-main);">psbzp2017@gmail.com</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. EXECUTIVE OFFICER SECTION -->
+    <section id="eoSection" class="spa-section container">
+        <h2 class="section-title">Executive Officer</h2>
+        <div class="sabhadipati-box">
+            <img src="https://www.psbzp.org/Admin/Uploads/20240209_s%20ponnambalam.jpeg" alt="Shri Ponnambalam S. , IAS">
+            <h3 class="fw-bold" style="color: var(--govt-navy);">Shri Ponnambalam S. , IAS</h3>
+            <p class="text-uppercase fw-bold text-muted mb-4">District Magistrate & Executive Officer, Paschim Bardhaman ZP</p>
+            <div class="d-flex flex-column gap-2 text-start mx-auto" style="max-width: 250px;">
+                <div class="d-flex align-items-center"><i class="fa fa-phone-alt text-warning me-3 fs-5"></i> <strong style="color:var(--text-main);">3412252627</strong></div>
+                <div class="d-flex align-items-center"><i class="fa fa-envelope text-warning me-3 fs-5"></i> <strong style="color:var(--text-main);">psbzp2017@gmail.com</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. ADMINISTRATIVE OFFICERS SECTION -->
+    <section id="adminSection" class="spa-section container">
+        <h2 class="section-title">Administrative Officers</h2>
+        <div class="row g-4 mt-2 justify-content-center">
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="profile-card">
+                    <div class="profile-avatar avatar-text">NS</div>
+                    <div class="profile-name">Nitu Shukla, IAS</div>
+                    <div class="profile-role">Additional District Magistrate</div>
+                    <div class="profile-contact"><i class="fa fa-envelope"></i> admzppaschimbdn@gmail.com</div>
+                    <div class="profile-contact"><i class="fa fa-phone"></i> 03412252627</div>
+                    <button class="btn btn-sm btn-info text-white mt-3 px-4 rounded-pill" onclick="openModal('Nitu Shukla, IAS', 'Additional District Magistrate', 'admzppaschimbdn@gmail.com', '03412252627', 'NS', true)">Read More</button>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="profile-card">
+                    <div class="profile-avatar avatar-text">PH</div>
+                    <div class="profile-name">Prabhangshu Haldar, WBCS (Exe)</div>
+                    <div class="profile-role">Secretary, Paschim Bardhaman Zilla Parishad</div>
+                    <div class="profile-contact"><i class="fa fa-envelope"></i> psbzp2017@gmail.com</div>
+                    <div class="profile-contact"><i class="fa fa-phone"></i> 7719357634</div>
+                    <button class="btn btn-sm btn-info text-white mt-3 px-4 rounded-pill" onclick="openModal('Prabhangshu Haldar, WBCS (Exe)', 'Secretary, Paschim Bardhaman Zilla Parishad', 'psbzp2017@gmail.com', '7719357634', 'PH', true)">Read More</button>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="profile-card">
+                    <div class="profile-avatar avatar-text">MP</div>
+                    <div class="profile-name">Mritunjoy Panja , WBA & AS</div>
+                    <div class="profile-role">Financial Controller & Chief Accounts Officer</div>
+                    <div class="profile-contact"><i class="fa fa-envelope"></i> FCCAOPSBZP2021@gmail.com</div>
+                    <div class="profile-contact"><i class="fa fa-phone"></i> 03412252627</div>
+                    <button class="btn btn-sm btn-info text-white mt-3 px-4 rounded-pill" onclick="openModal('Mritunjoy Panja , WBA & AS', 'Financial Controller & Chief Accounts Officer', 'FCCAOPSBZP2021@gmail.com', '03412252627', 'MP', true)">Read More</button>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="profile-card">
+                    <div class="profile-avatar avatar-text">MI</div>
+                    <div class="profile-name">Md. Iqbal, WBCS (Exe)</div>
+                    <div class="profile-role">Deputy Secretary, Paschim Bardhaman Zilla Parishad</div>
+                    <div class="profile-contact"><i class="fa fa-envelope"></i> psbzp2017@gmail.com</div>
+                    <div class="profile-contact"><i class="fa fa-phone"></i> 8695623665</div>
+                    <button class="btn btn-sm btn-info text-white mt-3 px-4 rounded-pill" onclick="openModal('Md. Iqbal, WBCS (Exe)', 'Deputy Secretary, Paschim Bardhaman Zilla Parishad', 'psbzp2017@gmail.com', '8695623665', 'MI', true)">Read More</button>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="profile-card">
+                    <div class="profile-avatar avatar-text">AS</div>
+                    <div class="profile-name">Amit Sen</div>
+                    <div class="profile-role">District Engineer, Paschim Bardhaman ZP</div>
+                    <div class="profile-contact"><i class="fa fa-envelope"></i> psbzp2017@gmail.com</div>
+                    <button class="btn btn-sm btn-info text-white mt-3 px-4 rounded-pill" onclick="openModal('Amit Sen', 'District Engineer, Paschim Bardhaman ZP', 'psbzp2017@gmail.com', 'N/A', 'AS', true)">Read More</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- =========================================================
+         5. ALL 8 TOURIST SPOTS RESTORED WITH NEW IMAGES
+         ========================================================= -->
+    <section id="touristSpotsSection" class="spa-section container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Explore Paschim Bardhaman</h2>
+            <p class="text-muted" style="max-width: 600px; margin: 0 auto;">Discover the magnificent heritage, holy shrines, historic riverfronts, and eco-tourism marvels of our vibrant district.</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="tourist-card">
+                    <div class="tourist-img-box">
+                        <img src="https://cgasansol.github.io/psbzpimg/ghagarburi.jpg" alt="Ghagarburi Mandir">
+                        <span class="tourist-category-badge">Holy Shrine</span>
+                    </div>
+                    <div class="tourist-content">
+                        <h4 class="tourist-title">Ghagarburi Mandir</h4>
+                        <div class="tourist-location"><i class="fa fa-map-marker-alt"></i> Bypass, Asansol</div>
+                        <p class="tourist-desc">One of the oldest and most revered shrines dedicated to Goddess Chandi Mata near the Nunia river. A massive annual fair is hosted every January.</p>
+                        <div class="tourist-footer"><span class="visit-tag"><i class="fa fa-calendar-alt me-1"></i> Open All Year</span><button class="btn-explore">Explore</button></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="tourist-card">
+                    <div class="tourist-img-box">
+                        <img src="https://cgasansol.github.io/psbzpimg/pretkali.jpg" alt="Maa Preth Kali Kalipahari">
+                        <span class="tourist-category-badge">Spiritual Heritage</span>
+                    </div>
+                    <div class="tourist-content">
+                        <h4 class="tourist-title">Maa Preth Kali (Kalipahari)</h4>
+                        <div class="tourist-location"><i class="fa fa-map-marker-alt"></i> Kalipahari, Asansol</div>
+                        <p class="tourist-desc">An iconic and unique temple located near Kalipahari, known for its deep-rooted local history, intense spiritual traditions, and serene atmosphere.</p>
+                        <div class="tourist-footer"><span class="visit-tag"><i class="fa fa-calendar-alt me-1"></i> Open Daily</span><button class="btn-explore">Explore</button></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="tourist-card">
+                    <div class="tourist-img-box">
+                        <img src="https://cgasansol.github.io/psbzpimg/maithondam.jpg" alt="Maithon Dam">
+                        <span class="tourist-category-badge">Scenic Dam</span>
+                    </div>
+                    <div class="tourist-content">
+                        <h4 class="tourist-title">Maithon Dam</h4>
+                        <div class="tourist-location"><i class="fa fa-map-marker-alt"></i> Border of Paschim Bardhaman</div>
+                        <p class="tourist-desc">Famous for its expansive blue reservoir, boating experiences, and South East Asia's first underground hydroelectric power station.</p>
+                        <div class="tourist-footer"><span class="visit-tag"><i class="fa fa-clock me-1"></i> Best: July to Feb</span><button class="btn-explore">Explore</button></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="tourist-card">
+                    <div class="tourist-img-box">
+                        <img src="https://cgasansol.github.io/psbzpimg/durgapurdam.jpeg" alt="Durgapur Barrage">
+                        <span class="tourist-category-badge">Riverfront</span>
+                    </div>
+                    <div class="tourist-content">
+                        <h4 class="tourist-title">Durgapur Barrage</h4>
+                        <div class="tourist-location"><i class="fa fa-map-marker-alt"></i> Damodar River, Durgapur</div>
+                        <p class="tourist-desc">Magnificent structure built across the Damodar River, offering spectacular golden-hour sunsets and a popular local evening hangout.</p>
+                        <div class="tourist-footer"><span class="visit-tag"><i class="fa fa-clock me-1"></i> Best: Monsoons & Winter</span><button class="btn-explore">Explore</button></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="tourist-card">
+                    <div class="tourist-img-box">
+                        <img src="https://cgasansol.github.io/psbzpimg/kalyaneshwari.jpg" alt="Kalyaneshwari Temple">
+                        <span class="tourist-category-badge">Ancient Temple</span>
+                    </div>
+                    <div class="tourist-content">
+                        <h4 class="tourist-title">Kalyaneshwari Temple</h4>
+                        <div class="tourist-location"><i class="fa fa-map-marker-alt"></i> Near Maithon, Asansol</div>
+                        <p class="tourist-desc">A legendary 500-year-old temple dedicated to Goddess Kalyaneshwari, drawing thousands of devotees seeking blessings and peace.</p>
+                        <div class="tourist-footer">
+                            <span class="visit-tag"><i class="fa fa-calendar-alt me-1"></i> Open All Year</span>
+                            <button class="btn-explore">Explore</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="tourist-card">
+                    <div class="tourist-img-box">
+                        <img src="https://cgasansol.github.io/psbzpimg/garhjungle.jpg" alt="Garh Jungle">
+                        <span class="tourist-category-badge">Eco-Tourism</span>
+                    </div>
+                    <div class="tourist-content">
+                        <h4 class="tourist-title">Garh Jungle</h4>
+                        <div class="tourist-location"><i class="fa fa-map-marker-alt"></i> Kanksa, Durgapur</div>
+                        <p class="tourist-desc">An ancient forest steeped in mythology, historically linked with King Surath and early roots of the legendary Durga Puja.</p>
+                        <div class="tourist-footer">
+                            <span class="visit-tag"><i class="fa fa-clock me-1"></i> Best: Winter Season</span>
+                            <button class="btn-explore">Explore</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="tourist-card">
+                    <div class="tourist-img-box">
+                        <img src="https://cgasansol.github.io/psbzpimg/deul.jpg" alt="Ichhai Ghosher Deul">
+                        <span class="tourist-category-badge">Architecture</span>
+                    </div>
+                    <div class="tourist-content">
+                        <h4 class="tourist-title">Ichhai Ghosher Deul</h4>
+                        <div class="tourist-location"><i class="fa fa-map-marker-alt"></i> Gourangapur, Ajay River</div>
+                        <p class="tourist-desc">A remarkable architectural marvel—a towering brick rekha-deul temple set against the picturesque backdrop of the Ajay river.</p>
+                        <div class="tourist-footer">
+                            <span class="visit-tag"><i class="fa fa-clock me-1"></i> Best: Oct to March</span>
+                            <button class="btn-explore">Explore</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="tourist-card">
+                    <div class="tourist-img-box">
+                        <img src="https://cgasansol.github.io/psbzpimg/churulia.jpg" alt="Churulia">
+                        <span class="tourist-category-badge">Cultural Hub</span>
+                    </div>
+                    <div class="tourist-content">
+                        <h4 class="tourist-title">Churulia (Nazrul Gram)</h4>
+                        <div class="tourist-location"><i class="fa fa-map-marker-alt"></i> Asansol Subdivision</div>
+                        <p class="tourist-desc">The sacred birthplace of the national rebel poet Kazi Nazrul Islam, housing a dedicated museum, library, and cultural center.</p>
+                        <div class="tourist-footer">
+                            <span class="visit-tag"><i class="fa fa-clock me-1"></i> Best: May (Nazrul Jayanti)</span>
+                            <button class="btn-explore">Explore</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- =========================================================
+         NEW: TARIFFS SECTION
+         ========================================================= -->
+    <section id="tariffSection" class="spa-section container">
+        <h2 class="section-title mb-4">Accommodation Tariffs</h2>
+        <div class="table-responsive">
+            <table class="table table-custom table-hover">
+                <thead>
+                    <tr>
+                        <th>Guest House Name</th>
+                        <th>Location</th>
+                        <th>Room Type</th>
+                        <th>Tariff (per day)</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Bardhaman Bhaban</td>
+                        <td>Asansol</td>
+                        <td>AC Double Bed</td>
+                        <td>₹ 1,000.00</td>
+                        <td><button class="btn btn-sm btn-outline-warning fw-bold" onclick="switchSPA('homeWrapper')">Book</button></td>
+                    </tr>
+                    <tr>
+                        <td>Molandighi Dak Bungalow</td>
+                        <td>Durgapur</td>
+                        <td>Non-AC Standard</td>
+                        <td>₹ 900.00</td>
+                        <td><button class="btn btn-sm btn-outline-warning fw-bold" onclick="switchSPA('homeWrapper')">Book</button></td>
+                    </tr>
+                    <tr>
+                        <td>Rupnarayanpur Bungalow</td>
+                        <td>Rupnarayanpur</td>
+                        <td>AC Suite</td>
+                        <td>₹ 800.00</td>
+                        <td><button class="btn btn-sm btn-outline-warning fw-bold" onclick="switchSPA('homeWrapper')">Book</button></td>
+                    </tr>
+                    <tr>
+                        <td>Bamunara Market Complex</td>
+                        <td>Durgapur</td>
+                        <td>Standard</td>
+                        <td>₹ 500.00</td>
+                        <td><button class="btn btn-sm btn-outline-warning fw-bold" onclick="switchSPA('homeWrapper')">Book</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="text-muted mt-2" style="font-size: 12px;">* Note: Tariffs are exclusive of GST. Rules are subject to change as per Paschim Bardhaman Zilla Parishad directives.</p>
+    </section>
+
+    <!-- =========================================================
+         NEW: ITINERARY / TRIP PLANNER
+         ========================================================= -->
+    <section id="itinerarySection" class="spa-section container">
+        <h2 class="section-title mb-4">Trip Planner (2 Days in Paschim Bardhaman)</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-card">
+                            <h4 style="color: var(--theme-primary); font-weight: 800;">Day 1: The Asansol Heritage Tour</h4>
+                            <p class="mb-2"><strong>Morning:</strong> Start your day with blessings at the ancient <em>Ghagarburi Mandir</em>.</p>
+                            <p class="mb-2"><strong>Afternoon:</strong> Visit Churulia, the birthplace of rebel poet Kazi Nazrul Islam.</p>
+                            <p class="mb-0"><strong>Evening:</strong> Check-in and relax at Bardhaman Bhaban ZP Guest House.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-card">
+                            <h4 style="color: var(--theme-primary); font-weight: 800;">Day 2: Durgapur Nature & Dams</h4>
+                            <p class="mb-2"><strong>Morning:</strong> Drive to <em>Maithon Dam</em> for boating in the blue reservoir.</p>
+                            <p class="mb-2"><strong>Afternoon:</strong> Explore the eco-tourism spot at Garh Jungle.</p>
+                            <p class="mb-0"><strong>Evening:</strong> Witness a breathtaking sunset at the Durgapur Barrage.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         NEW: CONTACT & MAP SECTION
+         ========================================================= -->
+    <section id="contactSection" class="spa-section container">
+        <h2 class="section-title mb-4">Contact Us</h2>
+        <div class="row g-5">
+            <div class="col-lg-6">
+                <div class="card shadow-sm border-0" style="background: var(--card-bg);">
+                    <div class="card-body p-4">
+                        <h4 class="mb-4" style="font-weight: 800; color:var(--text-main);">Send us a message</h4>
+                        <form>
+                            <div class="mb-3"><input type="text" class="form-control" placeholder="Your Name" required></div>
+                            <div class="mb-3"><input type="email" class="form-control" placeholder="Email Address" required></div>
+                            <div class="mb-3"><textarea class="form-control" rows="4" placeholder="Your Query..." required></textarea></div>
+                            <button type="button" class="btn-book w-100 py-2">Submit Feedback</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="position-relative" style="height: 100%; min-height: 350px;">
+                    <div class="rounded overflow-hidden shadow-sm" style="height: 100%;">
+                        <!-- Clean Google Map iframe targeting the exact location -->
+                        <iframe src="https://maps.google.com/maps?q=Paschim%20Bardhaman%20Zilla%20Parishad,%20Asansol&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <!-- User Provided Direct Map Link via Button Overlay -->
+                    <a href="https://maps.app.goo.gl/5ZmxgNfPU1RFpvaz8?g_st=ac" target="_blank" class="btn btn-primary position-absolute shadow" style="bottom: 20px; left: 20px; font-weight: 800; border-radius: 30px; padding: 8px 20px; background: var(--theme-primary); border: none;">
+                        <i class="fa fa-directions me-1"></i> Get Directions
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         ✨ NEW PROFESSIONAL FOOTER ✨
+         ========================================================= -->
+    <footer class="footer-main mt-5">
+        <div class="container">
+            <div class="row g-5">
+                
+                <!-- Col 1: About ZP -->
+                <div class="col-lg-3 col-md-6">
+                    <img src="https://cgasansol.github.io/psbzpimg/footer_logo.png" alt="PBZP Footer Logo" style="height: 60px; margin-bottom: 20px;">
+                    <h5 class="footer-title" style="margin-bottom: 15px; padding-bottom: 0;">Paschim Bardhaman ZP</h5>
+                    <p class="footer-text">The official e-booking portal for government guest houses, dak bungalows, and eco-tourism centers across Paschim Bardhaman district, West Bengal.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Quick Links -->
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-title">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="switchSPA('homeWrapper')"><i class="fa fa-angle-right me-2"></i> Book Accommodation</a></li>
+                        <li><a href="#" onclick="switchSPA('touristSpotsSection')"><i class="fa fa-angle-right me-2"></i> Tourist Spots</a></li>
+                        <li><a href="#" onclick="switchSPA('itinerarySection')"><i class="fa fa-angle-right me-2"></i> Trip Planner</a></li>
+                        <li><a href="#" onclick="switchSPA('tariffSection')"><i class="fa fa-angle-right me-2"></i> Tariffs & Rules</a></li>
+                        <li><a href="#" onclick="switchSPA('contactSection')"><i class="fa fa-angle-right me-2"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Contact Info -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-title">Contact Info</h5>
+                    <ul class="footer-contact-info">
+                        <li>
+                            <i class="fa fa-map-marker-alt"></i>
+                            <span>Paschim Bardhaman Zilla Parishad, Court Area, Asansol, West Bengal - 713304</span>
+                        </li>
+                        <li>
+                            <i class="fa fa-phone-alt"></i>
+                            <span>0341-2252627<br>0341-2252628</span>
+                        </li>
+                        <li>
+                            <i class="fa fa-envelope"></i>
+                            <span>psbzp2017@gmail.com<br>tourism.psbzp@gmail.com</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Technical Partner Card -->
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="footer-title">Technical Partner</h5>
+                    <div class="company-footer-card">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <img src="https://cgasansol.github.io/adminportal/company_logo.png" alt="Nexus Logo">
+                            <div>
+                                <h4 style="color: #fff; font-size: 18px; font-weight: 800; margin: 0; line-height: 1.2;">Nexus Infotech<br><span style="font-size: 12px; font-weight: 500; color: #94a3b8;">Pvt. Ltd.</span></h4>
+                            </div>
+                        </div>
+                        <p style="color: #94a3b8; font-size: 13px; margin-bottom: 15px; line-height: 1.6;">Enterprise Software Development & Digital Infrastructure Management.</p>
+                        <div class="pt-3 border-top" style="border-color: rgba(255,255,255,0.1) !important;">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span style="display: block; font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">Designed & Maintained By</span>
+                                    <strong class="text-warning" style="font-size: 15px;">Gourab Layak</strong>
+                                </div>
+                                <i class="fa fa-code text-secondary" style="font-size: 24px; opacity: 0.3;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer Bottom Bar -->
+        <div class="footer-bottom">
+            <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
+                <div style="color: #64748b; font-size: 13px;">&copy; <span id="currentYear">2026</span> <strong>Paschim Bardhaman Zilla Parishad</strong>. All Rights Reserved.</div>
+                <div class="d-flex gap-4" style="font-size: 13px;">
+                    <a href="#" style="color: #64748b; text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='#f6931d'" onmouseout="this.style.color='#64748b'">Privacy Policy</a>
+                    <a href="#" style="color: #64748b; text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='#f6931d'" onmouseout="this.style.color='#64748b'">Terms & Conditions</a>
+                    <a href="#" style="color: #64748b; text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='#f6931d'" onmouseout="this.style.color='#64748b'">Refund Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =========================================================
+         MODALS & CHATBOT WIDGET
+         ========================================================= -->
+
+    <!-- Custom Modal for Administrative Officers -->
+    <div id="profileModal" class="custom-modal">
+        <div class="custom-modal-content">
+            <span class="close-btn" onclick="closeModal()" title="Close">&times;</span>
+            <div class="modal-body text-center mt-3">
+                <!-- Original Image tag -->
+                <img id="modalImg" src="" alt="Profile Image" class="modal-img">
+                
+                <!-- New Initials Avatar Div for Modal -->
+                <div id="modalInitials" class="avatar-text"></div>
+                
+                <h3 id="modalName" class="modal-name"></h3>
+                <p id="modalRole" class="modal-role"></p>
+                <div class="modal-contact">
+                    <p><i class="fa fa-envelope text-warning"></i> <span id="modalEmail"></span></p>
+                    <p><i class="fa fa-phone text-warning"></i> <span id="modalPhone"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Property Details & 360 Viewer Modal (Bootstrap) -->
+    <div class="modal fade" id="propertyModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title fw-bold" id="propModalTitle">Property Details</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <div id="propCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner" style="height: 300px; background: #000;">
+                            <div class="carousel-item active h-100">
+                                <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=1000&q=80" class="d-block w-100 h-100" style="object-fit: cover; opacity: 0.8;" alt="Room">
+                                <div class="carousel-caption d-flex flex-column justify-content-center h-100 align-items-center">
+                                    <i class="fa fa-sync fa-spin fa-3x mb-2 text-white"></i>
+                                    <h4 class="text-white fw-bold shadow">360° Virtual Tour</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4" style="background:var(--card-bg);">
+                        <h5 class="fw-bold text-primary mb-3">Amenities & Policies</h5>
+                        <ul class="row list-unstyled" style="font-size: 14px; color:var(--text-main);">
+                            <li class="col-6 mb-2"><i class="fa fa-wifi text-success me-2"></i> Free High-Speed WiFi</li>
+                            <li class="col-6 mb-2"><i class="fa fa-snowflake text-info me-2"></i> Air Conditioning</li>
+                            <li class="col-6 mb-2"><i class="fa fa-car text-secondary me-2"></i> Secure Parking</li>
+                            <li class="col-6 mb-2"><i class="fa fa-clock text-warning me-2"></i> Check-in: 12:00 PM</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer" style="background:var(--card-bg);">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn-book" onclick="payWithRazorpay('Selected Property', 1000)" data-bs-dismiss="modal">Proceed to Pay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Portal Modal -->
+    <div class="modal fade" id="authModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold">Admin Portal</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center py-5">
+                    <i class="fa fa-user-shield fa-4x text-secondary mb-3"></i>
+                    <h4 style="color:var(--text-main);">Admin Login</h4>
+                    <p class="text-muted mb-4">Authorized personnel only. Please login to access the administration dashboard.</p>
+                    <button class="btn btn-primary w-100 mb-2">Login with Official Credentials</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating AI Chatbot -->
+    <div class="chatbot-btn" onclick="toggleChat()"><i class="fa fa-robot"></i></div>
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chat-header">
+            Ask Bengal Tourism <i class="fa fa-times" style="cursor:pointer;" onclick="toggleChat()"></i>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="chat-msg bot-msg">Hello! Welcome to Paschim Bardhaman Zilla Parishad portal. How can I help you today?</div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="chatInput" placeholder="Type a message..." onkeypress="handleChatEnter(event)">
+            <button onclick="sendChatMessage()"><i class="fa fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Google Translate Script -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ 
+                pageLanguage: 'en', 
+                includedLanguages: 'en,bn,hi', 
+                autoDisplay: false 
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Custom Scripts -->
+    <script>
+        // 1. FIXED GOOGLE TRANSLATE LOGIC
+        function translatePage(lang) {
+            var selectField = document.querySelector(".goog-te-combo");
+            if (selectField) {
+                if(lang === 'en') {
+                    selectField.value = ""; 
+                } else {
+                    selectField.value = lang;
+                }
+                selectField.dispatchEvent(new Event('change'));
+            }
+        }
+
+        // 2. SPA ROUTING
+        const allSections = ['homeWrapper', 'touristSpotsSection', 'sabhadipatiSection', 'eoSection', 'adminSection', 'tariffSection', 'itinerarySection', 'contactSection'];
+        function switchSPA(targetId) {
+            allSections.forEach(id => {
+                let el = document.getElementById(id);
+                if(el) el.style.display = 'none';
+            });
+            document.getElementById(targetId).style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 3. DARK MODE LOGIC
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const btn = document.getElementById('themeBtn');
+            const headerLogo = document.getElementById('headerLogo'); 
+
+            if (document.body.classList.contains('dark-mode')) {
+                btn.innerHTML = '<i class="fa fa-sun text-warning"></i> Light';
+                headerLogo.src = 'https://cgasansol.github.io/psbzpimg/footer_logo.png';
+            } else {
+                btn.innerHTML = '<i class="fa fa-moon"></i> Dark';
+                headerLogo.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Seal_of_West_Bengal.svg/1280px-Seal_of_West_Bengal.svg.png';
+            }
+        }
+
+        // 4. RAZORPAY DUMMY LOGIC
+        function payWithRazorpay(propertyName, price) {
+            alert("🚀 Redirecting to Razorpay Gateway...\n\nProperty: " + propertyName + "\nAmount: ₹" + price + "\n\n(Yahan aap baad me apna real Razorpay API Checkout link integrate kar sakte hain)");
+        }
+
+        // 5. CHATBOT LOGIC
+        function toggleChat() {
+            const chatWin = document.getElementById('chatbotWindow');
+            chatWin.style.display = chatWin.style.display === 'none' || chatWin.style.display === '' ? 'flex' : 'none';
+        }
+
+        function sendChatMessage() {
+            const input = document.getElementById('chatInput');
+            const msg = input.value.trim();
+            if(!msg) return;
+
+            const chatBody = document.getElementById('chatBody');
+            chatBody.innerHTML += `<div class="chat-msg user-msg">${msg}</div>`;
+            input.value = '';
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            setTimeout(() => {
+                let reply = "Thanks for your query. Our support team will assist you soon. For bookings, please use the search console on the Home page.";
+                if(msg.toLowerCase().includes("razorpay")) reply = "Yes, we support secure payments via Razorpay!";
+                chatBody.innerHTML += `<div class="chat-msg bot-msg">${reply}</div>`;
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 1000);
+        }
+        function handleChatEnter(e) { if(e.key === 'Enter') sendChatMessage(); }
+
+        // 6. PROPERTY MODAL DATA LOADER
+        function loadPropertyData(name) {
+            document.getElementById('propModalTitle').innerText = name + " - 360° Virtual Tour";
+        }
+
+        // 7. CUSTOM MODAL FOR OFFICERS
+        function openModal(name, role, email, phone, avatarData, isInitials = false) {
+            document.getElementById('modalName').innerText = name;
+            document.getElementById('modalRole').innerText = role;
+            document.getElementById('modalEmail').innerText = email;
+            document.getElementById('modalPhone').innerText = phone;
+            
+            if(isInitials) {
+                document.getElementById('modalImg').style.display = 'none';
+                document.getElementById('modalInitials').innerText = avatarData;
+                document.getElementById('modalInitials').style.display = 'flex';
+            } else {
+                document.getElementById('modalInitials').style.display = 'none';
+                document.getElementById('modalImg').src = avatarData;
+                document.getElementById('modalImg').style.display = 'inline-block';
+            }
+            
+            document.getElementById('profileModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('profileModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const profileModal = document.getElementById('profileModal');
+            if (event.target == profileModal) { closeModal(); }
+        }
+
+        // 8. SEARCH VALIDATION, RESULTS & DATE LOGIC
+        function validateSearchForm() {
+            const dest = document.getElementById('destinationSelect').value;
+            const checkIn = document.getElementById('checkInDate').value;
+            const checkOut = document.getElementById('checkOutDate').value;
+            const roomCat = document.getElementById('roomCategory').value;
+            const btn = document.getElementById('searchBtn');
+
+            if(dest && checkIn && checkOut && roomCat) {
+                btn.removeAttribute('disabled');
+            } else {
+                btn.setAttribute('disabled', 'true');
+            }
+        }
+
+        function showSearchResults() {
+            document.getElementById('searchResults').style.display = 'block'; 
+            document.getElementById('searchResults').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        
+        function updateDateTime() {
+            document.getElementById('currentDateTime').innerText = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+        }
+        setInterval(updateDateTime, 1000); updateDateTime();
+        
+        // 9. ANIMATED DEMOGRAPHICS COUNTER
+        const counterObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = entry.target.querySelectorAll('.counter-value');
+                    const speed = 40; 
+                    counters.forEach(counter => {
+                        const updateCount = () => {
+                            const target = +counter.getAttribute('data-target');
+                            const isDecimal = counter.getAttribute('data-target').includes('.');
+                            const count = +counter.innerText.replace(/,/g, ''); 
+                            const inc = target / speed;
+
+                            if (count < target) {
+                                let nextCount = count + inc;
+                                if(isDecimal) {
+                                    counter.innerText = nextCount.toFixed(2);
+                                } else {
+                                    counter.innerText = Math.ceil(nextCount).toLocaleString('en-US');
+                                }
+                                setTimeout(updateCount, 30);
+                            } else {
+                                if(isDecimal) {
+                                    counter.innerText = target.toFixed(2);
+                                } else {
+                                    counter.innerText = target.toLocaleString('en-US');
+                                }
+                            }
+                        };
+                        updateCount();
+                    });
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Setup minimum dates
+            const today = new Date().toISOString().split('T')[0];
+            const checkIn = document.getElementById('checkInDate');
+            if(checkIn) { 
+                checkIn.setAttribute('min', today); 
+                document.getElementById('checkOutDate').setAttribute('min', today); 
+            }
+
+            // Start Demographics Observer
+            const demoSection = document.getElementById('demographicsSection');
+            if(demoSection) { counterObserver.observe(demoSection); }
+
+            // Add Event Listeners for Search Validation
+            const formElements = ['destinationSelect', 'checkInDate', 'checkOutDate', 'roomCategory'];
+            formElements.forEach(id => {
+                const el = document.getElementById(id);
+                if(el) {
+                    el.addEventListener('change', validateSearchForm);
+                    el.addEventListener('input', validateSearchForm);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
