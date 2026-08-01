@@ -68,7 +68,6 @@
         /* OFFICIAL HEADER & LOGO ALIGNMENT */
         .header-main { background: var(--card-bg); padding: 12px 0; border-bottom: 3px solid var(--theme-primary); transition: 0.3s;}
         .brand-left { display: flex; align-items: center; gap: 15px; }
-        /* Logo styling updated: No border-radius, pure original aspect ratio */
         .brand-left img { height: 75px; width: auto; object-fit: contain; transition: all 0.3s ease; }
         
         .brand-titles h1 { font-size: 24px; font-weight: 900; color: var(--govt-navy); margin: 0; line-height: 1.1; font-family: 'Roboto', sans-serif; }
@@ -77,13 +76,27 @@
 
         /* NAVBAR & NOTICE BOARD */
         .navbar { background: var(--theme-gradient); padding: 0; box-shadow: 0 4px 10px rgba(246, 147, 29, 0.2); }
-        .nav-link { color: #ffffff !important; padding: 14px 20px !important; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; transition: 0.3s; cursor: pointer; }
+        .nav-link { 
+            color: #ffffff !important; 
+            padding: 12px 10px !important; 
+            font-size: 11.5px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 0px; 
+            white-space: nowrap; 
+            transition: 0.3s; 
+            cursor: pointer; 
+        }
+        .nav-link i { font-size: 12px; margin-right: 4px !important; } 
         .nav-link:hover, .nav-item.active .nav-link { background: rgba(0,0,0,0.15); }
+        
         .dropdown-menu { border-radius: 4px; border: none; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-top: 0; background: var(--card-bg);}
-        .dropdown-item { font-size: 13px; font-weight: 600; padding: 10px 20px; color: var(--text-main); transition: 0.2s; cursor: pointer;}
-        .dropdown-item:hover { background-color: var(--theme-primary); color: #fff; padding-left: 25px;}
-        .login-btn { background: #0f172a; color: #fff !important; border-radius: 4px; padding: 8px 20px !important; margin-top: 5px; margin-bottom: 5px; }
+        .dropdown-item { font-size: 12px; font-weight: 600; padding: 8px 15px; color: var(--text-main); transition: 0.2s; cursor: pointer;}
+        .dropdown-item:hover { background-color: var(--theme-primary); color: #fff; padding-left: 20px;}
+        
+        .login-btn { background: #0f172a; color: #fff !important; border-radius: 4px; padding: 8px 15px !important; margin-top: 5px; margin-bottom: 5px; font-size: 11.5px;}
         .login-btn:hover { background: #000; }
+        
         .notice-board { background: var(--card-bg); border-bottom: 2px solid var(--border-light); padding: 8px 0; font-size: 13px; transition: 0.3s;}
         .notice-title { background: #ef4444; color: #fff; font-weight: 800; padding: 4px 12px; border-radius: 3px; display: inline-block; margin-right: 15px; white-space: nowrap; }
 
@@ -249,12 +262,6 @@
         .stats-item h2 { font-size: 40px; font-weight: 900; color: var(--theme-primary); margin: 10px 0 5px; }
         .stats-item p { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #cbd5e1; }
 
-        /* Digital Haat Cards */
-        .haat-card { background: var(--card-bg); border: 1px solid var(--border-light); border-radius: 12px; overflow: hidden; transition: 0.3s; height: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .haat-card:hover { transform: translateY(-5px); border-color: var(--theme-primary); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        .haat-card img { width: 100%; height: 220px; object-fit: cover; border-bottom: 3px solid var(--theme-primary); }
-        .haat-card-body { padding: 20px; }
-
         /* SPEED DIAL MENU */
         .speed-dial-container { position: fixed; bottom: 30px; right: 30px; z-index: 1000; display: flex; flex-direction: column-reverse; align-items: center; gap: 15px; }
         .sd-btn-main { background: var(--theme-primary); color: #fff; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer; box-shadow: 0 10px 20px rgba(246, 147, 29, 0.4); border: none; transition: transform 0.3s; }
@@ -378,8 +385,8 @@
     </header>
 
     <!-- 3. NAVBAR -->
-    <nav class="navbar navbar-expand-lg sticky-top">
-        <div class="container">
+    <nav class="navbar navbar-expand-xl sticky-top">
+        <div class="container-fluid px-lg-4 px-xl-5">
             <button class="navbar-toggler border-0 text-white w-100 text-start py-2" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
                 <i class="fa fa-bars me-2"></i> MAIN MENU
             </button>
@@ -387,14 +394,14 @@
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item active" id="nav_homeWrapper"><a class="nav-link" onclick="switchSPA('homeWrapper')"><i class="fa fa-home me-1"></i> Home</a></li>
                     
-                    <!-- E-Governance Dropdown -->
+                    <!-- E-Governance Dropdown (ALL LINKS FIXED AND ACTIVE) -->
                     <li class="nav-item dropdown" id="nav_egovDropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="fa fa-landmark me-1"></i> E-Governance</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" onclick="switchSPA('grievanceSection')"><i class="fa fa-comment-dots text-warning me-2"></i> Public Grievance (Samadhan)</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fa fa-file-alt text-primary me-2"></i> RTI Cell</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fa fa-gavel text-danger me-2"></i> E-Tenders & Notices</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fa fa-hand-holding-usd text-success me-2"></i> State Govt Schemes</a></li>
+                            <li><a class="dropdown-item" onclick="switchSPA('rtiSection')"><i class="fa fa-file-alt text-primary me-2"></i> RTI Cell</a></li>
+                            <li><a class="dropdown-item" onclick="switchSPA('tenderSection')"><i class="fa fa-gavel text-danger me-2"></i> E-Tenders & Notices</a></li>
+                            <li><a class="dropdown-item" onclick="switchSPA('schemesSection')"><i class="fa fa-hand-holding-usd text-success me-2"></i> State Govt Schemes</a></li>
                         </ul>
                     </li>
 
@@ -407,9 +414,6 @@
                         </ul>
                     </li>
                     <li class="nav-item" id="nav_touristSpotsSection"><a class="nav-link" onclick="switchSPA('touristSpotsSection')"><i class="fa fa-map-marked-alt me-1"></i> Tourist Spots</a></li>
-                    
-                    <!-- Digital Haat Link -->
-                    <li class="nav-item" id="nav_haatSection"><a class="nav-link" onclick="switchSPA('haatSection')"><i class="fa fa-shopping-bag me-1"></i> Digital Haat</a></li>
                     
                     <li class="nav-item" id="nav_itinerarySection"><a class="nav-link" onclick="switchSPA('itinerarySection')"><i class="fa fa-route me-1"></i> Trip Planner</a></li>
                     <li class="nav-item" id="nav_tariffSection"><a class="nav-link" onclick="switchSPA('tariffSection')"><i class="fa fa-file-invoice-dollar me-1"></i> Tariffs</a></li>
@@ -756,6 +760,127 @@
         </div>
     </section>
 
+    <!-- NEW SECTION: RTI CELL -->
+    <section id="rtiSection" class="spa-section container">
+        <h2 class="section-title mb-4">Right to Information (RTI) Cell</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow-sm border-0" style="background: var(--card-bg); border-top: 5px solid var(--theme-primary) !important;">
+                    <div class="card-body p-4 p-md-5 text-center">
+                        <i class="fa fa-file-alt fa-3x text-primary mb-3"></i>
+                        <h3 class="fw-bold mb-3" style="color: var(--govt-navy);">State Public Information Officer (SPIO)</h3>
+                        <p class="text-muted mb-4">Citizens can file an RTI application under the Right to Information Act, 2005 to seek any information related to the working of Paschim Bardhaman Zilla Parishad.</p>
+                        
+                        <div class="bg-light p-3 rounded text-start d-inline-block w-100 mb-4 border" style="max-width: 400px; font-size: 14px;">
+                            <p class="mb-2"><strong><i class="fa fa-user text-primary me-2"></i> Designated Officer:</strong> Secretary, Zilla Parishad</p>
+                            <p class="mb-2"><strong><i class="fa fa-envelope text-warning me-2"></i> Email:</strong> rti.psbzp@gmail.com</p>
+                            <p class="mb-0"><strong><i class="fa fa-money-bill-wave text-success me-2"></i> Application Fee:</strong> ₹ 10/- (Court Fee Stamp)</p>
+                        </div>
+                        
+                        <div>
+                            <button class="btn btn-outline-dark fw-bold me-2" onclick="alert('Downloading RTI Application Form (PDF)...')"><i class="fa fa-download me-1"></i> Download Form</button>
+                            <button class="btn btn-primary fw-bold" onclick="window.open('https://rtionline.wb.gov.in/', '_blank')"><i class="fa fa-globe me-1"></i> Apply Online</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: E-TENDERS & NOTICES -->
+    <section id="tenderSection" class="spa-section container">
+        <h2 class="section-title mb-4">E-Tenders & Public Notices</h2>
+        <p class="text-center text-muted mb-4">Find all recent tender publications, auction notices, and official recruitments below.</p>
+        <div class="table-responsive">
+            <table class="table table-custom table-hover text-center">
+                <thead>
+                    <tr>
+                        <th>Tender No.</th>
+                        <th>Description of Work</th>
+                        <th>Published Date</th>
+                        <th>Closing Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="fw-bold text-danger">NIT-45/26</td>
+                        <td class="text-start">Maintenance and beautification of Eco-Tourism Park at Garh Jungle.</td>
+                        <td>15 Jul 2026</td>
+                        <td>05 Aug 2026</td>
+                        <td><button class="btn btn-sm btn-danger fw-bold" onclick="alert('Downloading Tender Document...')"><i class="fa fa-file-pdf"></i> PDF</button></td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold text-danger">NIT-42/26</td>
+                        <td class="text-start">Supply of Desktop Computers and Printers for Zilla Parishad Office.</td>
+                        <td>02 Jul 2026</td>
+                        <td>20 Jul 2026 <span class="badge bg-secondary ms-1">Closed</span></td>
+                        <td><button class="btn btn-sm btn-danger fw-bold" onclick="alert('Downloading Tender Document...')"><i class="fa fa-file-pdf"></i> PDF</button></td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold text-primary">NIO-12/26</td>
+                        <td class="text-start">Auction Notice for scrap materials at Kanksa Block.</td>
+                        <td>28 Jun 2026</td>
+                        <td>15 Jul 2026 <span class="badge bg-secondary ms-1">Closed</span></td>
+                        <td><button class="btn btn-sm btn-danger fw-bold" onclick="alert('Downloading Auction Notice...')"><i class="fa fa-file-pdf"></i> PDF</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="text-center mt-3">
+            <a href="https://wbtenders.gov.in" target="_blank" class="btn btn-outline-primary fw-bold">Visit WB Tenders Portal <i class="fa fa-external-link-alt ms-1"></i></a>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: STATE GOVT SCHEMES -->
+    <section id="schemesSection" class="spa-section container">
+        <h2 class="section-title mb-4">State Government Schemes</h2>
+        <p class="text-center text-muted mb-5">Explore major welfare initiatives implemented by the Government of West Bengal for the citizens of Paschim Bardhaman.</p>
+        
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 shadow-sm border-0" style="background: var(--card-bg); border-bottom: 4px solid #ec4899 !important;">
+                    <div class="card-body text-center p-4">
+                        <i class="fa fa-female fa-3x text-pink mb-3" style="color: #ec4899;"></i>
+                        <h5 class="fw-bold" style="color: var(--text-main);">Lakshmir Bhandar</h5>
+                        <p class="text-muted small">Financial assistance program to provide basic income support to the female heads of families.</p>
+                        <button class="btn btn-sm btn-outline-dark w-100 fw-bold mt-auto" onclick="alert('Redirecting to scheme details...')">Know More</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 shadow-sm border-0" style="background: var(--card-bg); border-bottom: 4px solid #10b981 !important;">
+                    <div class="card-body text-center p-4">
+                        <i class="fa fa-heartbeat fa-3x text-success mb-3"></i>
+                        <h5 class="fw-bold" style="color: var(--text-main);">Swasthya Sathi</h5>
+                        <p class="text-muted small">A basic health cover for secondary and tertiary care up to Rs. 5 Lakh per annum per family.</p>
+                        <button class="btn btn-sm btn-outline-dark w-100 fw-bold mt-auto" onclick="alert('Redirecting to scheme details...')">Know More</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 shadow-sm border-0" style="background: var(--card-bg); border-bottom: 4px solid #8b5cf6 !important;">
+                    <div class="card-body text-center p-4">
+                        <i class="fa fa-graduation-cap fa-3x text-purple mb-3" style="color: #8b5cf6;"></i>
+                        <h5 class="fw-bold" style="color: var(--text-main);">Kanyashree Prakalpa</h5>
+                        <p class="text-muted small">An initiative to improve the life and status of girls by helping them pursue higher education.</p>
+                        <button class="btn btn-sm btn-outline-dark w-100 fw-bold mt-auto" onclick="alert('Redirecting to scheme details...')">Know More</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 shadow-sm border-0" style="background: var(--card-bg); border-bottom: 4px solid #f59e0b !important;">
+                    <div class="card-body text-center p-4">
+                        <i class="fa fa-wheat-awn fa-3x text-warning mb-3"></i>
+                        <h5 class="fw-bold" style="color: var(--text-main);">Khadya Sathi</h5>
+                        <p class="text-muted small">Ensuring food security by providing subsidized food grains to almost 90% of the state's population.</p>
+                        <button class="btn btn-sm btn-outline-dark w-100 fw-bold mt-auto" onclick="alert('Redirecting to scheme details...')">Know More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- 5. ALL 8 TOURIST SPOTS -->
     <section id="touristSpotsSection" class="spa-section container">
         <div class="text-center mb-5">
@@ -818,7 +943,7 @@
                     <div class="tourist-content">
                         <h4 class="tourist-title">Durgapur Barrage</h4>
                         <div class="tourist-location"><i class="fa fa-map-marker-alt"></i> Damodar River, Durgapur</div>
-                        <p class="tourist-desc">Magnificent structure built across the Damodar River, offering spectacular golden-hour sunsets.</p>
+                        <p class="tourist-desc">Magnificent structure built across the mighty Damodar River, offering spectacular golden-hour sunsets.</p>
                         <div class="tourist-footer"><span class="visit-tag"><i class="fa fa-clock me-1"></i> Best: Monsoons & Winter</span><button class="btn-explore">Read More</button></div>
                     </div>
                 </div>
@@ -896,46 +1021,6 @@
                 </div>
             </div>
 
-        </div>
-    </section>
-    
-    <!-- DIGITAL HAAT (BISWA BANGLA) SECTION -->
-    <section id="haatSection" class="spa-section container">
-        <div class="text-center mb-5">
-            <h2 class="section-title">Biswa Bangla Digital Haat</h2>
-            <p class="text-muted" style="max-width: 600px; margin: 0 auto;">Support local artisans of Paschim Bardhaman by exploring and purchasing authentic GI-tagged handicrafts.</p>
-        </div>
-        <div class="row g-4 justify-content-center">
-            <div class="col-lg-4 col-md-6">
-                <div class="haat-card">
-                    <img src="https://images.unsplash.com/photo-1618172193763-c511deb635ca?auto=format&fit=crop&w=800&q=80" alt="Dokra Art">
-                    <div class="haat-card-body text-center">
-                        <h4 class="fw-bold" style="color: var(--govt-navy);">Dokra Metal Craft</h4>
-                        <p class="text-muted small">Ancient bell-metal craft made by local tribal artisans of Bengal.</p>
-                        <button class="btn btn-outline-warning fw-bold w-100" onclick="alert('Redirecting to Artisan Contact Directory...')">Enquire / Buy <i class="fa fa-shopping-cart ms-1"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="haat-card">
-                    <img src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=800&q=80" alt="Terracotta">
-                    <div class="haat-card-body text-center">
-                        <h4 class="fw-bold" style="color: var(--govt-navy);">Bankura Terracotta</h4>
-                        <p class="text-muted small">Famous burnt clay art, perfect for home decor and gifting.</p>
-                        <button class="btn btn-outline-warning fw-bold w-100" onclick="alert('Redirecting to Artisan Contact Directory...')">Enquire / Buy <i class="fa fa-shopping-cart ms-1"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="haat-card">
-                    <img src="https://images.unsplash.com/photo-1583307817454-0466e06822e0?auto=format&fit=crop&w=800&q=80" alt="Handloom Sarees">
-                    <div class="haat-card-body text-center">
-                        <h4 class="fw-bold" style="color: var(--govt-navy);">Bengal Handloom</h4>
-                        <p class="text-muted small">Authentic tant and silk sarees crafted by rural weavers.</p>
-                        <button class="btn btn-outline-warning fw-bold w-100" onclick="alert('Redirecting to Artisan Contact Directory...')">Enquire / Buy <i class="fa fa-shopping-cart ms-1"></i></button>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -1380,8 +1465,8 @@
             }
         }
 
-        // SPA ROUTING
-        const allSections = ['homeWrapper', 'touristSpotsSection', 'sabhadipatiSection', 'eoSection', 'adminSection', 'tariffSection', 'itinerarySection', 'contactSection', 'noticeSection', 'haatSection', 'grievanceSection'];
+        // SPA ROUTING (ALL SECTIONS ADDED)
+        const allSections = ['homeWrapper', 'touristSpotsSection', 'sabhadipatiSection', 'eoSection', 'adminSection', 'tariffSection', 'itinerarySection', 'contactSection', 'noticeSection', 'grievanceSection', 'rtiSection', 'tenderSection', 'schemesSection'];
         function switchSPA(targetId) {
             allSections.forEach(id => {
                 let el = document.getElementById(id);
@@ -1471,7 +1556,7 @@
                 busRoute: 'Take an SBSTC bus heading towards Durgapur/Raniganj from Asansol Bus Stand and get down at Kalipahari More. From there, take a local Toto (e-rickshaw) to the temple. Journey time: 20 mins.',
                 desc: {
                     en: "Located in the Kalipahari area of Asansol, Maa Preth Kali temple is deeply rooted in local folklore and intense spiritual traditions. It is a unique and somewhat mysterious spiritual site.",
-                    hi: "आसनसोल के कालीपहाड़ी क्षेत्र में स्थित, माँ प्रेत काली मंदिर स्थानीय लोककथाओं और गहन आध्यात्मिक परंपराओं में गहराई से जुड़ा हुआ है। यह एक अनूठा और कुछ हद तक रहस्यमय आध्यात्मिक स्थल है।",
+                    hi: "आसनसोल के कालीपहाड़ी क्षेत्र में स्थित, माँ प्रेत काली मंदिर स्थानीय लोककथाओं और गहन आध्यात्मिक परंपराओं में गहराई से जुड़ा हुआ है। यह एक अनूठा और कुछ हद तक रहस्यमय आध्यात्मिक स्थल आध्यात्मिक स्थल है।",
                     bn: "আসানসোলের কালিপাহাড়ি এলাকায় অবস্থিত মা প্রেত কালী মন্দির স্থানীয় লোককাহিনী এবং গভীর আধ্যাত্মিক ঐতিহ্যের সাথে গভীরভাবে জড়িত। এটি একটি অনন্য এবং কিছুটা রহস্যময় আধ্যাত্মিক স্থান।"
                 }
             },
