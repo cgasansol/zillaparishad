@@ -57,10 +57,20 @@
         .theme-toggle-btn { background: transparent; border: 1px solid #cbd5e1; color: #fff; padding: 2px 10px; border-radius: 15px; font-size: 12px; cursor: pointer; transition: 0.3s;}
         .theme-toggle-btn:hover { border-color: var(--theme-primary); color: var(--theme-primary);}
 
-        /* OFFICIAL HEADER */
+        /* GIGW Accessibility Resize Buttons */
+        .font-resize-btn { background: transparent; border: 1px solid #cbd5e1; color: #fff; padding: 2px 6px; border-radius: 4px; font-size: 11px; margin-left: 4px; cursor: pointer; transition: 0.3s; font-weight: bold;}
+        .font-resize-btn:hover { background: var(--theme-primary); border-color: var(--theme-primary); }
+
+        /* Disaster Alert Marquee */
+        .disaster-alert { background: #dc3545; color: #fff; padding: 6px 0; font-size: 13px; border-bottom: 2px solid #b02a37; }
+        .disaster-alert .badge { font-size: 11px; letter-spacing: 0.5px; }
+
+        /* OFFICIAL HEADER & LOGO ALIGNMENT */
         .header-main { background: var(--card-bg); padding: 12px 0; border-bottom: 3px solid var(--theme-primary); transition: 0.3s;}
         .brand-left { display: flex; align-items: center; gap: 15px; }
-        .brand-left img { height: 75px; width: auto; object-fit: contain; transition: 0.3s; }
+        /* Logo styling updated: No border-radius, pure original aspect ratio */
+        .brand-left img { height: 75px; width: auto; object-fit: contain; transition: all 0.3s ease; }
+        
         .brand-titles h1 { font-size: 24px; font-weight: 900; color: var(--govt-navy); margin: 0; line-height: 1.1; font-family: 'Roboto', sans-serif; }
         .brand-titles h2 { font-size: 14px; font-weight: 700; color: var(--theme-primary); margin: 2px 0 0 0; text-transform: uppercase; }
         .brand-titles p { font-size: 12px; color: #64748b; margin: 0; font-weight: 600; text-transform: uppercase; }
@@ -77,7 +87,7 @@
         .notice-board { background: var(--card-bg); border-bottom: 2px solid var(--border-light); padding: 8px 0; font-size: 13px; transition: 0.3s;}
         .notice-title { background: #ef4444; color: #fff; font-weight: 800; padding: 4px 12px; border-radius: 3px; display: inline-block; margin-right: 15px; white-space: nowrap; }
 
-        /* ✨ FIX: CENSUS 2027 BANNER CSS (No Image Cut & Clickable) ✨ */
+        /* CENSUS 2027 BANNER CSS */
         .census-banner-container { padding-top: 20px; padding-bottom: 10px; background: var(--bg-light); }
         .census-banner { display: block; width: 100%; border-radius: 12px; overflow: hidden; border: 3px solid var(--theme-primary); box-shadow: 0 10px 25px rgba(0,0,0,0.1); position: relative; text-decoration: none; }
         .census-banner img { width: 100%; height: auto; display: block; transition: transform 0.4s ease; }
@@ -101,7 +111,7 @@
         .btn-search:disabled { background: #cbd5e1; color: #64748b; cursor: not-allowed; opacity: 0.8; }
         .hero-content-right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; justify-content: center; height: 100%; }
         
-        /* LEADER CARDS (1:1 Aspect Ratio) */
+        /* LEADER CARDS */
         .cm-photo-card { background: #fff; padding: 5px; border-radius: 12px; border: 3px solid var(--theme-primary); text-align: center; width: 150px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); flex-shrink: 0; }
         .cm-photo-card img { width: 100%; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover; object-position: top center; }
         .cm-photo-card .cm-name { font-size: 12px; font-weight: 800; color: #0f172a; margin-top: 8px; line-height: 1.2; }
@@ -185,7 +195,7 @@
         .ts-modal-close:hover { background: #ef4444; color: #fff; transform: rotate(90deg); }
         .ts-hero-img { width: 100%; height: 300px; object-fit: cover; border-top-left-radius: 16px; border-top-right-radius: 16px; }
         .ts-body { padding: 30px; }
-        .ts-header-flex { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 15px; border-bottom: 2px solid var(--border-light); padding-bottom: 15px; margin-bottom: 20px; }
+        .ts-header-flex { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 15px; border-bottom: 2px solid var(--border-light); padding-bottom: 15px; margin-bottom: 10px; }
         .ts-title { font-size: 28px; font-weight: 900; color: var(--govt-navy); margin: 0; }
         .ts-subtitle { font-size: 14px; font-weight: 700; color: #ef4444; margin-top: 5px; display: flex; align-items: center; gap: 6px; }
         
@@ -195,6 +205,10 @@
         .ts-lang-btn.share-btn { background: #10b981; color:#fff; border-left: 1px solid rgba(255,255,255,0.2);}
         .ts-lang-btn.share-btn:hover { background: #059669; }
         
+        /* BUS TRANSIT BUTTON CSS */
+        .ts-lang-btn.bus-btn { background: #0ea5e9; color: #fff; border-left: 1px solid rgba(0,0,0,0.1); }
+        .ts-lang-btn.bus-btn:hover { background: #0284c7; }
+
         .ts-details-text { font-size: 15.5px; color: var(--text-main); line-height: 1.8; margin-bottom: 25px; text-align: justify; }
         .ts-map-container { width: 100%; height: 350px; border-radius: 12px; overflow: hidden; border: 3px solid var(--border-light); }
 
@@ -235,6 +249,12 @@
         .stats-item h2 { font-size: 40px; font-weight: 900; color: var(--theme-primary); margin: 10px 0 5px; }
         .stats-item p { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #cbd5e1; }
 
+        /* Digital Haat Cards */
+        .haat-card { background: var(--card-bg); border: 1px solid var(--border-light); border-radius: 12px; overflow: hidden; transition: 0.3s; height: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .haat-card:hover { transform: translateY(-5px); border-color: var(--theme-primary); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .haat-card img { width: 100%; height: 220px; object-fit: cover; border-bottom: 3px solid var(--theme-primary); }
+        .haat-card-body { padding: 20px; }
+
         /* SPEED DIAL MENU */
         .speed-dial-container { position: fixed; bottom: 30px; right: 30px; z-index: 1000; display: flex; flex-direction: column-reverse; align-items: center; gap: 15px; }
         .sd-btn-main { background: var(--theme-primary); color: #fff; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer; box-shadow: 0 10px 20px rgba(246, 147, 29, 0.4); border: none; transition: transform 0.3s; }
@@ -246,6 +266,10 @@
         .sd-item::after { content: attr(data-tooltip); position: absolute; right: 60px; background: var(--govt-navy); color: #fff; padding: 4px 10px; font-size: 12px; font-weight: 700; border-radius: 4px; white-space: nowrap; opacity: 0; pointer-events: none; transition: 0.2s; }
         .sd-item:hover::after { opacity: 1; right: 55px; }
         .bg-wa { background: #25D366; } .bg-bot { background: #3b82f6; } .bg-call { background: #10b981; } .bg-map { background: #f59e0b; }
+        
+        /* SOS Button CSS */
+        .bg-sos { background: #dc3545 !important; animation: pulseSOS 1.5s infinite; }
+        @keyframes pulseSOS { 0% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); } 70% { box-shadow: 0 0 0 12px rgba(220, 53, 69, 0); } 100% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); } }
 
         .chatbot-window { position: fixed; bottom: 100px; right: 90px; width: 320px; background: var(--card-bg); border-radius: 12px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); z-index: 1000; overflow: hidden; border: 1px solid var(--border-light); display: none; flex-direction: column; }
         .chat-header { background: #0f172a; color: #fff; padding: 15px; font-weight: 800; display: flex; justify-content: space-between; align-items: center; }
@@ -296,7 +320,7 @@
         .social-links a { width: 35px; height: 35px; background: rgba(255,255,255,0.05); color: #fff; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: 0.3s; text-decoration: none; }
         .social-links a:hover { background: var(--theme-primary); transform: translateY(-3px); }
         .company-footer-card { background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 25px; backdrop-filter: blur(10px); }
-        .company-footer-card img { height: 45px; object-fit: contain; }
+        .company-footer-card img { height: 45px; object-fit: contain; border-radius: 0; background: transparent; box-shadow: none; padding: 0;}
         .footer-bottom { background: #020617; padding: 20px 0; margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.05); }
 
         /* SCROLL TO TOP BUTTON */
@@ -307,7 +331,7 @@
 </head>
 <body>
 
-    <!-- 1. ENLARGED TOP UTILITY BAR (WITH LIVE WEATHER API) -->
+    <!-- 1. ENLARGED TOP UTILITY BAR (WITH LIVE WEATHER API & NEW GIGW ACCESSIBILITY) -->
     <div class="top-bar d-none d-md-block overflow-hidden">
         <div class="container d-flex justify-content-between align-items-center">
             <div>
@@ -323,8 +347,15 @@
                 <a onclick="translatePage('hi')" class="text-white fw-bold">हिन्दी</a>
                 <span class="mx-1 text-secondary">|</span>
                 <a onclick="translatePage('bn')" class="text-white fw-bold">বাংলা</a>
+                <span class="mx-2 text-secondary">|</span>
+                
+                <!-- GIGW Accessibility Font Resizer -->
+                <button class="font-resize-btn" onclick="changeFontSize(-1)" title="Decrease Text Size">A-</button>
+                <button class="font-resize-btn" onclick="changeFontSize(0)" title="Normal Text Size">A</button>
+                <button class="font-resize-btn" onclick="changeFontSize(1)" title="Increase Text Size">A+</button>
+
                 <button class="theme-toggle-btn ms-3" onclick="toggleTheme()" id="themeBtn">
-                    <i class="fa fa-moon"></i> Dark
+                    <i class="fa fa-moon"></i> High Contrast
                 </button>
             </div>
         </div>
@@ -334,9 +365,12 @@
     <header class="header-main">
         <div class="container header-container">
             <div class="brand-left">
+                <!-- ✨ WEST BENGAL GOVT LOGO ✨ -->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Seal_of_West_Bengal.svg/1280px-Seal_of_West_Bengal.svg.png" alt="Govt of West Bengal Logo" id="headerLogo">
+                
                 <div class="brand-titles">
                     <h1>Paschim Bardhaman Zilla Parishad</h1>
-                    <h2>Official Tourism & Accommodation Portal</h2>
+                    <h2>Official Tourism & E-Governance Portal</h2>
                     <p>Government of West Bengal</p>
                 </div>
             </div>
@@ -352,6 +386,18 @@
             <div class="collapse navbar-collapse" id="mainNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item active" id="nav_homeWrapper"><a class="nav-link" onclick="switchSPA('homeWrapper')"><i class="fa fa-home me-1"></i> Home</a></li>
+                    
+                    <!-- E-Governance Dropdown -->
+                    <li class="nav-item dropdown" id="nav_egovDropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="fa fa-landmark me-1"></i> E-Governance</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" onclick="switchSPA('grievanceSection')"><i class="fa fa-comment-dots text-warning me-2"></i> Public Grievance (Samadhan)</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fa fa-file-alt text-primary me-2"></i> RTI Cell</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fa fa-gavel text-danger me-2"></i> E-Tenders & Notices</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fa fa-hand-holding-usd text-success me-2"></i> State Govt Schemes</a></li>
+                        </ul>
+                    </li>
+
                     <li class="nav-item dropdown" id="nav_adminDropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="fa fa-users-cog me-1"></i> Administration</a>
                         <ul class="dropdown-menu">
@@ -361,6 +407,10 @@
                         </ul>
                     </li>
                     <li class="nav-item" id="nav_touristSpotsSection"><a class="nav-link" onclick="switchSPA('touristSpotsSection')"><i class="fa fa-map-marked-alt me-1"></i> Tourist Spots</a></li>
+                    
+                    <!-- Digital Haat Link -->
+                    <li class="nav-item" id="nav_haatSection"><a class="nav-link" onclick="switchSPA('haatSection')"><i class="fa fa-shopping-bag me-1"></i> Digital Haat</a></li>
+                    
                     <li class="nav-item" id="nav_itinerarySection"><a class="nav-link" onclick="switchSPA('itinerarySection')"><i class="fa fa-route me-1"></i> Trip Planner</a></li>
                     <li class="nav-item" id="nav_tariffSection"><a class="nav-link" onclick="switchSPA('tariffSection')"><i class="fa fa-file-invoice-dollar me-1"></i> Tariffs</a></li>
                     <li class="nav-item" id="nav_noticeSection"><a class="nav-link" onclick="switchSPA('noticeSection')"><i class="fa fa-bullhorn me-1"></i> Notice</a></li>
@@ -375,6 +425,16 @@
         </div>
     </nav>
 
+    <!-- Disaster Alert Marquee -->
+    <div class="disaster-alert">
+        <div class="container d-flex align-items-center">
+            <span class="badge bg-dark me-3 py-1 px-2"><i class="fa fa-exclamation-triangle text-warning"></i> RED ALERT</span>
+            <marquee onmouseover="this.stop();" onmouseout="this.start();" class="mb-0 fw-bold">
+                Urgent: Scheduled water release from Maithon & Panchet Dams today. Tourists and locals are strictly advised to avoid the lower Damodar and Barakar riverbeds until further notice. | State Emergency Helpline: 1070
+            </marquee>
+        </div>
+    </div>
+
     <div class="notice-board d-flex align-items-center">
         <div class="container d-flex align-items-center">
             <span class="notice-title">Latest Updates</span>
@@ -387,7 +447,7 @@
     <!-- SPA SECTIONS CONTAINER -->
     <div id="homeWrapper" class="spa-section" style="display: block; padding: 0; min-height: auto;">
         
-        <!-- ✨ UPDATED: CENSUS 2027 HIGHLIGHTED BANNER (Badge removed, Redirect added) ✨ -->
+        <!-- CENSUS 2027 HIGHLIGHTED BANNER -->
         <div class="census-banner-container container">
             <a href="https://se.census.gov.in" target="_blank" class="census-banner" title="Click here to visit official Census Portal">
                 <img src="https://cgasansol.github.io/psbzpimg/census2027.jpg" alt="Census 2027">
@@ -838,8 +898,85 @@
 
         </div>
     </section>
+    
+    <!-- DIGITAL HAAT (BISWA BANGLA) SECTION -->
+    <section id="haatSection" class="spa-section container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Biswa Bangla Digital Haat</h2>
+            <p class="text-muted" style="max-width: 600px; margin: 0 auto;">Support local artisans of Paschim Bardhaman by exploring and purchasing authentic GI-tagged handicrafts.</p>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-4 col-md-6">
+                <div class="haat-card">
+                    <img src="https://images.unsplash.com/photo-1618172193763-c511deb635ca?auto=format&fit=crop&w=800&q=80" alt="Dokra Art">
+                    <div class="haat-card-body text-center">
+                        <h4 class="fw-bold" style="color: var(--govt-navy);">Dokra Metal Craft</h4>
+                        <p class="text-muted small">Ancient bell-metal craft made by local tribal artisans of Bengal.</p>
+                        <button class="btn btn-outline-warning fw-bold w-100" onclick="alert('Redirecting to Artisan Contact Directory...')">Enquire / Buy <i class="fa fa-shopping-cart ms-1"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="haat-card">
+                    <img src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=800&q=80" alt="Terracotta">
+                    <div class="haat-card-body text-center">
+                        <h4 class="fw-bold" style="color: var(--govt-navy);">Bankura Terracotta</h4>
+                        <p class="text-muted small">Famous burnt clay art, perfect for home decor and gifting.</p>
+                        <button class="btn btn-outline-warning fw-bold w-100" onclick="alert('Redirecting to Artisan Contact Directory...')">Enquire / Buy <i class="fa fa-shopping-cart ms-1"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="haat-card">
+                    <img src="https://images.unsplash.com/photo-1583307817454-0466e06822e0?auto=format&fit=crop&w=800&q=80" alt="Handloom Sarees">
+                    <div class="haat-card-body text-center">
+                        <h4 class="fw-bold" style="color: var(--govt-navy);">Bengal Handloom</h4>
+                        <p class="text-muted small">Authentic tant and silk sarees crafted by rural weavers.</p>
+                        <button class="btn btn-outline-warning fw-bold w-100" onclick="alert('Redirecting to Artisan Contact Directory...')">Enquire / Buy <i class="fa fa-shopping-cart ms-1"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- FIXED & ENHANCED NOTICE SECTION (SEAMLESS CSS ANIMATION) -->
+    <!-- PUBLIC GRIEVANCE (SAMADHAN) SECTION -->
+    <section id="grievanceSection" class="spa-section container">
+        <h2 class="section-title mb-4">Public Grievance Redressal Cell</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow-sm border-0" style="background: var(--card-bg); border-top: 5px solid #dc3545 !important;">
+                    <div class="card-body p-4 p-md-5">
+                        <p class="text-center text-muted mb-4">Register your complaints regarding Tourism, Zilla Parishad Guest Houses, or Rural Infrastructure. A unique Tracking ID will be provided for future reference.</p>
+                        <form>
+                            <div class="row mb-3">
+                                <div class="col-md-6"><input type="text" class="form-control" placeholder="Full Name" required></div>
+                                <div class="col-md-6"><input type="tel" class="form-control" placeholder="Mobile Number" required></div>
+                            </div>
+                            <div class="mb-3">
+                                <select class="form-select" required>
+                                    <option value="" selected disabled>Select Grievance Category...</option>
+                                    <option>Guest House Booking / Maintenance</option>
+                                    <option>Tourist Guide / Misbehavior Issues</option>
+                                    <option>Local Infrastructure / Roads</option>
+                                    <option>Other Govt Schemes</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="4" placeholder="Describe your grievance in detail..." required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label text-muted small fw-bold">Attach File / Photo (Optional)</label>
+                                <input class="form-control" type="file">
+                            </div>
+                            <button type="button" class="btn btn-danger w-100 fw-bold py-2 mt-2" onclick="alert('Grievance Submitted Successfully!\n\nYour Tracking ID is: PBZP-2026-8921\n\nYou will receive SMS updates on your registered mobile number.')">Submit Grievance Securely</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FIXED & ENHANCED NOTICE SECTION -->
     <section id="noticeSection" class="spa-section container">
         <h2 class="section-title mb-4">Official Notices & Announcements</h2>
         <div class="row justify-content-center">
@@ -1047,14 +1184,24 @@
                         <span id="tsModalLocation" class="ts-subtitle"><i class="fa fa-map-marker-alt"></i> Location</span>
                     </div>
                     
-                    <!-- TRI-LINGUAL TRANSLATOR & SHARE BUTTONS -->
+                    <!-- TRI-LINGUAL TRANSLATOR, BUS ROUTE & SHARE BUTTONS -->
                     <div class="ts-lang-switcher">
                         <button class="ts-lang-btn active" id="btn-en" onclick="changeTSLanguage('en')">English</button>
                         <button class="ts-lang-btn" id="btn-hi" onclick="changeTSLanguage('hi')">हिंदी</button>
                         <button class="ts-lang-btn" id="btn-bn" onclick="changeTSLanguage('bn')">বাংলা</button>
-                        <!-- ✨ NEW SHARE BUTTON ✨ -->
+                        
+                        <!-- SHARE BUTTON -->
                         <button class="ts-lang-btn share-btn" onclick="shareTouristSpot()" title="Share this place"><i class="fa fa-share-alt"></i></button>
+                        
+                        <!-- BUS ROUTE BUTTON -->
+                        <button class="ts-lang-btn text-dark fw-bold" style="background: #38bdf8; border-left: 1px solid rgba(0,0,0,0.1);" onclick="toggleBusRoute()" title="How to reach (Bus Routes)"><i class="fa fa-bus"></i></button>
                     </div>
+                </div>
+
+                <!-- HIDDEN BUS ROUTE TRANSIT BOX -->
+                <div id="tsBusRouteInfo" class="mb-3 p-3 rounded" style="display: none; background: #e0f2fe; border: 1px solid #7dd3fc; color: #0369a1; font-size: 14px;">
+                    <strong style="color: #0284c7;"><i class="fa fa-route me-1"></i> Public Transit Guideline (SBSTC / NBSTC):</strong><br>
+                    <span id="tsBusText" style="display: block; margin-top: 5px;"></span>
                 </div>
 
                 <div id="tsModalDesc" class="ts-details-text">
@@ -1141,10 +1288,31 @@
         </div>
     </div>
 
+    <!-- SOS EMERGENCY MODAL -->
+    <div class="modal fade" id="sosModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title fw-bold"><i class="fa fa-exclamation-triangle me-2"></i> Emergency Contacts</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4 text-center" style="background: var(--card-bg);">
+                    <div class="d-grid gap-3">
+                        <a href="tel:100" class="btn btn-outline-primary fw-bold p-3 fs-5 text-start"><i class="fa fa-shield-alt me-3"></i> Police (100)</a>
+                        <a href="tel:1091" class="btn btn-outline-danger fw-bold p-3 fs-5 text-start"><i class="fa fa-female me-3"></i> Women Helpline (1091)</a>
+                        <a href="tel:102" class="btn btn-outline-success fw-bold p-3 fs-5 text-start"><i class="fa fa-ambulance me-3"></i> Ambulance (102)</a>
+                        <a href="tel:1070" class="btn btn-outline-warning fw-bold p-3 fs-5 text-start text-dark"><i class="fa fa-cloud-showers-heavy me-3"></i> Disaster Mgmt (1070)</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- FLOATING QUICK ACTION (SPEED DIAL) -->
     <div class="speed-dial-container">
         <button class="sd-btn-main" id="sdMainBtn" onclick="toggleSpeedDial()"><i class="fa fa-plus"></i></button>
         <div class="sd-menu" id="sdMenu">
+            <div class="sd-item bg-sos" data-tooltip="Emergency SOS" data-bs-toggle="modal" data-bs-target="#sosModal"><i class="fa fa-phone-volume"></i></div>
             <a href="https://wa.me/919999999999" target="_blank" class="sd-item bg-wa" data-tooltip="WhatsApp Us"><i class="fab fa-whatsapp"></i></a>
             <div class="sd-item bg-bot" data-tooltip="Ask AI Chatbot" onclick="toggleChat(); toggleSpeedDial();"><i class="fa fa-robot"></i></div>
             <a href="tel:03412252627" class="sd-item bg-call" data-tooltip="Call Helpdesk"><i class="fa fa-phone"></i></a>
@@ -1152,7 +1320,7 @@
         </div>
     </div>
 
-    <!-- ✨ NEW: SCROLL TO TOP BUTTON ✨ -->
+    <!-- SCROLL TO TOP BUTTON -->
     <button id="backToTopBtn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" title="Go to top">
         <i class="fa fa-chevron-up"></i>
     </button>
@@ -1171,12 +1339,22 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
-        // LIVE WEATHER API FUNCTION (IMPROVED & ROBUST)
+        // GIGW Accessibility Resize Function
+        let currentZoomLevel = 1;
+        function changeFontSize(step) {
+            if (step === 0) { currentZoomLevel = 1; } 
+            else if (step === 1 && currentZoomLevel < 1.15) { currentZoomLevel += 0.05; } 
+            else if (step === -1 && currentZoomLevel > 0.85) { currentZoomLevel -= 0.05; }
+            
+            document.body.style.zoom = currentZoomLevel;
+            document.body.style.MozTransform = `scale(${currentZoomLevel})`;
+            document.body.style.MozTransformOrigin = 'top center';
+        }
+
+        // LIVE WEATHER API FUNCTION
         async function fetchLiveWeather() {
             const weatherWidget = document.getElementById('weatherWidget');
             try {
-                // Asansol (Paschim Bardhaman) Coordinates: Latitude 23.6889, Longitude 86.9661
-                // Using Open-Meteo Free API (No API Key Required)
                 const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=23.6889&longitude=86.9661&current_weather=true', {
                     method: 'GET',
                     headers: { 'Accept': 'application/json' }
@@ -1203,7 +1381,7 @@
         }
 
         // SPA ROUTING
-        const allSections = ['homeWrapper', 'touristSpotsSection', 'sabhadipatiSection', 'eoSection', 'adminSection', 'tariffSection', 'itinerarySection', 'contactSection', 'noticeSection'];
+        const allSections = ['homeWrapper', 'touristSpotsSection', 'sabhadipatiSection', 'eoSection', 'adminSection', 'tariffSection', 'itinerarySection', 'contactSection', 'noticeSection', 'haatSection', 'grievanceSection'];
         function switchSPA(targetId) {
             allSections.forEach(id => {
                 let el = document.getElementById(id);
@@ -1213,7 +1391,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // ENHANCED NOTICES ARRAY (WITH BADGES & PDF LINKS)
+        // ENHANCED NOTICES ARRAY
         const officialNotices = [
             { date: "30 July 2026", text: "Online booking for Rupnarayanpur Dak Bungalow is currently suspended due to urgent renovation works.", isUrgent: true, hasPdf: false },
             { date: "25 July 2026", text: "Revised Tariffs for all Zilla Parishad Guest Houses will be applicable strictly from 1st August 2026.", isUrgent: false, hasPdf: true },
@@ -1222,7 +1400,6 @@
             { date: "01 July 2026", text: "Mandatory Directive: All guests are requested to carry a valid original Government ID proof (Aadhar/Voter ID) during check-in.", isUrgent: true, hasPdf: false }
         ];
 
-        // FIXED CONTINUOUS CSS SCROLL FOR NOTICES
         function loadDynamicNotices() {
             const container = document.getElementById('dynamicNoticesContainer');
             if(!container) return;
@@ -1240,12 +1417,9 @@
                     </div>
                 `;
             });
-
-            // Duplicate content perfectly to achieve seamless endless CSS scroll
             container.innerHTML = html + html;
         }
 
-        // SCROLL TO TOP LOGIC
         window.onscroll = function() {
             let backToTopBtn = document.getElementById("backToTopBtn");
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
@@ -1255,7 +1429,7 @@
             }
         };
 
-        // PERSISTENT DARK MODE
+        // ✨ LOGO SWAP & THEME TOGGLE LOGIC ✨
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
             const isDark = document.body.classList.contains('dark-mode');
@@ -1265,27 +1439,28 @@
 
         function updateThemeUI(isDark) {
             const btn = document.getElementById('themeBtn');
-            const headerLogo = document.getElementById('headerLogo'); 
+            const headerLogo = document.getElementById('headerLogo');
             if (isDark) {
-                if(btn) btn.innerHTML = '<i class="fa fa-sun text-warning"></i> Light';
-                if(headerLogo) headerLogo.src = 'https://cgasansol.github.io/psbzpimg/footer_logo.png';
+                if(btn) btn.innerHTML = '<i class="fa fa-sun text-warning"></i> Light Mode';
+                if(headerLogo) headerLogo.src = 'https://cgasansol.github.io/psbzpimg/footer_logo.png'; // White Logo
             } else {
-                if(btn) btn.innerHTML = '<i class="fa fa-moon"></i> Dark';
-                if(headerLogo) headerLogo.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Seal_of_West_Bengal.svg/1280px-Seal_of_West_Bengal.svg.png';
+                if(btn) btn.innerHTML = '<i class="fa fa-moon"></i> High Contrast';
+                if(headerLogo) headerLogo.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Seal_of_West_Bengal.svg/1280px-Seal_of_West_Bengal.svg.png'; // Original Black/Color Logo
             }
         }
 
-        // TOURIST SPOT DATA
+        // TOURIST SPOT DATA WITH SBSTC/NBSTC BUS ROUTES
         const touristData = {
             'ghagarburi': {
                 title: 'Ghagarburi Mandir',
                 location: 'Bypass, Asansol',
                 img: 'https://cgasansol.github.io/psbzpimg/ghagarburi.jpg',
                 map: 'https://maps.google.com/maps?q=Ghagarburi+Chandi+Mata+Temple+Asansol&output=embed',
+                busRoute: 'Board any SBSTC Local bus from Asansol City Bus Stand towards Kanyapur or Jublee More. Drop off at Bypass Crossing. Frequency: Every 15 minutes. Auto-rickshaws are also available from Asansol Station.',
                 desc: {
-                    en: "Ghagarburi Chandi Temple is an ancient and highly revered Hindu shrine situated on the banks of the Nunia river in Asansol. Dedicated to Goddess Chandi Mata, it holds immense spiritual significance for the locals. It draws massive crowds of devotees, especially during the grand annual fair held in the winter months (Magh), where people come to seek blessings for prosperity and peace.",
-                    hi: "घागरबुरी चंडी मंदिर आसनसोल में नूनिया नदी के तट पर स्थित एक प्राचीन और अत्यधिक पूजनीय हिंदू तीर्थस्थल है। देवी चंडी माता को समर्पित, यह स्थानीय लोगों के लिए अपार आध्यात्मिक महत्व रखता है। यह विशेष रूप से सर्दियों के महीनों (माघ) में आयोजित होने वाले भव्य वार्षिक मेले के दौरान भक्तों की भारी भीड़ खींचता है, जहाँ लोग समृद्धि और शांति के लिए आशीर्वाद लेने आते हैं।",
-                    bn: "ঘাগরবুড়ি চণ্ডী মন্দির আসানসোলের নুনিয়া নদীর তীরে অবস্থিত একটি প্রাচীন এবং অত্যন্ত শ্রদ্ধেয় হিন্দু মন্দির। দেবী চণ্ডী মাতার প্রতি উৎসর্গীকৃত এই মন্দিরটি স্থানীয়দের জন্য অপরিসীম আধ্যাত্মিক গুরুত্ব বহন করে। বিশেষ করে শীতের মাসগুলিতে (মাঘ) অনুষ্ঠিত গ্র্যান্ড বার্ষিক মেলার সময় এখানে প্রচুর ভক্তের সমাগম হয়, যেখানে মানুষ সমৃদ্ধি এবং শান্তির জন্য আশীর্বাদ চাইতে আসে।"
+                    en: "Ghagarburi Chandi Temple is an ancient and highly revered Hindu shrine situated on the banks of the Nunia river in Asansol. Dedicated to Goddess Chandi Mata, it holds immense spiritual significance for the locals.",
+                    hi: "घागरबुरी चंडी मंदिर आसनसोल में नूनिया नदी के तट पर स्थित एक प्राचीन और अत्यधिक पूजनीय हिंदू तीर्थस्थल है। देवी चंडी माता को समर्पित, यह स्थानीय लोगों के लिए अपार आध्यात्मिक महत्व रखता है।",
+                    bn: "ঘাগরবুড়ি চণ্ডী মন্দির আসানসোলের নুনিয়া নদীর তীরে অবস্থিত একটি প্রাচীন এবং অত্যন্ত শ্রদ্ধেয় হিন্দু মন্দির। দেবী চণ্ডী মাতার প্রতি উৎসর্গীকৃত এই মন্দিরটি স্থানীয়দের জন্য অপরিসীম আধ্যাত্মিক গুরুত্ব বহন করে।"
                 }
             },
             'pretkali': {
@@ -1293,10 +1468,11 @@
                 location: 'Kalipahari, Asansol',
                 img: 'https://cgasansol.github.io/psbzpimg/pretkali.jpg',
                 map: 'https://maps.google.com/maps?q=Pret+Kali+Temple+Kalipahari+Asansol&output=embed',
+                busRoute: 'Take an SBSTC bus heading towards Durgapur/Raniganj from Asansol Bus Stand and get down at Kalipahari More. From there, take a local Toto (e-rickshaw) to the temple. Journey time: 20 mins.',
                 desc: {
-                    en: "Located in the Kalipahari area of Asansol, Maa Preth Kali temple is deeply rooted in local folklore and intense spiritual traditions. It is a unique and somewhat mysterious spiritual site known for its serene yet powerful atmosphere. The locals perform traditional rituals with deep devotion, believing the Goddess protects them from evil forces.",
-                    hi: "आसनसोल के कालीपहाड़ी क्षेत्र में स्थित, माँ प्रेत काली मंदिर स्थानीय लोककथाओं और गहन आध्यात्मिक परंपराओं में गहराई से जुड़ा हुआ है। यह एक अनूठा और कुछ हद तक रहस्यमय आध्यात्मिक स्थल है जो अपने शांत लेकिन शक्तिशाली वातावरण के लिए जाना जाता है। स्थानीय लोग गहरी भक्ति के साथ पारंपरिक अनुष्ठान करते हैं, यह मानते हुए कि देवी उन्हें बुरी ताकतों से बचाती हैं।",
-                    bn: "আসানসোলের কালিপাহাড়ি এলাকায় অবস্থিত মা প্রেত কালী মন্দির স্থানীয় লোককাহিনী এবং গভীর আধ্যাত্মিক ঐতিহ্যের সাথে গভীরভাবে জড়িত। এটি একটি অনন্য এবং কিছুটা রহস্যময় আধ্যাত্মিক স্থান যা এর শান্ত অথচ শক্তিশালী পরিবেশের জন্য পরিচিত। স্থানীয়রা গভীর ভক্তির সাথে ঐতিহ্যবাহী আচার-অনুষ্ঠান সম্পাদন করে, বিশ্বাস করে যে দেবী তাদের অশুভ শক্তির হাত থেকে রক্ষা করেন।"
+                    en: "Located in the Kalipahari area of Asansol, Maa Preth Kali temple is deeply rooted in local folklore and intense spiritual traditions. It is a unique and somewhat mysterious spiritual site.",
+                    hi: "आसनसोल के कालीपहाड़ी क्षेत्र में स्थित, माँ प्रेत काली मंदिर स्थानीय लोककथाओं और गहन आध्यात्मिक परंपराओं में गहराई से जुड़ा हुआ है। यह एक अनूठा और कुछ हद तक रहस्यमय आध्यात्मिक स्थल है।",
+                    bn: "আসানসোলের কালিপাহাড়ি এলাকায় অবস্থিত মা প্রেত কালী মন্দির স্থানীয় লোককাহিনী এবং গভীর আধ্যাত্মিক ঐতিহ্যের সাথে গভীরভাবে জড়িত। এটি একটি অনন্য এবং কিছুটা রহস্যময় আধ্যাত্মিক স্থান।"
                 }
             },
             'maithon': {
@@ -1304,10 +1480,11 @@
                 location: 'Border of Paschim Bardhaman',
                 img: 'https://cgasansol.github.io/psbzpimg/maithondam.jpg',
                 map: 'https://maps.google.com/maps?q=Maithon+Dam+Asansol&output=embed',
+                busRoute: 'Board the direct NBSTC or SBSTC Asansol-Maithon bound bus from Asansol City Bus Stand. The bus goes directly to the Dam. Frequency: Every 30 minutes. Last return bus at 6:00 PM.',
                 desc: {
-                    en: "Maithon Dam, gracefully constructed on the Barakar River, is famous for its breathtaking natural beauty and blue reservoir. Known as the 'Kashmir of Koyalanchal', it proudly houses South East Asia's very first underground hydroelectric power station. It is a perfect weekend getaway offering delightful boating experiences and scenic views.",
-                    hi: "बराकर नदी पर खूबसूरती से निर्मित मैथन डैम, अपनी लुभावनी प्राकृतिक सुंदरता और नीले जलाशय के लिए प्रसिद्ध है। 'कोयलांचल के कश्मीर' के रूप में जाना जाने वाला यह स्थान, दक्षिण पूर्व एशिया का पहला भूमिगत जलविद्युत ऊर्जा स्टेशन होने का गर्व रखता है। यह एक आदर्श वीकेंड स्पॉट है जो शानदार नौका विहार और प्राकृतिक दृश्य प्रदान करता है।",
-                    bn: "বরাকর নদীর উপর সুন্দরভাবে নির্মিত মাইথন বাঁধ এর শ্বাসরুদ্ধকর প্রাকৃতিক সৌন্দর্য এবং নীল জলাধারের জন্য বিখ্যাত। 'কয়লাঞ্চলের কাশ্মীর' নামে পরিচিত, এটি গর্বের সাথে দক্ষিণ পূর্ব এশিয়ার প্রথম আন্ডারগ্রাউন্ড জলবিদ্যুৎ কেন্দ্র ধারণ করে। এটি একটি নিখুঁত উইকেন্ড গেটওয়ে যা আনন্দদায়ক বোটিং অভিজ্ঞতা এবং মনোরম দৃশ্য সরবরাহ করে।"
+                    en: "Maithon Dam, gracefully constructed on the Barakar River, is famous for its breathtaking natural beauty and blue reservoir. Known as the 'Kashmir of Koyalanchal'.",
+                    hi: "बराकर नदी पर खूबसूरती से निर्मित मैथन डैम, अपनी लुभावनी प्राकृतिक सुंदरता और नीले जलाशय के लिए प्रसिद्ध है। इसे 'कोयलांचल के कश्मीर' के रूप में जाना जाता है।",
+                    bn: "বরাকর নদীর উপর সুন্দরভাবে নির্মিত মাইথন বাঁধ এর শ্বাসরুদ্ধকর প্রাকৃতিক সৌন্দর্য এবং নীল জলাধারের জন্য বিখ্যাত। এটি 'কয়লাঞ্চলের কাশ্মীর' নামে পরিচিত।"
                 }
             },
             'durgapur': {
@@ -1315,10 +1492,11 @@
                 location: 'Damodar River, Durgapur',
                 img: 'https://cgasansol.github.io/psbzpimg/durgapurdam.jpeg',
                 map: 'https://maps.google.com/maps?q=Durgapur+Barrage&output=embed',
+                busRoute: 'Take any SBSTC bus from Asansol to Durgapur City Center. From City Center, switch to a local minibus (Route 1 or Route 8) heading directly to Durgapur Barrage.',
                 desc: {
-                    en: "Built across the mighty Damodar River in 1955, Durgapur Barrage is a monumental engineering feat by the Damodar Valley Corporation. Originally constructed to control devastating floods and support extensive irrigation, it has today transformed into a magnificent riverfront. It is a highly popular tourist hangout, especially renowned for offering spectacular golden-hour sunsets.",
-                    hi: "1955 में शक्तिशाली दामोदर नदी पर निर्मित, दुर्गापुर बैराज दामोदर घाटी निगम द्वारा एक स्मारकीय इंजीनियरिंग उपलब्धि है। मूल रूप से विनाशकारी बाढ़ को नियंत्रित करने और व्यापक सिंचाई का समर्थन करने के लिए निर्मित, यह आज एक शानदार रिवरफ्रंट में बदल गया है। यह पर्यटकों के घूमने की एक बेहद लोकप्रिय जगह है, जो विशेष रूप से शानदार सूर्यास्त के नज़ारों के लिए प्रसिद्ध है।",
-                    bn: "১৯৫৫ সালে শক্তিশালী দামোদর নদীর উপর নির্মিত দুর্গাপুর ব্যারেজটি দামোদর ভ্যালি কর্পোরেশনের একটি স্মৃতিস্তম্ভ প্রকৌশলগত কীর্তি। মূলত ধ্বংসাত্মক বন্যা নিয়ন্ত্রণ এবং ব্যাপক সেচ ব্যবস্থায় সহায়তা করার জন্য নির্মিত, এটি আজ একটি দুর্দান্ত রিভারফ্রন্টে রূপান্তরিত হয়েছে। এটি পর্যটকদের কাছে একটি অত্যন্ত জনপ্রিয় স্থান, যা বিশেষ করে সূর্যাস্তের এক অপূর্ব দৃশ্য উপহার দেওয়ার জন্য বিখ্যাত।"
+                    en: "Built across the mighty Damodar River in 1955, Durgapur Barrage is a monumental engineering feat by the Damodar Valley Corporation.",
+                    hi: "1955 में शक्तिशाली दामोदर नदी पर निर्मित, दुर्गापुर बैराज दामोदर घाटी निगम द्वारा एक स्मारकीय इंजीनियरिंग उपलब्धि है।",
+                    bn: "১৯৫৫ সালে শক্তিশালী দামোদর নদীর উপর নির্মিত দুর্গাপুর ব্যারেজটি দামোদর ভ্যালি কর্পোরেশনের একটি স্মৃতিস্তম্ভ প্রকৌশলগত কীর্তি।"
                 }
             },
             'kalyaneshwari': {
@@ -1326,10 +1504,11 @@
                 location: 'Near Maithon, Asansol',
                 img: 'https://cgasansol.github.io/psbzpimg/kalyaneshwari.jpg',
                 map: 'https://maps.google.com/maps?q=Kalyaneshwari+Temple+Asansol&output=embed',
+                busRoute: 'Take the same SBSTC Asansol-Maithon bus from Asansol Bus Stand. Ask the conductor to drop you at Kalyaneshwari Temple crossing. It is 5 minutes before Maithon Dam.',
                 desc: {
-                    en: "This ancient and legendary 500-year-old temple is deeply dedicated to Goddess Kalyaneshwari (a form of Shakti). Situated near Maithon, it has a very rich and slightly dark history, as it was believed to be a site of human sacrifices by dacoits in ancient times. Today, thousands of devoted pilgrims flock here, particularly childless women seeking the Goddess's blessings for offspring.",
-                    hi: "यह प्राचीन और महान 500 साल पुराना मंदिर देवी कल्याणेश्वरी (शक्ति का एक रूप) को गहराई से समर्पित है। मैथन के पास स्थित, इसका एक बहुत ही समृद्ध और थोड़ा गहरा इतिहास है, क्योंकि माना जाता है कि यह प्राचीन काल में डाकुओं द्वारा मानव बलि का स्थल हुआ करता था। आज, हजारों समर्पित तीर्थयात्री यहाँ आते हैं, विशेष रूप से निसंतान महिलाएँ जो संतान प्राप्ति के लिए देवी का आशीर्वाद मांगती हैं।",
-                    bn: "এই প্রাচীন এবং কিংবদন্তি ৫০০ বছরের পুরানো মন্দিরটি গভীরভাবে দেবী কল্যাণেশ্বরীকে (শক্তির একটি রূপ) উৎসর্গ করা হয়েছে। মাইথনের কাছে অবস্থিত, এর একটি অত্যন্ত সমৃদ্ধ এবং কিছুটা অন্ধকার ইতিহাস রয়েছে, কারণ এটি প্রাচীন কালে ডাকাতদের দ্বারা নরবলির স্থান ছিল বলে মনে করা হয়। আজ হাজার হাজার ধর্মপ্রাণ তীর্থযাত্রী এখানে ভিড় করেন, বিশেষ করে নিঃসন্তান মহিলারা সন্তান লাভের আশায় দেবীর আশীর্বাদ চাইতে আসেন।"
+                    en: "This ancient and legendary 500-year-old temple is deeply dedicated to Goddess Kalyaneshwari (a form of Shakti). Situated near Maithon.",
+                    hi: "यह प्राचीन और महान 500 साल पुराना मंदिर देवी कल्याणेश्वरी (शक्ति का एक रूप) को गहराई से समर्पित है। मैथन के पास स्थित है।",
+                    bn: "এই প্রাচীন এবং কিংবদন্তি ৫০০ বছরের পুরানো মন্দিরটি গভীরভাবে দেবী কল্যাণেশ্বরীকে (শক্তির একটি রূপ) উৎসর্গ করা হয়েছে। মাইথনের কাছে অবস্থিত।"
                 }
             },
             'garhjungle': {
@@ -1337,10 +1516,11 @@
                 location: 'Kanksa, Durgapur',
                 img: 'https://cgasansol.github.io/psbzpimg/garhjungle.jpg',
                 map: 'https://maps.google.com/maps?q=Garh+Jungle+Durgapur&output=embed',
+                busRoute: 'Board an SBSTC bus from Durgapur Terminus heading towards Panagarh/Illambazar. Get down at 11 Mile (Egaro Mile) stoppage. From there, hire a local auto to Garh Jungle.',
                 desc: {
-                    en: "Historically known as 'Dharma Garh', this mystical dense forest is famously linked to King Surath and the legendary mythological origins of Durga Puja as mentioned in the Markandeya Purana. Surrounded by lush greenery, it is now a prominent eco-tourism spot in Paschim Bardhaman, offering beautiful nature trails, ancient ruins, and a deeply serene environment.",
-                    hi: "ऐतिहासिक रूप से 'धर्म गढ़' के रूप में जाना जाने वाला यह रहस्यमयी घना जंगल राजा सुरथ और मार्कंडेय पुराण में वर्णित दुर्गा पूजा की पौराणिक उत्पत्ति से प्रसिद्ध रूप से जुड़ा हुआ है। हरियाली से घिरा, यह अब पश्चिम बर्धमान में एक प्रमुख इको-टूरिज्म स्थल है, जो सुंदर प्रकृति ट्रेल्स, प्राचीन खंडहर और एक बेहद शांत वातावरण प्रदान करता है।",
-                    bn: "ঐতিহাসিকভাবে 'ধর্ম গড়' নামে পরিচিত, এই রহস্যময় ঘন জঙ্গলটি রাজা সুরথ এবং মার্কন্ডেয় পুরাণে উল্লিখিত দুর্গাপূজার কিংবদন্তি পৌরাণিক উৎপত্তির সাথে যুক্ত। সবুজে ঘেরা, এটি এখন পশ্চিম বর্ধমানের একটি বিশিষ্ট ইকো-ট্যুরিজম স্পট, যা সুন্দর প্রকৃতির ট্রেইল, প্রাচীন ধ্বংসাবশেষ এবং একটি গভীর শান্ত পরিবেশ সরবরাহ করে।"
+                    en: "Historically known as 'Dharma Garh', this mystical dense forest is famously linked to King Surath and the legendary mythological origins of Durga Puja.",
+                    hi: "ऐतिहासिक रूप से 'धर्म गढ़' के रूप में जाना जाने वाला यह रहस्यमयी घना जंगल राजा सुरथ और दुर्गा पूजा की पौराणिक उत्पत्ति से प्रसिद्ध रूप से जुड़ा हुआ है।",
+                    bn: "ঐতিহাসিকভাবে 'ধর্ম গড়' নামে পরিচিত, এই রহস্যময় ঘন জঙ্গলটি রাজা সুরথ এবং দুর্গাপূজার কিংবদন্তি পৌরাণিক উৎপত্তির সাথে যুক্ত।"
                 }
             },
             'deul': {
@@ -1348,10 +1528,11 @@
                 location: 'Gourangapur, Ajay River',
                 img: 'https://cgasansol.github.io/psbzpimg/deul.jpg',
                 map: 'https://maps.google.com/maps?q=Ichhai+Ghosher+Deul+Gourangapur&output=embed',
+                busRoute: 'Take an SBSTC/NBSTC bus from Durgapur heading to Joydev Kenduli or Bolpur. Get down at Gourangapur. The temple is a short walk from the main road near Ajay River.',
                 desc: {
-                    en: "Situated picturesquely on the banks of the Ajay River, this towering and remarkable brick 'Rekha-Deul' style temple is recognized as a Monument of National Importance. Built in the memory of the valiant local chieftain Ichhai Ghosh who fought against Lau Sen, its intricate terracotta architecture makes it a paradise for history buffs and photographers.",
-                    hi: "अजय नदी के तट पर सुरम्य रूप से स्थित, यह विशाल और उल्लेखनीय ईंटों वाला 'रेखा-देउल' शैली का मंदिर राष्ट्रीय महत्व के स्मारक के रूप में मान्यता प्राप्त है। इसे बहादुर स्थानीय सरदार इच्छा घोष की याद में बनाया गया था, जिन्होंने लाउ सेन के खिलाफ लड़ाई लड़ी थी। इसकी जटिल टेराकोटा वास्तुकला इसे इतिहास प्रेमियों और फोटोग्राफरों के लिए एक स्वर्ग बनाती है।",
-                    bn: "অজয় নদীর তীরে মনোরমভাবে অবস্থিত, এই সুউচ্চ এবং অসাধারণ ইটের 'রেখা-দেউল' শৈলীর মন্দিরটি জাতীয় গুরুত্বসম্পন্ন একটি স্মৃতিস্তম্ভ হিসাবে স্বীকৃত। লাউ সেনের বিরুদ্ধে লড়াইকারী সাহসী স্থানীয় সর্দার ইছাই ঘোষের স্মরণে নির্মিত, এর জটিল পোড়ামাটির স্থাপত্য এটিকে ইতিহাসপ্রেমী এবং ফটোগ্রাফারদের জন্য একটি স্বর্গে পরিণত করেছে।"
+                    en: "Situated picturesquely on the banks of the Ajay River, this towering and remarkable brick 'Rekha-Deul' style temple is recognized as a Monument of National Importance.",
+                    hi: "अजय नदी के तट पर सुरम्य रूप से स्थित, यह विशाल और उल्लेखनीय ईंटों वाला 'रेखा-देउल' शैली का मंदिर राष्ट्रीय महत्व के स्मारक के रूप में मान्यता प्राप्त है।",
+                    bn: "অজয় নদীর তীরে মনোরমভাবে অবস্থিত, এই সুউচ্চ এবং অসাধারণ ইটের 'রেখা-দেউল' শৈলীর মন্দিরটি জাতীয় গুরুত্বসম্পন্ন একটি স্মৃতিস্তম্ভ হিসাবে স্বীকৃত।"
                 }
             },
             'churulia': {
@@ -1359,10 +1540,11 @@
                 location: 'Asansol Subdivision',
                 img: 'https://cgasansol.github.io/psbzpimg/churulia.jpg',
                 map: 'https://maps.google.com/maps?q=Churulia+Nazrul+Academy+Asansol&output=embed',
+                busRoute: 'Board an SBSTC rural service bus heading to Jamtara/Churulia from Asansol Bus Stand. Alternatively, local private buses run every 45 mins towards Churulia Nazrul Academy.',
                 desc: {
-                    en: "Churulia is the sacred and historic birthplace of the legendary rebel poet Kazi Nazrul Islam, who is revered globally and is the National Poet of Bangladesh. The village is a cultural hub, proudly housing the Nazrul Academy and a dedicated museum that carefully preserves his original manuscripts, his harmonium, personal belongings, and timeless literary works.",
-                    hi: "चुरुलिया महान विद्रोही कवि काजी नजरुल इस्लाम की पवित्र और ऐतिहासिक जन्मभूमि है, जिन्हें विश्व स्तर पर सम्मानित किया जाता है और जो बांग्लादेश के राष्ट्रीय कवि हैं। यह गांव एक सांस्कृतिक केंद्र है, जिसमें गर्व से नजरुल अकादमी और एक समर्पित संग्रहालय है, जो उनकी मूल पांडुलिपियों, उनके हारमोनियम, व्यक्तिगत सामान और कालातीत साहित्यिक कृतियों को सावधानीपूर्वक संरक्षित करता है।",
-                    bn: "চুরুলিয়া হল কিংবদন্তি বিদ্রোহী কবি কাজী নজরুল ইসলামের পবিত্র ও ঐতিহাসিক জন্মভূমি, যিনি বিশ্বব্যাপী সমাদৃত এবং বাংলাদেশের জাতীয় কবি। গ্রামটি একটি সাংস্কৃতিক কেন্দ্র, যেখানে গর্বের সাথে নজরুল একাডেমি এবং একটি নিবেদিত যাদুঘর রয়েছে যা যত্ন সহকারে তাঁর মূল পাণ্ডুলিপি, তাঁর হারমোনিয়াম, ব্যক্তিগত জিনিসপত্র এবং কালজয়ী সাহিত্যকর্ম সংরক্ষণ করে।"
+                    en: "Churulia is the sacred and historic birthplace of the legendary rebel poet Kazi Nazrul Islam, who is revered globally and is the National Poet of Bangladesh.",
+                    hi: "चुरुलिया महान विद्रोही कवि काजी नजरुल इस्लाम की पवित्र और ऐतिहासिक जन्मभूमि है, जिन्हें विश्व स्तर पर सम्मानित किया जाता है।",
+                    bn: "চুরুলিয়া হল কিংবদন্তি বিদ্রোহী কবি কাজী নজরুল ইসলামের পবিত্র ও ঐতিহাসিক জন্মভূমি, যিনি বিশ্বব্যাপী সমাদৃত এবং বাংলাদেশের জাতীয় কবি।"
                 }
             }
         };
@@ -1378,6 +1560,10 @@
             document.getElementById('tsModalLocation').innerHTML = `<i class="fa fa-map-marker-alt"></i> ${data.location}`;
             document.getElementById('tsModalMap').src = data.map;
             
+            // Populate Bus Details and keep it hidden initially
+            document.getElementById('tsBusText').innerText = data.busRoute;
+            document.getElementById('tsBusRouteInfo').style.display = 'none';
+            
             changeTSLanguage('en');
             document.getElementById('touristSpotModal').style.display = 'flex';
         }
@@ -1389,8 +1575,17 @@
         function changeTSLanguage(lang) {
             if(!currentSpotId) return;
             document.getElementById('tsModalDesc').innerText = touristData[currentSpotId].desc[lang];
-            document.querySelectorAll('.ts-lang-btn:not(.share-btn)').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.ts-lang-btn:not(.share-btn):not(.bus-btn)').forEach(btn => btn.classList.remove('active'));
             document.getElementById('btn-' + lang).classList.add('active');
+        }
+
+        function toggleBusRoute() {
+            const busDiv = document.getElementById('tsBusRouteInfo');
+            if (busDiv.style.display === 'none' || busDiv.style.display === '') {
+                busDiv.style.display = 'block';
+            } else {
+                busDiv.style.display = 'none';
+            }
         }
 
         // SHARE FEATURE LOGIC
@@ -1511,14 +1706,15 @@
 
         // DOMInit
         document.addEventListener('DOMContentLoaded', () => {
-            // Setup APIs & Data
             fetchLiveWeather();
             loadDynamicNotices();
 
             const savedTheme = localStorage.getItem('themePreference');
             if(savedTheme === 'dark') {
                 document.body.classList.add('dark-mode');
-                updateThemeUI(true);
+                updateThemeUI(true); // Ensures white logo loads if user previously saved dark mode
+            } else {
+                updateThemeUI(false); // Ensures original black logo loads for normal mode
             }
             const today = new Date().toISOString().split('T')[0];
             const checkIn = document.getElementById('checkInDate');
