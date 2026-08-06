@@ -74,6 +74,52 @@
         .brand-titles h2 { font-size: 14px; font-weight: 700; color: var(--theme-primary); margin: 2px 0 0 0; text-transform: uppercase; }
         .brand-titles p { font-size: 12px; color: #64748b; margin: 0; font-weight: 600; text-transform: uppercase; }
 
+        /* =========================================
+           RAILWAY STYLE DM OFFICE LINK (ULTRA COMPACT + NEW COLOR)
+           ========================================= */
+        .railway-style-link {
+            display: flex;
+            align-items: center;
+            gap: 6px; 
+            text-decoration: none;
+            padding: 4px 8px; 
+            border: 1px dashed var(--theme-primary);
+            border-radius: 4px;
+            background: rgba(246, 147, 29, 0.05);
+            transition: 0.3s;
+        }
+        .railway-style-link:hover {
+            background: rgba(246, 147, 29, 0.15);
+        }
+        .blinking-badge {
+            background: #008080; /* डार्क स्काई ग्रीन और ब्लू का मिक्स (Teal) */
+            color: #ffffff;
+            font-size: 9px; 
+            font-weight: 800;
+            padding: 2px 4px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            animation: railwayBlink 1.2s infinite;
+            white-space: nowrap;
+            box-shadow: 0 2px 5px rgba(0, 128, 128, 0.4);
+        }
+        @keyframes railwayBlink {
+            0% { opacity: 1; }
+            50% { opacity: 0.1; }
+            100% { opacity: 1; }
+        }
+        .dm-link-text {
+            color: var(--govt-navy);
+            font-size: 10px; 
+            font-weight: 800;
+            text-align: right; 
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+        body.dark-mode .dm-link-text {
+            color: #e2e8f0;
+        }
+
         /* NAVBAR & NOTICE BOARD */
         .navbar { background: var(--theme-gradient); padding: 0; box-shadow: 0 4px 10px rgba(246, 147, 29, 0.2); }
         .nav-link { 
@@ -117,8 +163,13 @@
         .booking-console-body { padding: 25px; }
         .form-label { font-size: 12px; font-weight: 700; color: #64748b; margin-bottom: 5px; text-transform: uppercase; }
         .form-control, .form-select { background: var(--bg-light); border: 1px solid var(--border-light); color: var(--text-main); font-weight: 600; margin-bottom: 15px; }
-        .voice-search-icon { position: absolute; right: 15px; top: 38px; color: var(--theme-primary); cursor: pointer; transition: 0.2s; font-size: 16px;}
+        
+        /* VOICE SEARCH MIC CSS */
+        .voice-search-icon { position: absolute; right: 15px; top: 38px; color: var(--theme-primary); cursor: pointer; transition: 0.2s; font-size: 18px; z-index: 10;}
         .voice-search-icon:hover { color: var(--govt-navy); transform: scale(1.1); }
+        .mic-listening { color: #dc3545 !important; animation: micPulse 1s infinite !important; }
+        @keyframes micPulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+
         .btn-search { background: var(--theme-primary); color: #fff; font-weight: 800; font-size: 16px; width: 100%; padding: 12px; border: none; border-radius: 4px; text-transform: uppercase; transition: 0.3s; margin-top: 10px; }
         .btn-search:hover:not(:disabled) { background: var(--theme-dark-orange); }
         .btn-search:disabled { background: #cbd5e1; color: #64748b; cursor: not-allowed; opacity: 0.8; }
@@ -370,7 +421,8 @@
 
     <!-- 2. OFFICIAL HEADER -->
     <header class="header-main">
-        <div class="container header-container">
+        <div class="container header-container d-flex justify-content-between align-items-center">
+            
             <div class="brand-left">
                 <!-- ✨ WEST BENGAL GOVT LOGO ✨ -->
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Seal_of_West_Bengal.svg/1280px-Seal_of_West_Bengal.svg.png" alt="Govt of West Bengal Logo" id="headerLogo">
@@ -381,6 +433,15 @@
                     <p>Government of West Bengal</p>
                 </div>
             </div>
+
+            <!-- ✨ DM OFFICE LINK (Extreme Right & 2 Lines) ✨ -->
+            <div class="brand-right ms-auto d-none d-md-block"> 
+                <a href="https://paschimbardhaman.gov.in" target="_blank" class="railway-style-link">
+                    <span class="blinking-badge">Visit Now <i class="fa fa-hand-pointer ms-1"></i></span>
+                    <span class="dm-link-text">Office of the District Magistrate<br>Paschim Bardhaman</span>
+                </a>
+            </div>
+
         </div>
     </header>
 
@@ -475,11 +536,15 @@
                                 <form id="searchForm">
                                     <div class="position-relative">
                                         <label class="form-label">Destination</label>
-                                        <select class="form-select" id="destinationSelect" required>
-                                            <option value="" disabled selected>Select Destination...</option>
-                                            <option value="paschim-bardhaman">Paschim Bardhaman</option>
-                                        </select>
-                                        <i class="fa fa-microphone voice-search-icon" title="Search by Voice"></i>
+                                        <!-- ✨ INPUT BOX WITH DATALIST & MIC ICON ✨ -->
+                                        <input type="text" class="form-control" id="destinationSelect" placeholder="Speak or Type Destination..." list="destOptions" required style="padding-right: 40px;">
+                                        <datalist id="destOptions">
+                                            <option value="Paschim Bardhaman">
+                                            <option value="Asansol">
+                                            <option value="Durgapur">
+                                            <option value="Maithon">
+                                        </datalist>
+                                        <i class="fa fa-microphone voice-search-icon" id="micBtn" title="Click to Speak"></i>
                                     </div>
                                     <div class="row mt-3">
                                         <div class="col-6">
@@ -1465,7 +1530,7 @@
             }
         }
 
-        // SPA ROUTING (ALL SECTIONS ADDED)
+        // SPA ROUTING
         const allSections = ['homeWrapper', 'touristSpotsSection', 'sabhadipatiSection', 'eoSection', 'adminSection', 'tariffSection', 'itinerarySection', 'contactSection', 'noticeSection', 'grievanceSection', 'rtiSection', 'tenderSection', 'schemesSection'];
         function switchSPA(targetId) {
             allSections.forEach(id => {
@@ -1514,7 +1579,7 @@
             }
         };
 
-        // ✨ LOGO SWAP & THEME TOGGLE LOGIC ✨
+        // THEME TOGGLE LOGIC
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
             const isDark = document.body.classList.contains('dark-mode');
@@ -1527,19 +1592,17 @@
             const headerLogo = document.getElementById('headerLogo');
             if (isDark) {
                 if(btn) btn.innerHTML = '<i class="fa fa-sun text-warning"></i> Light Mode';
-                if(headerLogo) headerLogo.src = 'https://cgasansol.github.io/psbzpimg/footer_logo.png'; // White Logo
+                if(headerLogo) headerLogo.src = 'https://cgasansol.github.io/psbzpimg/footer_logo.png'; 
             } else {
                 if(btn) btn.innerHTML = '<i class="fa fa-moon"></i> High Contrast';
-                if(headerLogo) headerLogo.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Seal_of_West_Bengal.svg/1280px-Seal_of_West_Bengal.svg.png'; // Original Black/Color Logo
+                if(headerLogo) headerLogo.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Seal_of_West_Bengal.svg/1280px-Seal_of_West_Bengal.svg.png';
             }
         }
 
-        // TOURIST SPOT DATA WITH SBSTC/NBSTC BUS ROUTES
+        // TOURIST SPOT DATA
         const touristData = {
             'ghagarburi': {
-                title: 'Ghagarburi Mandir',
-                location: 'Bypass, Asansol',
-                img: 'https://cgasansol.github.io/psbzpimg/ghagarburi.jpg',
+                title: 'Ghagarburi Mandir', location: 'Bypass, Asansol', img: 'https://cgasansol.github.io/psbzpimg/ghagarburi.jpg',
                 map: 'https://maps.google.com/maps?q=Ghagarburi+Chandi+Mata+Temple+Asansol&output=embed',
                 busRoute: 'Board any SBSTC Local bus from Asansol City Bus Stand towards Kanyapur or Jublee More. Drop off at Bypass Crossing. Frequency: Every 15 minutes. Auto-rickshaws are also available from Asansol Station.',
                 desc: {
@@ -1549,9 +1612,7 @@
                 }
             },
             'pretkali': {
-                title: 'Maa Preth Kali (Kalipahari)',
-                location: 'Kalipahari, Asansol',
-                img: 'https://cgasansol.github.io/psbzpimg/pretkali.jpg',
+                title: 'Maa Preth Kali (Kalipahari)', location: 'Kalipahari, Asansol', img: 'https://cgasansol.github.io/psbzpimg/pretkali.jpg',
                 map: 'https://maps.google.com/maps?q=Pret+Kali+Temple+Kalipahari+Asansol&output=embed',
                 busRoute: 'Take an SBSTC bus heading towards Durgapur/Raniganj from Asansol Bus Stand and get down at Kalipahari More. From there, take a local Toto (e-rickshaw) to the temple. Journey time: 20 mins.',
                 desc: {
@@ -1561,9 +1622,7 @@
                 }
             },
             'maithon': {
-                title: 'Maithon Dam',
-                location: 'Border of Paschim Bardhaman',
-                img: 'https://cgasansol.github.io/psbzpimg/maithondam.jpg',
+                title: 'Maithon Dam', location: 'Border of Paschim Bardhaman', img: 'https://cgasansol.github.io/psbzpimg/maithondam.jpg',
                 map: 'https://maps.google.com/maps?q=Maithon+Dam+Asansol&output=embed',
                 busRoute: 'Board the direct NBSTC or SBSTC Asansol-Maithon bound bus from Asansol City Bus Stand. The bus goes directly to the Dam. Frequency: Every 30 minutes. Last return bus at 6:00 PM.',
                 desc: {
@@ -1573,9 +1632,7 @@
                 }
             },
             'durgapur': {
-                title: 'Durgapur Barrage',
-                location: 'Damodar River, Durgapur',
-                img: 'https://cgasansol.github.io/psbzpimg/durgapurdam.jpeg',
+                title: 'Durgapur Barrage', location: 'Damodar River, Durgapur', img: 'https://cgasansol.github.io/psbzpimg/durgapurdam.jpeg',
                 map: 'https://maps.google.com/maps?q=Durgapur+Barrage&output=embed',
                 busRoute: 'Take any SBSTC bus from Asansol to Durgapur City Center. From City Center, switch to a local minibus (Route 1 or Route 8) heading directly to Durgapur Barrage.',
                 desc: {
@@ -1585,9 +1642,7 @@
                 }
             },
             'kalyaneshwari': {
-                title: 'Kalyaneshwari Temple',
-                location: 'Near Maithon, Asansol',
-                img: 'https://cgasansol.github.io/psbzpimg/kalyaneshwari.jpg',
+                title: 'Kalyaneshwari Temple', location: 'Near Maithon, Asansol', img: 'https://cgasansol.github.io/psbzpimg/kalyaneshwari.jpg',
                 map: 'https://maps.google.com/maps?q=Kalyaneshwari+Temple+Asansol&output=embed',
                 busRoute: 'Take the same SBSTC Asansol-Maithon bus from Asansol Bus Stand. Ask the conductor to drop you at Kalyaneshwari Temple crossing. It is 5 minutes before Maithon Dam.',
                 desc: {
@@ -1597,9 +1652,7 @@
                 }
             },
             'garhjungle': {
-                title: 'Garh Jungle',
-                location: 'Kanksa, Durgapur',
-                img: 'https://cgasansol.github.io/psbzpimg/garhjungle.jpg',
+                title: 'Garh Jungle', location: 'Kanksa, Durgapur', img: 'https://cgasansol.github.io/psbzpimg/garhjungle.jpg',
                 map: 'https://maps.google.com/maps?q=Garh+Jungle+Durgapur&output=embed',
                 busRoute: 'Board an SBSTC bus from Durgapur Terminus heading towards Panagarh/Illambazar. Get down at 11 Mile (Egaro Mile) stoppage. From there, hire a local auto to Garh Jungle.',
                 desc: {
@@ -1609,9 +1662,7 @@
                 }
             },
             'deul': {
-                title: 'Ichhai Ghosher Deul',
-                location: 'Gourangapur, Ajay River',
-                img: 'https://cgasansol.github.io/psbzpimg/deul.jpg',
+                title: 'Ichhai Ghosher Deul', location: 'Gourangapur, Ajay River', img: 'https://cgasansol.github.io/psbzpimg/deul.jpg',
                 map: 'https://maps.google.com/maps?q=Ichhai+Ghosher+Deul+Gourangapur&output=embed',
                 busRoute: 'Take an SBSTC/NBSTC bus from Durgapur heading to Joydev Kenduli or Bolpur. Get down at Gourangapur. The temple is a short walk from the main road near Ajay River.',
                 desc: {
@@ -1621,9 +1672,7 @@
                 }
             },
             'churulia': {
-                title: 'Churulia (Nazrul Gram)',
-                location: 'Asansol Subdivision',
-                img: 'https://cgasansol.github.io/psbzpimg/churulia.jpg',
+                title: 'Churulia (Nazrul Gram)', location: 'Asansol Subdivision', img: 'https://cgasansol.github.io/psbzpimg/churulia.jpg',
                 map: 'https://maps.google.com/maps?q=Churulia+Nazrul+Academy+Asansol&output=embed',
                 busRoute: 'Board an SBSTC rural service bus heading to Jamtara/Churulia from Asansol Bus Stand. Alternatively, local private buses run every 45 mins towards Churulia Nazrul Academy.',
                 desc: {
@@ -1645,7 +1694,6 @@
             document.getElementById('tsModalLocation').innerHTML = `<i class="fa fa-map-marker-alt"></i> ${data.location}`;
             document.getElementById('tsModalMap').src = data.map;
             
-            // Populate Bus Details and keep it hidden initially
             document.getElementById('tsBusText').innerText = data.busRoute;
             document.getElementById('tsBusRouteInfo').style.display = 'none';
             
@@ -1653,9 +1701,7 @@
             document.getElementById('touristSpotModal').style.display = 'flex';
         }
 
-        function closeTouristOverlay() {
-            document.getElementById('touristSpotModal').style.display = 'none';
-        }
+        function closeTouristOverlay() { document.getElementById('touristSpotModal').style.display = 'none'; }
 
         function changeTSLanguage(lang) {
             if(!currentSpotId) return;
@@ -1666,26 +1712,16 @@
 
         function toggleBusRoute() {
             const busDiv = document.getElementById('tsBusRouteInfo');
-            if (busDiv.style.display === 'none' || busDiv.style.display === '') {
-                busDiv.style.display = 'block';
-            } else {
-                busDiv.style.display = 'none';
-            }
+            busDiv.style.display = (busDiv.style.display === 'none' || busDiv.style.display === '') ? 'block' : 'none';
         }
 
-        // SHARE FEATURE LOGIC
         function shareTouristSpot() {
             if(!currentSpotId) return;
             const spotName = touristData[currentSpotId].title;
-            
             if (navigator.share) {
-                navigator.share({
-                    title: spotName,
-                    text: `Check out ${spotName}, a beautiful tourist spot in Paschim Bardhaman!`,
-                    url: window.location.href
-                }).catch(console.error);
+                navigator.share({ title: spotName, text: `Check out ${spotName} in Paschim Bardhaman!`, url: window.location.href }).catch(console.error);
             } else {
-                alert(`Link for ${spotName} copied to clipboard! \n(You can share it easily now)`);
+                alert(`Link for ${spotName} copied to clipboard!`);
             }
         }
 
@@ -1789,7 +1825,7 @@
             });
         }, { threshold: 0.3 });
 
-        // DOMInit
+        // DOMInit & Speech Recognition (Voice Search)
         document.addEventListener('DOMContentLoaded', () => {
             fetchLiveWeather();
             loadDynamicNotices();
@@ -1797,10 +1833,11 @@
             const savedTheme = localStorage.getItem('themePreference');
             if(savedTheme === 'dark') {
                 document.body.classList.add('dark-mode');
-                updateThemeUI(true); // Ensures white logo loads if user previously saved dark mode
+                updateThemeUI(true); 
             } else {
-                updateThemeUI(false); // Ensures original black logo loads for normal mode
+                updateThemeUI(false); 
             }
+            
             const today = new Date().toISOString().split('T')[0];
             const checkIn = document.getElementById('checkInDate');
             if(checkIn) { checkIn.setAttribute('min', today); document.getElementById('checkOutDate').setAttribute('min', today); }
@@ -1809,16 +1846,68 @@
             
             const btnSearch = document.getElementById('searchBtn');
             const formElements = ['destinationSelect', 'checkInDate', 'checkOutDate', 'roomCategory'];
+            
+            // Validate Form
+            const validateForm = () => {
+                if(document.getElementById('destinationSelect').value && document.getElementById('checkInDate').value && document.getElementById('checkOutDate').value && document.getElementById('roomCategory').value) {
+                    btnSearch.removeAttribute('disabled');
+                } else { btnSearch.setAttribute('disabled', 'true'); }
+            };
+
             formElements.forEach(id => {
                 const el = document.getElementById(id);
                 if(el) {
-                    el.addEventListener('change', () => {
-                        if(document.getElementById('destinationSelect').value && document.getElementById('checkInDate').value && document.getElementById('checkOutDate').value && document.getElementById('roomCategory').value) {
-                            btnSearch.removeAttribute('disabled');
-                        } else { btnSearch.setAttribute('disabled', 'true'); }
-                    });
+                    // Changed to 'input' event to instantly capture typed or voice input
+                    el.addEventListener('input', validateForm);
+                    el.addEventListener('change', validateForm);
                 }
             });
+
+            // ==========================================
+            // SMART VOICE SEARCH INTEGRATION
+            // ==========================================
+            const micBtn = document.getElementById('micBtn');
+            const destinationInput = document.getElementById('destinationSelect');
+
+            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                const recognition = new SpeechRecognition();
+                
+                recognition.continuous = false;
+                recognition.interimResults = false;
+                recognition.lang = 'en-IN'; // You can change to 'hi-IN' or 'bn-IN' if needed
+
+                micBtn.addEventListener('click', function() {
+                    micBtn.classList.remove('fa-microphone');
+                    micBtn.classList.add('fa-spinner', 'fa-spin', 'mic-listening');
+                    destinationInput.placeholder = "Listening... Please speak now";
+                    recognition.start();
+                });
+
+                recognition.onresult = function(event) {
+                    const transcript = event.results[0][0].transcript;
+                    // Type the spoken word into the text box
+                    destinationInput.value = transcript;
+                    // Trigger validation to enable search button if other fields are filled
+                    validateForm();
+                };
+
+                recognition.onerror = function(event) {
+                    console.error("Speech recognition error", event.error);
+                    alert("Voice search error: " + event.error + "\nPlease make sure your microphone is allowed.");
+                };
+
+                recognition.onend = function() {
+                    // Reset Mic button visually
+                    micBtn.classList.remove('fa-spinner', 'fa-spin', 'mic-listening');
+                    micBtn.classList.add('fa-microphone');
+                    destinationInput.placeholder = "Speak or Type Destination...";
+                }
+            } else {
+                micBtn.addEventListener('click', function() {
+                    alert("Sorry! Google Voice Search is not supported in this browser. Please type your destination manually.");
+                });
+            }
         });
     </script>
 </body>
