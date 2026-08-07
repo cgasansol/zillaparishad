@@ -9,8 +9,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <!-- Google Fonts (Modern Typography) -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts (Modern Typography & Noto Sans Bengali for SBSTC) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@600;800&family=Outfit:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- AOS Animation CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
@@ -107,25 +107,61 @@
         .dm-link-text { color: var(--govt-navy); font-size: 11px; font-weight: 800; text-align: right; line-height: 1.2; text-transform: uppercase; }
 
         /* =========================================================
-           SPLASH SCREEN CSS (FOR DM OFFICE)
+           SPLASH SCREENS (DM OFFICE & SBSTC)
            ========================================================= */
-        .dm-splash-screen {
+        .dm-splash-screen, .sbstc-splash-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: #ffffff !important; z-index: 999999;
-            display: none; align-items: center; justify-content: center; flex-direction: column;
+            z-index: 999999; display: none; align-items: center; justify-content: center; flex-direction: column;
             opacity: 0; transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
         }
-        .dm-splash-screen.active { display: flex; opacity: 1; }
-        .dm-splash-screen.fade-out { opacity: 0; transform: scale(1.1); }
-        .splash-content { text-align: center; }
-        .splash-logo { width: 130px; height: auto; margin-bottom: 25px; animation: popInSplash 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .dm-splash-screen { background-color: #ffffff !important; }
+        .sbstc-splash-screen { background-color: #e0f2fe !important; } /* Sky Blue Background */
+        
+        .dm-splash-screen.active, .sbstc-splash-screen.active { display: flex; opacity: 1; }
+        .dm-splash-screen.fade-out, .sbstc-splash-screen.fade-out { opacity: 0; transform: scale(1.1); }
+        .splash-content { text-align: center; padding: 20px; }
+        
+        .dm-splash-logo { width: 130px; height: auto; margin-bottom: 25px; animation: popInSplash 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .sbstc-splash-logo { width: 160px; height: auto; margin-bottom: 25px; background: #fff; padding: 15px; border-radius: 50%; box-shadow: 0 15px 35px rgba(0,0,0,0.1); animation: popInSplash 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        
         .splash-title { font-size: 42px; font-weight: 900; color: #0f172a !important; font-family: 'Outfit', sans-serif; letter-spacing: 2px; margin-bottom: 30px; animation: slideUpFadeSplash 0.8s ease forwards; opacity: 0; animation-delay: 0.2s;}
+        
+        .sbstc-splash-title { font-size: 36px; font-weight: 900; color: #0369a1 !important; font-family: 'Outfit', sans-serif; letter-spacing: 1px; margin-bottom: 30px; animation: slideUpFadeSplash 0.8s ease forwards; opacity: 0; animation-delay: 0.2s; line-height: 1.2;}
+        .sbstc-bengali-text { font-family: 'Noto Sans Bengali', sans-serif; font-size: 28px; display: block; margin-top: 15px; font-weight: 800; color: #0284c7; }
+        
         .loading-bar-container { width: 280px; height: 6px; background: #e2e8f0; border-radius: 10px; margin: 0 auto 15px; overflow: hidden; position: relative; animation: slideUpFadeSplash 0.8s ease forwards; opacity: 0; animation-delay: 0.4s;}
-        .loading-bar { height: 100%; width: 0; background: var(--theme-gradient); border-radius: 10px; animation: loadProgressSplash 3.5s ease-in-out forwards; }
+        
+        /* Different Animation Timings for DM (3.5s) and SBSTC (6s) */
+        .dm-loading-bar { height: 100%; width: 0; background: var(--theme-gradient); border-radius: 10px; animation: loadProgressSplashDM 3.5s ease-in-out forwards; }
+        .sbstc-loading-bar { height: 100%; width: 0; background: #0284c7 !important; border-radius: 10px; animation: loadProgressSplashSBSTC 6s ease-in-out forwards; }
+        
         .splash-text { font-size: 14px; font-weight: 600; color: #64748b; animation: slideUpFadeSplash 0.8s ease forwards; opacity: 0; animation-delay: 0.5s;}
-        @keyframes loadProgressSplash { 0% { width: 0; } 50% { width: 70%; } 100% { width: 100%; } }
+        
+        @keyframes loadProgressSplashDM { 0% { width: 0; } 50% { width: 70%; } 100% { width: 100%; } }
+        @keyframes loadProgressSplashSBSTC { 0% { width: 0; } 50% { width: 70%; } 100% { width: 100%; } }
         @keyframes popInSplash { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
         @keyframes slideUpFadeSplash { 0% { transform: translateY(20px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+
+        /* =========================================================
+           SBSTC BUTTON CSS
+           ========================================================= */
+        .sbstc-btn {
+            background: #0369a1; color: #fff; border: 2px solid #38bdf8;
+            padding: 12px 20px; border-radius: 16px; font-weight: 800; font-size: 14px;
+            text-transform: uppercase; letter-spacing: 1px; display: flex;
+            align-items: center; justify-content: center; gap: 10px;
+            box-shadow: 0 10px 25px rgba(3, 105, 161, 0.4); transition: 0.4s;
+            margin-bottom: 20px; width: 100%; text-decoration: none;
+        }
+        .sbstc-btn:hover {
+            background: #0284c7; border-color: #7dd3fc; transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(3, 105, 161, 0.6); color: #fff;
+        }
+        .blinking-dot {
+            width: 10px; height: 10px; background: #fbbf24; border-radius: 50%;
+            animation: blinkDot 1s infinite; box-shadow: 0 0 10px #fbbf24;
+        }
+        @keyframes blinkDot { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
         /* 3. NAVBAR 2.0 (FLOATING) */
         .navbar-wrapper { position: sticky; top: 15px; z-index: 1000; padding: 0 15px; }
@@ -224,7 +260,7 @@
         .skeleton-text.btn { height: 40px; width: 140px; margin-top: 25px; border-radius: 8px;}
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
-        /* 2.0 BENTO GRID (Demographics & Initiatives) */
+        /* 2.0 BENTO GRID */
         .bento-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px; }
         .bento-box { background: var(--bento-bg); border-radius: 24px; padding: 30px; border: 1px solid var(--glass-border); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; transition: 0.4s; box-shadow: var(--card-shadow); position: relative; overflow: hidden; }
         .bento-box:hover { transform: translateY(-8px); border-color: var(--theme-primary); box-shadow: var(--hover-shadow); }
@@ -238,13 +274,13 @@
         @media (max-width: 991px) { .bento-container { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 576px) { .bento-container { grid-template-columns: 1fr; } }
 
-        /* Pill Badges Restored & Modernized */
+        /* Pill Badges */
         .pill-badge { font-size: 13px; font-weight: 800; padding: 8px 20px; border-radius: 30px; display: inline-flex; align-items: center; gap: 8px; margin: 5px; box-shadow: var(--card-shadow); transition: 0.3s; }
         .pill-badge:hover { transform: translateY(-3px); }
         .bg-pill-blue { background: #2563eb; color: #fff; }
         .bg-pill-lightgreen { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
 
-        /* 5. TOURIST CARDS (3D TILT EFFECT) */
+        /* 5. TOURIST CARDS */
         .tourist-card { border: 1px solid var(--glass-border); border-radius: 24px; background: var(--bento-bg); box-shadow: var(--card-shadow); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); height: 100%; display: flex; flex-direction: column; overflow: hidden; cursor: pointer; }
         .tourist-card:hover { transform: translateY(-12px); box-shadow: var(--hover-shadow); border-color: var(--theme-primary); }
         .tourist-img-box { position: relative; height: 240px; overflow: hidden; }
@@ -276,7 +312,7 @@
         .sabhadipati-box:hover { box-shadow: var(--hover-shadow); transform: translateY(-5px); }
         .sabhadipati-box img { width: 160px; height: 160px; border-radius: 50%; border: 5px solid var(--theme-primary); padding: 5px; margin-bottom: 25px; object-fit: cover; box-shadow: 0 15px 30px rgba(246, 147, 29, 0.2);}
 
-        /* 2.0 OVERLAY MODALS (Property, Admin, Tourist Spot) */
+        /* OVERLAY MODALS */
         .ts-modal-overlay, .custom-modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(15, 23, 42, 0.7); backdrop-filter: blur(10px); align-items: center; justify-content: center; padding: 20px; }
         .ts-modal-content { background: var(--card-bg); border-radius: 24px; width: 100%; max-width: 900px; max-height: 90vh; overflow-y: auto; box-shadow: 0 25px 50px rgba(0,0,0,0.5); animation: popModal 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; position: relative; border: 1px solid var(--glass-border); }
         .custom-modal-content { background: var(--card-bg); padding: 40px 30px; border-radius: 24px; width: 90%; max-width: 450px; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.5); animation: popModal 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; text-align: center; border-top: 6px solid var(--theme-primary); border-bottom: 1px solid var(--glass-border); border-left: 1px solid var(--glass-border); border-right: 1px solid var(--glass-border);}
@@ -286,7 +322,6 @@
         .ts-modal-close:hover, .close-btn:hover { background: #ef4444; transform: rotate(90deg); }
         .close-btn { color: var(--text-main); background: var(--bg-light); }
         
-        /* Modals content */
         .ts-hero-img { width: 100%; height: 350px; object-fit: cover; border-top-left-radius: 24px; border-top-right-radius: 24px; }
         .ts-body { padding: 40px; }
         .ts-title { font-size: 32px; font-weight: 900; color: var(--govt-navy); margin: 0; font-family: 'Outfit'; }
@@ -295,7 +330,7 @@
         .ts-lang-btn { background: transparent; border: none; padding: 10px 18px; font-size: 13px; font-weight: 800; color: #64748b; cursor: pointer; transition: 0.3s; display:flex; align-items:center; justify-content:center;}
         .ts-lang-btn.active { background: var(--theme-primary); color: #fff; }
         
-        /* SCROLLING NOTICE BOARD 2.0 */
+        /* SCROLLING NOTICE BOARD */
         .notice-board-container { background: var(--bg-light); border: 1px solid var(--border-light); border-radius: 16px; overflow: hidden; height: 400px; position: relative; box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);}
         .notice-track { display: flex; flex-direction: column; width: 100%; animation: scrollUp 25s linear infinite; padding: 20px; }
         .notice-track:hover { animation-play-state: paused; }
@@ -303,7 +338,7 @@
         .notice-item { background: var(--card-bg); padding: 20px; border-left: 5px solid var(--theme-primary); margin-bottom: 20px; box-shadow: var(--card-shadow); border-radius: 12px; transition: 0.3s; }
         .notice-item:hover { transform: translateX(10px); box-shadow: var(--hover-shadow); }
 
-        /* TABLES & FORMS 2.0 */
+        /* TABLES */
         .table-custom { background: var(--card-bg); color: var(--text-main); border-radius: 16px; overflow: hidden; box-shadow: var(--card-shadow); border: 1px solid var(--border-light); }
         .table-custom thead { background: var(--govt-navy); color: #fff; font-family: 'Outfit'; font-size: 15px; letter-spacing: 0.5px;}
         .table-custom th, .table-custom td { padding: 18px; border-bottom: 1px solid var(--border-light); vertical-align: middle; }
@@ -339,12 +374,27 @@
     <!-- 🌟 SPLASH SCREEN FOR DM OFFICE LINK 🌟 -->
     <div id="dmSplashScreen" class="dm-splash-screen">
         <div class="splash-content">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Seal_of_West_Bengal.svg/1280px-Seal_of_West_Bengal.svg.png" alt="Govt Logo" class="splash-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Seal_of_West_Bengal.svg/1280px-Seal_of_West_Bengal.svg.png" alt="Govt Logo" class="dm-splash-logo">
             <h1 class="splash-title">PASCHIM BARDHAMAN</h1>
             <div class="loading-bar-container">
-                <div class="loading-bar"></div>
+                <div class="dm-loading-bar"></div>
             </div>
             <p class="splash-text">Redirecting to Official District Portal...</p>
+        </div>
+    </div>
+
+    <!-- 🌟 NEW: SPLASH SCREEN FOR SBSTC LINK 🌟 -->
+    <div id="sbstcSplashScreen" class="sbstc-splash-screen">
+        <div class="splash-content">
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/6e/South_Bengal_State_Transport_Corporation_Logo.svg/1280px-South_Bengal_State_Transport_Corporation_Logo.svg.png" alt="SBSTC Logo" class="sbstc-splash-logo">
+            <h1 class="sbstc-splash-title">
+                SOUTH BENGAL STATE<br>TRANSPORT CORPORATION
+                <span class="sbstc-bengali-text">দক্ষিণবঙ্গ রাষ্ট্রীয় পরিবহণ সংস্থা</span>
+            </h1>
+            <div class="loading-bar-container" style="background: rgba(3,105,161,0.2);">
+                <div class="sbstc-loading-bar"></div>
+            </div>
+            <p class="splash-text" style="color: #0369a1;">Redirecting to Official Ticketing Portal...</p>
         </div>
     </div>
 
@@ -389,7 +439,6 @@
                 </div>
             </div>
             <div class="brand-right ms-auto d-none d-md-block"> 
-                <!-- ✨ UPDATED LINK WITH ONCLICK FUNCTION ✨ -->
                 <a href="javascript:void(0)" onclick="handleDMLinkClick(event)" class="railway-style-link glass-panel">
                     <span class="blinking-badge">Visit Now <i class="fa fa-hand-pointer ms-1"></i></span>
                     <span class="dm-link-text">Office of the District Magistrate<br>Paschim Bardhaman</span>
@@ -470,7 +519,7 @@
             </a>
         </div>
 
-        <!-- 4. HERO SECTION (RESTORED TO ORIGINAL FULL FUNCTIONALITY) -->
+        <!-- 4. HERO SECTION 2.0 -->
         <section class="hero-section" id="heroSection" data-aos="fade-up" data-aos-duration="1000">
             <div id="heroBackgroundSlider" class="carousel slide carousel-fade bg-carousel" data-bs-ride="carousel">
                 <div class="carousel-inner">
@@ -483,6 +532,13 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-4 col-md-6" data-aos="fade-right" data-aos-delay="800">
+                        
+                        <!-- ✨ NEW SBSTC TICKET BOOKING BUTTON ✨ -->
+                        <a href="javascript:void(0)" onclick="handleSBSTCLinkClick(event)" class="sbstc-btn">
+                            <div class="blinking-dot"></div>
+                            <i class="fa fa-bus"></i> SBSTC Ticket Booking
+                        </a>
+
                         <div class="booking-console glass-panel">
                             <div class="booking-console-header"><i class="fa fa-hotel me-2"></i> Book Accommodation</div>
                             <div class="booking-console-body">
@@ -1312,26 +1368,42 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
-    <!-- ORIGINAL JAVASCRIPT LOGIC (100% Retained) + FIXED DM LINK LOGIC -->
+    <!-- ORIGINAL JAVASCRIPT LOGIC (100% Retained) + NEW DM LINK LOGIC + NEW SBSTC LOGIC -->
     <script>
-        // ✨ FIXED JS FOR DM SPLASH SCREEN (NOW OPENS IN NEW TAB) ✨
+        // ✨ JS FOR DM SPLASH SCREEN ✨
         function handleDMLinkClick(event) {
             event.preventDefault(); 
             
             const splash = document.getElementById('dmSplashScreen');
             splash.classList.add('active'); 
             
-            // Wait for 3.5 seconds (the duration of the loading bar animation)
             setTimeout(() => {
                 splash.classList.add('fade-out'); 
                 
-                // Wait for the fade-out animation to finish (0.5s), then open link
                 setTimeout(() => {
                     window.open('https://paschimbardhaman.gov.in', '_blank');
                     splash.classList.remove('active', 'fade-out');
                 }, 500); 
             }, 3500); 
         }
+
+        // ✨ UPDATED JS FOR SBSTC SPLASH SCREEN (6 SECONDS) ✨
+        function handleSBSTCLinkClick(event) {
+            event.preventDefault(); 
+            
+            const splash = document.getElementById('sbstcSplashScreen');
+            splash.classList.add('active'); 
+            
+            setTimeout(() => {
+                splash.classList.add('fade-out'); 
+                
+                setTimeout(() => {
+                    window.open('https://sbstconline.co.in/reservation-home', '_blank'); // Updated SBSTC URL
+                    splash.classList.remove('active', 'fade-out');
+                }, 500); 
+            }, 6000); // ✨ Changed to 6 seconds ✨
+        }
+
 
         // Initialize AOS 2.0
         AOS.init({ duration: 800, easing: 'ease-in-out', once: true, offset: 50 });
@@ -1432,7 +1504,7 @@
             'kalyaneshwari': { title: 'Kalyaneshwari Temple', location: 'Near Maithon, Asansol', img: 'https://cgasansol.github.io/psbzpimg/kalyaneshwari.jpg', map: 'https://maps.google.com/maps?q=Kalyaneshwari+Temple+Asansol&output=embed', busRoute: 'Take the same SBSTC Asansol-Maithon bus from Asansol Bus Stand. Ask the conductor to drop you at Kalyaneshwari Temple crossing. It is 5 minutes before Maithon Dam.', desc: { en: "This ancient and legendary 500-year-old temple is deeply dedicated to Goddess Kalyaneshwari (a form of Shakti). Situated near Maithon.", hi: "यह प्राचीन और महान 500 साल पुराना मंदिर देवी कल्याणेश्वरी (शक्ति का एक रूप) को गहराई से समर्पित है। मैथन के पास स्थित है।", bn: "এই প্রাচীন এবং কিংবদন্তি ৫০০ বছরের পুরানো মন্দিরটি গভীরভাবে দেবী কল্যাণেশ্বরীকে (শক্তির একটি রূপ) উৎসর্গ করা হয়েছে। মাইথনের কাছে অবস্থিত।" } },
             'garhjungle': { title: 'Garh Jungle', location: 'Kanksa, Durgapur', img: 'https://cgasansol.github.io/psbzpimg/garhjungle.jpg', map: 'https://maps.google.com/maps?q=Garh+Jungle+Durgapur&output=embed', busRoute: 'Board an SBSTC bus from Durgapur Terminus heading towards Panagarh/Illambazar. Get down at 11 Mile (Egaro Mile) stoppage. From there, hire a local auto to Garh Jungle.', desc: { en: "Historically known as 'Dharma Garh', this mystical dense forest is famously linked to King Surath and the legendary mythological origins of Durga Puja.", hi: "ऐतिहासिक रूप से 'धर्म गढ़' के रूप में जाना जाने वाला यह रहस्यमयी घना जंगल राजा सुरथ और दुर्गा पूजा की पौराणिक उत्पत्ति से प्रसिद्ध रूप से जुड़ा हुआ है।", bn: "ঐতিহাসিকভাবে 'ধর্ম গড়' নামে পরিচিত, এই রহস্যময় ঘন জঙ্গলটি রাজা সুরথ এবং দুর্গাপূজার কিংবদন্তি পৌরাণিক উৎপত্তির সাথে যুক্ত।" } },
             'deul': { title: 'Ichhai Ghosher Deul', location: 'Gourangapur, Ajay River', img: 'https://cgasansol.github.io/psbzpimg/deul.jpg', map: 'https://maps.google.com/maps?q=Ichhai+Ghosher+Deul+Gourangapur&output=embed', busRoute: 'Take an SBSTC/NBSTC bus from Durgapur heading to Joydev Kenduli or Bolpur. Get down at Gourangapur. The temple is a short walk from the main road near Ajay River.', desc: { en: "Situated picturesquely on the banks of the Ajay River, this towering and remarkable brick 'Rekha-Deul' style temple is recognized as a Monument of National Importance.", hi: "अजय नदी के तट पर सुरम्य रूप से स्थित, यह विशाल और उल्लेखनीय ईंटों वाला 'रेखा-देउल' शैली का मंदिर राष्ट्रीय महत्व के स्मारक के रूप में मान्यता प्राप्त है।", bn: "অजय নদীর তীরে মনোরমভাবে অবস্থিত, এই সুউচ্চ এবং অসাধারণ ইটের 'রেখা-দেউল' শৈলীর মন্দিরটি জাতীয় গুরুত্বসম্পন্ন একটি স্মৃতিস্তম্ভ হিসাবে স্বীকৃত।" } },
-            'churulia': { title: 'Churulia (Nazrul Gram)', location: 'Asansol Subdivision', img: 'https://cgasansol.github.io/psbzpimg/churulia.jpg', map: 'https://maps.google.com/maps?q=Churulia+Nazrul+Academy+Asansol&output=embed', busRoute: 'Board an SBSTC rural service bus heading to Jamtara/Churulia from Asansol Bus Stand. Alternatively, local private buses run every 45 mins towards Churulia Nazrul Academy.', desc: { en: "Churulia is the sacred and historic birthplace of the legendary rebel poet Kazi Nazrul Islam, who is revered globally and is the National Poet of Bangladesh.", hi: "चुरुलिया महान विद्रोही कवि काजी नजरुल इस्लाम की पवित्र और ऐतिहासिक जन्मभूमि है, जिन्हें विश्व स्तर पर सम्मानित किया जाता है।", bn: "চুরুলিয়া হল কিংবদন্তি বিদ্রোহী কবি কাজী নজরুল ইসলামের পবিত্র ও ঐতিহাসিক জন্মভূমি, যিনি বিশ্বব্যাপী সমাদৃত এবং বাংলাদেশের জাতীয় কবি।" } }
+            'churulia': { title: 'Churulia (Nazrul Gram)', location: 'Asansol Subdivision', img: 'https://cgasansol.github.io/psbzpimg/churulia.jpg', map: 'https://maps.google.com/maps?q=Churulia+Nazrul+Academy+Asansol&output=embed', busRoute: 'Board an SBSTC rural service bus heading to Jamtara/Churulia from Asansol Bus Stand. Alternatively, local private buses run every 45 mins towards Churulia Nazrul Academy.', desc: { en: "Churulia is the sacred and historic birthplace of the legendary rebel poet Kazi Nazrul Islam, who is revered globally and is the National Poet of Bangladesh.", hi: "चुरुलिया महान विद्रोही कवि काजी नजरुल इस्लाम की पवित्र और ऐतिहासिक जन्मभूमि है, जिन्हें विश्व स्तर पर सम्मानित किया जाता है।", bn: "চুরুলিয়া হল কিংবদন্তি বিদ্রোহী কবি কাজী নজরুল ইসলামের পবিত্র ও ऐतिहासिक জন্মভূমি, যিনি বিশ্বব্যাপী সমাদৃত এবং বাংলাদেশের জাতীয় কবি।" } }
         };
 
         let currentSpotId = null;
