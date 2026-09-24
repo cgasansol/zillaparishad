@@ -3,116 +3,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Paschim Bardhaman Zilla Parishad - Video Gallery 3.0</title>
+    <title>Paschim Bardhaman Zilla Parishad - Official Video Gallery</title>
     
     <!-- Premium Fonts (Including Bengali Font) -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@300;400;500;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Montserrat:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* ================= GLOBAL SETTINGS (PREMIUM GOVT THEME V3.0) ================= */
+        /* ================= GLOBAL SETTINGS (DEFAULT DARK THEME BASE) ================= */
         :root {
-            --bg-color: #000000; 
-            --accent-color: #f59e0b; 
-            --accent-glow: rgba(245, 158, 11, 0.6);
-            --text-main: #ffffff;
+            --bg-color: #020617; 
+            --slate-panel: #0f172a;
+            --accent-color: #f97316; 
+            --accent-hover: #ea580c;
+            --primary-blue: #1e3a8a; 
+            --success-green: #10b981;
+            --text-main: #f8fafc;
             --font-logo: 'Cinzel', serif;
             --font-main: 'Montserrat', sans-serif;
             --font-ben: 'Hind Siliguri', sans-serif;
+            --font-mono: 'Courier New', Courier, monospace;
             --card-width: 640px;
             --card-height: 360px; 
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        /* BODY DEFAULTS */
         body {
             background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-main);
             overflow: hidden; width: 100vw; height: 100vh; height: 100dvh; perspective: 2500px; 
+            -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
         
-        .ben-text { font-family: var(--font-ben) !important; }
+        .ben-text { font-family: var(--font-ben) !important; font-weight: 500; letter-spacing: 0.5px !important; }
 
-        /* ================= 1. GOVT LOGO SPLASH SCREEN ================= */
+        /* ================= LITE MODE THEME OVERRIDES ================= */
+        body[data-theme="light"] {
+            --bg-color: #f8fafc; 
+            --slate-panel: #ffffff; 
+            --primary-blue: #15803d; 
+            --text-main: #0f172a; 
+            --success-green: #15803d; 
+        }
+        
+        body[data-theme="light"] #logo-screen { background: radial-gradient(circle at center, #ffffff 0%, #f1f5f9 100%); }
+        body[data-theme="light"] .govt-title { color: #0f172a; text-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        body[data-theme="light"] .splash-status { color: var(--success-green); text-shadow: none; font-weight: 700;}
+        body[data-theme="light"] .bar { background: #f8fafc; border-color: rgba(0,0,0,0.1); }
+        body[data-theme="light"] #black-transition { background-color: #f8fafc; }
+        
+        /* INVERT LOGOS FOR LIGHT MODE */
+        body[data-theme="light"] .header-wb-logo,
+        body[data-theme="light"] .company-logo-img {
+            filter: invert(1) drop-shadow(0 2px 5px rgba(0,0,0,0.15));
+        }
+        body[data-theme="light"] .drawer-watermark { filter: grayscale(100%) invert(1); opacity: 0.05; }
+        
+        body[data-theme="light"] .indian-flag-overlay { background: radial-gradient(circle at 50% 50%, rgba(248, 250, 252, 0.75) 0%, rgba(248, 250, 252, 0.95) 100%); }
+        body[data-theme="light"] .chakra-wheel { border-color: rgba(0, 0, 0, 0.1); opacity: 0.1; box-shadow: none;}
+        
+        body[data-theme="light"] header { background: linear-gradient(to bottom, rgba(248, 250, 252, 0.98) 0%, rgba(248, 250, 252, 0) 100%); border-bottom: 1px solid rgba(0,0,0,0.05); }
+        body[data-theme="light"] footer { background: linear-gradient(to top, rgba(248, 250, 252, 0.98) 0%, rgba(248, 250, 252, 0) 100%); }
+        body[data-theme="light"] .header-logo, body[data-theme="light"] .header-title { color: #0f172a; text-shadow: none; }
+        body[data-theme="light"] .header-subtext, body[data-theme="light"] .footer-text, body[data-theme="light"] .footer-links a { color: #475569; }
+        body[data-theme="light"] .header-title { border-color: rgba(0,0,0,0.2); }
+        body[data-theme="light"] .back-btn { color: #475569; }
+        body[data-theme="light"] .back-btn:hover { color: #0f172a; background: rgba(0,0,0,0.05); }
+        
+        body[data-theme="light"] .lang-btn, body[data-theme="light"] .theme-btn { background: rgba(0,0,0,0.03); border-color: #cbd5e1; color: #0f172a; box-shadow: none;}
+        body[data-theme="light"] .lang-btn:hover, body[data-theme="light"] .theme-btn:hover { background: rgba(0,0,0,0.08); border-color: #94a3b8; }
+        body[data-theme="light"] .lang-btn.active-ben { background: var(--primary-blue); border-color: var(--primary-blue); color: #fff; box-shadow: 0 4px 10px rgba(21, 128, 61, 0.3);}
+
+        body[data-theme="light"] .content-card { background-color: #ffffff; border-color: #e2e8f0; box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
+        body[data-theme="light"] .card-overlay { background: linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.5) 50%, transparent 100%); }
+        body[data-theme="light"] .card-title { color: #0f172a; text-shadow: none; }
+        body[data-theme="light"] .card-meta { color: #334155; background: rgba(255,255,255,0.8); border-color: #cbd5e1; box-shadow: 0 4px 10px rgba(0,0,0,0.05);}
+        body[data-theme="light"] .card-meta span.category-badge { background: var(--primary-blue); color: #fff; }
+        
+        body[data-theme="light"] .action-btn { background: rgba(255, 255, 255, 0.9); border-color: #cbd5e1; color: #0f172a; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        body[data-theme="light"] .action-btn:hover { background: #f1f5f9; border-color: #94a3b8; color: #0f172a; }
+        body[data-theme="light"] .content-card.active-card { border-color: #cbd5e1; box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
+        
+        /* Light Mode Info Drawer Overrides */
+        body[data-theme="light"] #info-drawer-overlay { background: rgba(255, 255, 255, 0.6); }
+        body[data-theme="light"] #info-drawer { background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%); border-left-color: #cbd5e1; box-shadow: -5px 0 30px rgba(0,0,0,0.1);}
+        body[data-theme="light"] .drawer-title { color: #0f172a; }
+        body[data-theme="light"] .drawer-desc { color: #475569; }
+        body[data-theme="light"] .drawer-category { background: rgba(21, 128, 61, 0.1); border-color: rgba(21, 128, 61, 0.3); color: var(--primary-blue); }
+        body[data-theme="light"] .drawer-close { color: #475569; background: rgba(0,0,0,0.05); border-color: #cbd5e1; }
+        body[data-theme="light"] .drawer-close:hover { background: #ef4444; color: white; border-color: #ef4444;}
+        body[data-theme="light"] .btn-secondary { background: transparent; color: #0f172a; border-color: #94a3b8; }
+        body[data-theme="light"] .btn-secondary:hover { background: rgba(0,0,0,0.05); border-color: #475569; }
+        body[data-theme="light"] .share-btn-wa { color: #166534; border-color: #166534; }
+        body[data-theme="light"] .share-btn-fb { color: #1e3a8a; border-color: #1e3a8a; }
+        
+        body[data-theme="light"] .logo-text { color: #475569; text-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+
+        @media (max-width: 768px) { body[data-theme="light"] header { background: rgba(248, 250, 252, 0.95); } }
+
+        /* ================= 1. TERMINAL-STYLE ENTERPRISE SPLASH SCREEN ================= */
         #logo-screen {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; height: 100dvh;
-            background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+            background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
             z-index: 999999; display: flex; justify-content: center; align-items: center; flex-direction: column;
-            transition: opacity 0.6s ease;
+            transition: opacity 0.8s ease;
         }
-        .govt-logo-container { text-align: center; animation: logoZoom 2.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
-        .company-logo-img { max-width: 180px; width: 45vw; filter: drop-shadow(0 10px 25px rgba(245, 158, 11, 0.2)); margin-bottom: 25px; }
-        .govt-title {
-            color: white; font-family: var(--font-logo); font-size: 3.5vw; 
-            letter-spacing: 4px; text-shadow: 0 5px 20px rgba(0,0,0,0.8); line-height: 1.3;
+        
+        .splash-grid {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px; z-index: -1;
         }
-        .govt-title span { color: var(--accent-color); }
-        @keyframes logoZoom { 0% { transform: scale(0.90); opacity: 0; filter: blur(10px); } 100% { transform: scale(1); opacity: 1; filter: blur(0px); } }
 
-        /* ================= 2. SPLIT SCREEN ================= */
+        .govt-logo-container { text-align: center; display: flex; flex-direction: column; align-items: center; position: relative;}
+        .logo-wrapper { position: relative; overflow: hidden; display: inline-block; padding: 10px; margin-bottom: 15px;}
+        .company-logo-img { 
+            max-width: 150px; width: 30vw; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.8)); 
+            opacity: 0; transform: translateY(20px); animation: splashSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+        
+        .splash-text-wrapper { overflow: hidden; padding-bottom: 5px; }
+        .govt-title {
+            color: white; font-family: var(--font-logo); font-size: 2.6vw; 
+            letter-spacing: 6px; text-shadow: 0 4px 10px rgba(0,0,0,0.9); line-height: 1.4;
+            opacity: 0; transform: translateY(100%); animation: splashSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+        }
+        .govt-title span { color: var(--accent-color); font-weight: 800; }
+        
+        .splash-loader-track { width: 320px; height: 3px; background: rgba(128, 128, 128, 0.2); margin: 30px 0 15px 0; border-radius: 3px; overflow: hidden; position: relative; opacity: 0; animation: simpleFadeIn 0.5s ease 1s forwards; }
+        .splash-loader-bar { position: absolute; top: 0; left: 0; height: 100%; width: 0%; background: linear-gradient(90deg, #ff9933 0%, #ffffff 50%, #138808 100%); box-shadow: 0 0 10px rgba(255,255,255,0.5); animation: bootLoad 3s cubic-bezier(0.65, 0, 0.35, 1) 1.2s forwards; }
+        .splash-status { font-family: var(--font-mono); font-size: 0.65rem; color: var(--success-green); letter-spacing: 2px; font-weight: 600; opacity: 0; animation: simpleFadeIn 0.5s ease 1.2s forwards; text-shadow: 0 0 5px rgba(16, 185, 129, 0.5); }
+
+        @keyframes splashSlideUp { to { transform: translateY(0); opacity: 1; } }
+        @keyframes bootLoad { 0% { width: 0%; } 30% { width: 45%; } 60% { width: 60%; } 85% { width: 95%; } 100% { width: 100%; } }
+        @keyframes simpleFadeIn { to { opacity: 1; } }
+
+        /* ================= 2. CINEMATIC SPLIT SCREEN ================= */
         #intro-section {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             display: flex; justify-content: center; align-items: center; flex-direction: column;
             z-index: 100; background: transparent; transition: opacity 0.8s ease, visibility 0.8s ease;
         }
-        .bar { position: absolute; left: 0; width: 100%; height: 50vh; background: #020617; z-index: 105; transition: transform 1.2s cubic-bezier(0.8, 0, 0.2, 1); border-bottom: 1px solid rgba(245, 158, 11, 0.2); }
-        .bar-bottom { bottom: 0; border-top: 1px solid rgba(245, 158, 11, 0.2); border-bottom: none; }
+        .bar { position: absolute; left: 0; width: 100%; height: 50vh; background: var(--bg-color); z-index: 105; transition: transform 1s cubic-bezier(0.8, 0, 0.2, 1); border-bottom: 1px solid rgba(128, 128, 128, 0.1); }
+        .bar-bottom { bottom: 0; border-top: 1px solid rgba(128, 128, 128, 0.1); border-bottom: none; }
         .page-loaded .bar-top { transform: translateY(-100%); } .page-loaded .bar-bottom { transform: translateY(100%); }
 
-        .logo-text {
-            font-family: var(--font-main); font-weight: 700; letter-spacing: 0.3em; margin-right: -0.3em;
-            color: transparent; -webkit-text-stroke: 1px rgba(255, 255, 255, 0.6);
-            background-image: linear-gradient(-45deg, #a67c00 35%, #ffd700 48%, #fff8dc 52%, #ffd700 56%, #a67c00 65%);
-            background-size: 300% auto; background-position: 150% center; -webkit-background-clip: text;
-            filter: blur(10px); opacity: 0; z-index: 110; text-shadow: 0 0 30px rgba(245, 158, 11, 0.3);
+        .logo-text { 
+            font-family: var(--font-main); font-weight: 800; text-transform: uppercase; 
+            color: #94a3b8; 
+            opacity: 0; z-index: 110; position: relative; text-align: center; 
+            text-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
-        .page-loaded .logo-text { animation: blurReveal 0.8s ease-out forwards, lightSweep 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards, continuousZoom 3s linear forwards; }
+        .logo-text::after { content: ''; position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%); width: 0; height: 2px; background: var(--accent-color); box-shadow: 0 0 15px var(--accent-color); opacity: 0; }
+        .page-loaded .logo-text { animation: cinematicReveal 3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+        .page-loaded .logo-text::after { animation: lineExpand 2.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s forwards; }
 
-        #black-transition { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #020617; z-index: 90; opacity: 1; transition: opacity 1s ease; pointer-events: none; }
+        @keyframes cinematicReveal {
+            0% { opacity: 0; transform: scale(0.9) translateY(20px); letter-spacing: 0.1em; filter: blur(10px); }
+            30% { opacity: 1; transform: scale(1) translateY(0); letter-spacing: 0.2em; filter: blur(0px); }
+            80% { opacity: 1; transform: scale(1.02) translateY(0); letter-spacing: 0.25em; filter: blur(0px); }
+            100% { opacity: 0; transform: scale(1.1) translateY(-10px); letter-spacing: 0.3em; filter: blur(5px); }
+        }
+        @keyframes lineExpand { 0% { width: 0; opacity: 0; } 50% { width: 100%; opacity: 1; } 100% { width: 150%; opacity: 0; } }
 
-        /* ================= VIBRANT INDIAN FLAG BACKGROUND ================= */
+        #black-transition { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: var(--bg-color); z-index: 90; opacity: 1; transition: opacity 0.8s ease; pointer-events: none; }
+
+        /* ================= 3. INDIAN FLAG BACKGROUND ================= */
+        .flag-wrapper { position: fixed; top: -10%; left: -10%; width: 120%; height: 120%; z-index: -4; pointer-events: none; }
         .indian-flag-bg {
-            position: fixed; top: -10%; left: -10%; width: 120%; height: 120%;
-            background: linear-gradient(130deg, #ff9933 20%, #ffffff 50%, #138808 80%);
-            background-size: 200% 200%; filter: blur(18px); animation: wavingFlag 8s ease-in-out infinite alternate; z-index: -4;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(160deg, #ff9933 20%, #ffffff 50%, #138808 80%);
+            background-size: 150% 150%; filter: blur(35px); animation: flagWind 14s ease-in-out infinite alternate;
         }
-        .indian-flag-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.9) 100%); z-index: -3; pointer-events: none; }
-        .chakra-wheel {
-            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 45vh; height: 45vh;
-            border-radius: 50%; border: 3px dashed rgba(0, 0, 128, 0.25); box-shadow: 0 0 50px rgba(0, 0, 128, 0.1) inset;
-            z-index: -2; pointer-events: none; animation: spinChakra 30s linear infinite;
+        .cloth-folds {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(0,0,0,0.5) 0%, rgba(255,255,255,0.05) 25%, rgba(0,0,0,0.6) 50%, rgba(255,255,255,0.1) 75%, rgba(0,0,0,0.5) 100%);
+            background-size: 200% 100%; mix-blend-mode: overlay; filter: blur(12px); animation: foldMove 8s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
         }
-        @keyframes wavingFlag { 0% { background-position: 0% 0%; } 100% { background-position: 100% 100%; } }
-        @keyframes spinChakra { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+        .indian-flag-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, rgba(2, 6, 23, 0.75) 0%, rgba(2, 6, 23, 0.98) 100%); z-index: -3; pointer-events: none; transition: background 0.5s; }
+        .chakra-wheel { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 45vh; height: 45vh; border-radius: 50%; border: 1px solid rgba(128, 128, 128, 0.1); z-index: -2; pointer-events: none; animation: spinChakraSlow 60s linear infinite; opacity: 0.15; transition: border-color 0.5s, opacity 0.5s;}
 
-        /* ================= HEADER ================= */
-        #main-app { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; opacity: 0; visibility: hidden; transition: opacity 0.5s ease; }
+        @keyframes flagWind { 0% { background-position: 0% 0%; transform: scale(1) rotate(0deg); } 50% { background-position: 100% 50%; transform: scale(1.02) rotate(1deg); } 100% { background-position: 50% 100%; transform: scale(1.05) rotate(-1deg); } }
+        @keyframes foldMove { 0% { background-position: 0% 0; opacity: 0.5; } 100% { background-position: 100% 0; opacity: 0.9; } }
+        @keyframes spinChakraSlow { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+
+        /* ================= HEADER & FOOTER ================= */
+        #main-app { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; opacity: 0; visibility: hidden; transition: opacity 0.6s ease; }
         #main-app.show-app { opacity: 1; visibility: visible; }
+        
+        .top-brand-line { position: absolute; top: 0; left: 0; width: 100%; height: 3px; z-index: 25; background: linear-gradient(90deg, #ff9933 0%, #ffffff 50%, #138808 100%); opacity: 0; transition: opacity 1s ease; }
+        #main-app.show-app .top-brand-line { opacity: 1; }
+
         header {
-            position: absolute; top: 0; left: 0; width: 100%; padding: 25px 50px; display: flex; justify-content: space-between; align-items: center; z-index: 20;
-            background: rgba(10, 15, 30, 0.3); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15); opacity: 0; transform: translateY(-30px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: absolute; top: 3px; left: 0; width: 100%; padding: 20px 45px; display: flex; justify-content: space-between; align-items: center; z-index: 20;
+            background: linear-gradient(to bottom, rgba(2, 6, 23, 0.98) 0%, rgba(2, 6, 23, 0) 100%); opacity: 0; transform: translateY(-20px); transition: opacity 0.8s ease, transform 0.8s ease, background 0.5s ease;
         }
         #main-app.show-app header { opacity: 1; transform: translateY(0); }
-        .header-logo-container { display: flex; align-items: center; gap: 15px; }
-        .header-wb-logo { width: 45px; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.8)); }
-        .header-logo { font-family: var(--font-logo); font-size: 1.4rem; letter-spacing: 2px; line-height: 1.2; }
-        .header-logo span { color: var(--accent-color); text-shadow: 0 0 15px var(--accent-glow); }
-        .header-subtext { font-size: 0.70rem; letter-spacing: 3px; color: rgba(255,255,255,0.8); font-family: var(--font-main); }
-        .header-right { display: flex; align-items: center; gap: 20px; }
-        .header-title { font-size: 1.1rem; letter-spacing: 8px; font-weight: 500; color: #ffffff; text-shadow: 0 0 15px rgba(255,255,255,0.3); border-left: 1px solid rgba(255,255,255,0.3); padding-left: 20px; }
         
-        /* Language Toggle Button */
-        .lang-btn {
-            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 6px 12px;
-            border-radius: 20px; cursor: pointer; font-family: var(--font-main); font-weight: 600; font-size: 0.85rem;
-            backdrop-filter: blur(5px); transition: all 0.3s ease; display: flex; align-items: center; gap: 5px;
+        .header-logo-container { display: flex; align-items: center; gap: 18px; }
+        
+        .header-wb-logo { width: 60px; filter: drop-shadow(0 2px 5px rgba(0,0,0,1)); transition: filter 0.5s ease; }
+        
+        .header-logo { font-family: var(--font-logo); font-size: 1.35rem; letter-spacing: 2px; font-weight: 700; transition: color 0.5s; }
+        .header-logo span { color: var(--accent-color); }
+        .header-subtext { font-size: 0.65rem; letter-spacing: 3px; font-family: var(--font-main); text-transform: uppercase; margin-top: 4px; font-weight: 600; transition: color 0.5s;}
+        
+        .header-right { display: flex; align-items: center; gap: 15px; }
+        .back-btn { background: transparent; color: #94a3b8; font-family: var(--font-main); font-size: 0.70rem; font-weight: 600; letter-spacing: 1.5px; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: all 0.3s ease; text-transform: uppercase; border: 1px solid transparent; padding: 6px 10px; border-radius: 4px; }
+        .back-btn:hover { color: var(--text-main); background: rgba(128,128,128,0.1); transform: translateX(-3px); }
+        .header-title { font-size: 0.9rem; letter-spacing: 4px; font-weight: 600; color: #cbd5e1; border-left: 1px solid rgba(128,128,128,0.3); padding-left: 15px; text-transform: uppercase;}
+        
+        .header-controls { display: flex; gap: 8px;}
+        .lang-btn, .theme-btn { background: rgba(255,255,255,0.03); border: 1px solid #334155; color: var(--text-main); padding: 8px 14px; border-radius: 4px; cursor: pointer; font-family: var(--font-main); font-weight: 600; font-size: 0.75rem; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); min-width: 100px;}
+        .lang-btn:hover, .theme-btn:hover { background: rgba(255,255,255,0.1); border-color: #64748b; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.5);}
+        .lang-btn.active-ben { background: var(--primary-blue); border-color: #3b82f6; color: #fff; box-shadow: 0 4px 15px rgba(30, 58, 138, 0.5);}
+
+        /* ENTERPRISE FOOTER */
+        footer {
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 15px 45px; display: flex; justify-content: space-between; align-items: center; z-index: 20;
+            background: linear-gradient(to top, rgba(2, 6, 23, 0.98) 0%, rgba(2, 6, 23, 0) 100%); opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease, background 0.5s ease;
         }
-        .lang-btn:hover { background: var(--accent-color); border-color: var(--accent-color); color: #000;}
+        #main-app.show-app footer { opacity: 1; transform: translateY(0); }
+        .footer-text { font-size: 0.70rem; letter-spacing: 1px; font-weight: 500; text-transform: uppercase; transition: color 0.5s;}
+        
+        .footer-links { display: flex; gap: 15px; font-size: 0.70rem; font-weight: 600; text-transform: uppercase; align-items: center;}
+        .footer-links a { color: #ffffff; text-decoration: none; transition: color 0.3s ease; letter-spacing: 1px;}
+        .footer-links a:hover { color: var(--accent-color) !important; }
 
         /* ================= 3D SLIDER ================= */
         .slider-container { width: 100%; height: 100vh; display: flex; align-items: center; perspective: 3000px; position: relative; }
         .video-track {
             display: flex; gap: 0px; width: 100%; overflow-x: auto; scroll-snap-type: x mandatory; 
-            padding: 180px calc(50vw - (var(--card-width) / 2)) 200px calc(50vw - (var(--card-width) / 2));
+            padding: 160px calc(50vw - (var(--card-width) / 2)) 160px calc(50vw - (var(--card-width) / 2));
             -ms-overflow-style: none; scrollbar-width: none; cursor: grab; transform-style: preserve-3d;
         }
         .video-track::-webkit-scrollbar { display: none; }
@@ -120,140 +241,212 @@
         .video-track.active .content-card { pointer-events: none; }
         .card-wrapper { min-width: var(--card-width); height: var(--card-height); flex-shrink: 0; scroll-snap-align: center; display: flex; justify-content: center; align-items: center; position: relative; transform-style: preserve-3d; }
 
-        /* ================= CARD STYLES ================= */
+        /* ================= CORPORATE CARD STYLES ================= */
         .card-intro-animator { width: 100%; height: 100%; transform-style: preserve-3d; transform: translate3d(-100vw, 100vh, -3000px) rotateX(1080deg) rotateY(720deg) scale(0.1); opacity: 0; }
-        .run-intro .card-intro-animator { animation: magicCarpetFly 2.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; animation-delay: calc(var(--i) * 0.15s); }
-        @keyframes magicCarpetFly {
-            0% { transform: translate3d(-100vw, 80vh, -3000px) rotateX(1080deg) rotateY(720deg) scale(0.1); opacity: 0; }
-            30% { transform: translate3d(-50vw, -50vh, -1500px) rotateX(720deg) rotateY(360deg) scale(0.4); opacity: 0.5; }
-            60% { transform: translate3d(50vw, -40vh, -800px) rotateX(360deg) rotateY(180deg) scale(0.7); opacity: 0.8; }
-            100% { transform: translate3d(0, 0, 0) rotateX(0) rotateY(0) scale(1); opacity: 1; }
-        }
+        .run-intro .card-intro-animator { animation: magicCarpetFly 2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; animation-delay: calc(var(--i) * 0.1s); }
+        @keyframes magicCarpetFly { 0% { transform: translate3d(-100vw, 50vh, -2000px) rotateX(360deg) scale(0.5); opacity: 0; } 100% { transform: translate3d(0, 0, 0) rotateX(0) scale(1); opacity: 1; } }
 
         .content-card {
-            width: 100%; height: 100%; border-radius: 16px; position: relative; background-color: rgba(10, 15, 30, 0.4); 
-            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.6s ease, box-shadow 0.6s ease;
-            box-shadow: 0 20px 45px rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.15); border-top: 1px solid rgba(255,255,255,0.3); 
-            user-select: none; cursor: pointer; will-change: transform, opacity; transform: translate3d(0, 0, 0); 
-            -webkit-box-reflect: below 15px linear-gradient(to bottom, rgba(0,0,0,0) 20%, rgba(0,0,0,0.1) 40%, rgba(255,255,255,0.2) 100%);
+            width: 100%; height: 100%; border-radius: 6px; position: relative; background-color: var(--slate-panel); 
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease, background-color 0.5s ease;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6); border: 1px solid #1e293b; user-select: none; cursor: pointer; will-change: transform, opacity; transform: translate3d(0, 0, 0); overflow: hidden; 
         }
-        .card-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 15px; background-size: cover; background-position: center; overflow: hidden; transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.6s ease; filter: brightness(0.7) contrast(1.1); opacity: 0.85; }
-        .card-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 15px; background: linear-gradient(to top right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.5) 45%, transparent 100%); opacity: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 30px 40px 20px 40px; transition: opacity 0.5s ease; }
-        .card-content { transform: translateY(20px); opacity: 0; transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.5s ease; }
-        .card-title { font-size: 1.6rem; font-weight: 700; margin-bottom: 8px; text-shadow: 0 2px 10px rgba(0,0,0,1), 0 5px 25px rgba(0,0,0,0.8); letter-spacing: 1px; line-height: 1.3; max-width: 90%; }
-        .card-meta-container { margin-bottom: 20px; }
-        .card-meta { display: inline-flex; align-items: center; gap: 8px; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(12px); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 30px; padding: 7px 16px; font-size: 0.85rem; color: #fff; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 500; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-        .card-meta span { color: var(--accent-color); font-weight: 700; text-shadow: 0 0 10px rgba(245, 158, 11, 0.6);}
+        .card-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-size: cover; background-position: center; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease; filter: brightness(0.65) contrast(1.1); }
+        .card-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to top, rgba(2, 6, 23, 0.98) 0%, rgba(2, 6, 23, 0.4) 50%, transparent 100%); opacity: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 35px 45px; transition: opacity 0.5s ease, background 0.5s ease; }
+        .card-content { transform: translateY(15px); opacity: 0; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease; width: 100%;}
+        .card-title { font-size: 1.6rem; font-weight: 700; margin-bottom: 10px; letter-spacing: 0.5px; line-height: 1.3; transition: color 0.5s;}
+        
+        .card-meta-container { margin-bottom: 25px; }
+        .card-meta { display: inline-flex; align-items: center; gap: 10px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; transition: color 0.5s;}
+        .card-meta span.category-badge { padding: 5px 12px; border-radius: 4px; font-weight: 700; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: background 0.5s;}
 
-        .btn-play { width: 55px; height: 55px; border-radius: 50%; background-color: var(--accent-color); border: none; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 5px 20px rgba(0,0,0,0.8), 0 0 20px var(--accent-glow); transition: transform 0.2s, background-color 0.2s; pointer-events: auto; }
-        .btn-play::after { content: ''; border-style: solid; border-width: 8px 0 8px 14px; border-color: transparent transparent transparent #ffffff; margin-left: 6px; }
-        .btn-play:hover { transform: scale(1.15); background-color: #d97706; }
+        .btn-play { 
+            width: auto; height: 46px; border-radius: 4px; background: linear-gradient(135deg, var(--accent-color), #d97706); border: none; 
+            display: inline-flex; justify-content: center; align-items: center; gap: 10px; padding: 0 24px;
+            color: #fff; font-family: var(--font-main); font-size: 0.85rem; font-weight: 700; letter-spacing: 1.5px;
+            cursor: pointer; box-shadow: 0 6px 15px rgba(0,0,0,0.3); transition: all 0.3s ease; pointer-events: auto; 
+        }
+        .btn-play:hover { background: linear-gradient(135deg, var(--accent-hover), #b45309); transform: translateY(-2px); }
 
-        /* Top Right Action Buttons on Card */
-        .card-top-actions { position: absolute; top: 20px; right: 20px; display: flex; gap: 10px; opacity: 0; transform: translateY(-10px); transition: opacity 0.5s ease, transform 0.5s ease; z-index: 5; pointer-events: auto; }
+        .card-top-actions { position: absolute; top: 20px; right: 20px; display: flex; gap: 12px; opacity: 0; transform: translateY(-5px); transition: opacity 0.5s ease, transform 0.5s ease; z-index: 10; }
         .content-card.active-card .card-top-actions { opacity: 1; transform: translateY(0); }
-        .action-btn { width: 36px; height: 36px; border-radius: 50%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.3); color: white; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: all 0.2s; font-size: 1rem; }
-        .action-btn:hover { background: var(--accent-color); border-color: var(--accent-color); transform: scale(1.1); color: #000; }
-
-        .content-card.active-card {
-            border: 1px solid rgba(245, 158, 11, 0.8); border-top: 1px solid rgba(253, 230, 138, 0.8); 
-            box-shadow: 0 50px 100px rgba(0,0,0,0.8), 0 0 50px rgba(245, 158, 11, 0.3), inset 0 0 30px rgba(245, 158, 11, 0.15);
-            -webkit-box-reflect: below 20px linear-gradient(to bottom, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.1) 70%, transparent 100%);
+        .action-btn { 
+            height: 34px; padding: 0 14px; border-radius: 4px; background: rgba(15, 23, 42, 0.85); border: 1px solid #475569; backdrop-filter: blur(5px);
+            font-family: var(--font-main); font-size: 0.7rem; font-weight: 700; letter-spacing: 1.5px; color: #ffffff;
+            cursor: pointer; transition: all 0.3s ease; pointer-events: auto; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
-        .content-card.active-card .card-bg { filter: brightness(1.1) contrast(1.15); transform: scale(1.05); opacity: 1; }
+        .action-btn:hover { background: #334155; border-color: #cbd5e1; transform: translateY(-2px); color: #ffffff;}
+
+        .content-card.active-card { box-shadow: 0 25px 60px rgba(0,0,0,0.5); }
+        .content-card.active-card .card-bg { transform: scale(1.03); }
         .content-card.active-card .card-overlay { opacity: 1; }
         .content-card.active-card .card-content { transform: translateY(0); opacity: 1; }
-        .content-card.active-card .btn-play { animation: pulseGlow 2s infinite; }
-        @keyframes pulseGlow { 0% { box-shadow: 0 0 15px rgba(245, 158, 11, 0.4); } 50% { box-shadow: 0 0 35px rgba(245, 158, 11, 0.8), 0 0 15px rgba(245, 158, 11, 0.4) inset; transform: scale(1.05); } 100% { box-shadow: 0 0 15px rgba(245, 158, 11, 0.4); } }
 
-        /* ================= INFO DRAWER ================= */
-        #info-drawer-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 10000; opacity: 0; visibility: hidden; transition: all 0.4s ease; backdrop-filter: blur(3px); }
+        /* ================= CORPORATE INFO DRAWER (DARK MODE COMPATIBLE) ================= */
+        #info-drawer-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.7); z-index: 10000; opacity: 0; visibility: hidden; transition: all 0.4s ease; backdrop-filter: blur(5px); }
         #info-drawer-overlay.open { opacity: 1; visibility: visible; }
         #info-drawer {
-            position: fixed; top: 0; right: -450px; width: 400px; max-width: 100vw; height: 100vh; background: rgba(10, 15, 30, 0.7);
-            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border-left: 1px solid rgba(245, 158, 11, 0.3);
-            z-index: 10001; transition: right 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); padding: 40px 30px; display: flex; flex-direction: column; overflow-y: auto;
+            position: fixed; top: 0; right: -480px; width: 420px; max-width: 100vw; height: 100vh; 
+            background: linear-gradient(180deg, #0f172a 0%, #020617 100%); box-shadow: -10px 0 40px rgba(0,0,0,0.8);
+            z-index: 10001; transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1), background 0.5s ease; padding: 50px 40px; display: flex; flex-direction: column; overflow-y: auto;
         }
         #info-drawer.open { right: 0; }
-        .drawer-close { position: absolute; top: 20px; right: 20px; background: transparent; border: none; color: white; font-size: 2rem; cursor: pointer; transition: transform 0.2s; }
-        .drawer-close:hover { color: var(--accent-color); transform: scale(1.1); }
-        .drawer-category { color: var(--accent-color); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; font-weight: 600; }
-        .drawer-title { font-size: 2rem; font-weight: 700; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); line-height: 1.2; }
-        .drawer-desc { font-size: 1rem; line-height: 1.6; color: #cbd5e1; margin-bottom: 30px; }
-        .drawer-actions { display: flex; flex-direction: column; gap: 15px; margin-top: auto; }
-        .drawer-btn { padding: 12px; border-radius: 8px; font-family: var(--font-main); font-weight: 600; font-size: 1rem; cursor: pointer; text-align: center; transition: all 0.3s; display: flex; justify-content: center; align-items: center; gap: 10px; text-decoration: none; border: none; }
-        .btn-primary { background: var(--accent-color); color: #000; }
-        .btn-primary:hover { background: #d97706; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(245,158,11,0.4); }
-        .btn-secondary { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); }
-        .btn-secondary:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
-        .social-share-row { display: flex; gap: 10px; margin-top: 5px; }
-        .share-btn-wa, .share-btn-fb { flex: 1; padding: 10px; border-radius: 8px; text-align: center; color: white; text-decoration: none; font-weight: 600; display: flex; justify-content: center; align-items: center; gap: 8px; transition: transform 0.2s;}
-        .share-btn-wa { background: #25D366; } .share-btn-fb { background: #1877F2; }
-        .share-btn-wa:hover, .share-btn-fb:hover { transform: translateY(-2px); filter: brightness(1.1); }
+        
+        .drawer-watermark { position: absolute; bottom: -5%; right: -5%; width: 280px; opacity: 0.03; filter: grayscale(100%); z-index: 0; pointer-events: none; transition: filter 0.5s;}
+        
+        /* Drawer Close Button - Clean White Text in Dark Mode */
+        .drawer-close { 
+            position: absolute; top: 25px; right: 25px; border-radius: 4px; z-index: 5; 
+            transition: all 0.3s ease; display: flex; justify-content: center; align-items: center; 
+            width: 40px; height: 40px; font-size: 1.5rem; cursor: pointer;
+            background: rgba(255, 255, 255, 0.05); border: 1px solid #334155; color: #ffffff;
+        }
+        .drawer-close:hover { background: #ef4444; border-color: #ef4444; color: #ffffff; }
+        
+        .drawer-category { 
+            position: relative; z-index: 1; display: inline-block; font-size: 0.7rem; letter-spacing: 1.5px; 
+            text-transform: uppercase; padding: 6px 12px; border-radius: 4px; margin-bottom: 20px; font-weight: 700; 
+            background: rgba(30, 58, 138, 0.5); border: 1px solid rgba(59, 130, 246, 0.5); color: #60a5fa; 
+        }
+        
+        /* Drawer Title - Pure White in Dark Mode */
+        .drawer-title { 
+            position: relative; z-index: 1; font-size: 2rem; font-weight: 700; margin-bottom: 20px; 
+            line-height: 1.25; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.5); 
+        }
+        
+        /* Drawer Description - Soft Bright Gray for Dark Mode Readability */
+        .drawer-desc { 
+            position: relative; z-index: 1; font-size: 0.95rem; line-height: 1.7; 
+            margin-bottom: 40px; font-weight: 400; color: #cbd5e1; 
+        }
+        
+        .drawer-actions { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 12px; margin-top: auto; }
+        
+        /* Drawer Buttons - High Contrast and Clean */
+        .drawer-btn { 
+            padding: 14px; border-radius: 4px; font-family: var(--font-main); font-weight: 600; font-size: 0.95rem; 
+            cursor: pointer; text-align: center; transition: all 0.3s ease; display: flex; justify-content: center; 
+            align-items: center; gap: 10px; text-decoration: none; border: none; letter-spacing: 1px;
+        }
+        .btn-primary { background: var(--accent-color); color: #ffffff; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3); }
+        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
+        
+        .btn-secondary { 
+            background: rgba(255, 255, 255, 0.05); color: #ffffff; border: 1px solid #475569; 
+        }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.15); border-color: #cbd5e1; transform: translateY(-2px); }
+        
+        .social-share-row { display: flex; gap: 12px; margin-top: 5px; }
+        
+        /* Share Buttons inside Info Drawer */
+        .share-btn-wa, .share-btn-fb { 
+            flex: 1; padding: 12px; border-radius: 4px; text-align: center; text-decoration: none; 
+            font-weight: 600; display: flex; justify-content: center; align-items: center; 
+            transition: all 0.3s ease; font-size: 0.85rem; border: 1px solid; 
+        }
+        .share-btn-wa { color: #4ade80; border-color: rgba(34, 197, 94, 0.4); background: rgba(34, 197, 94, 0.08); } 
+        .share-btn-fb { color: #60a5fa; border-color: rgba(59, 130, 246, 0.4); background: rgba(59, 130, 246, 0.08); }
+        .share-btn-wa:hover { background: #22c55e; color: #ffffff; border-color: #22c55e; } 
+        .share-btn-fb:hover { background: #3b82f6; color: #ffffff; border-color: #3b82f6; }
 
         /* ================= 📱 MOBILE RESPONSIVE ================= */
         @media (max-width: 768px) {
-            :root { --card-width: 280px; --card-height: 157px; }
-            header { padding: 15px; flex-direction: column; justify-content: center; gap: 10px; background: rgba(0, 0, 0, 0.5); }
-            .header-logo-container { flex-direction: row; text-align: left; gap: 10px; }
-            .header-wb-logo { width: 35px; }
-            .header-logo { font-size: 1.1rem; }
-            .header-subtext { font-size: 0.6rem; }
-            .header-right { width: 100%; justify-content: space-between; }
+            :root { --card-width: 310px; --card-height: 180px; }
+            header { padding: 15px 20px; flex-direction: column; gap: 15px; }
+            .header-logo-container { flex-direction: row; text-align: left; gap: 10px; width: 100%; justify-content: center;}
+            .header-wb-logo { width: 45px; } 
+            .header-logo { font-size: 1.05rem; }
+            .header-subtext { font-size: 0.55rem; letter-spacing: 1px;}
+            .header-right { width: 100%; justify-content: center; flex-wrap: wrap; gap: 10px;}
             .header-title { display: none; } 
-            .logo-text { font-size: 7vw !important; } .govt-title { font-size: 5vw !important; }
-            .video-track { padding: 140px calc(50vw - (var(--card-width) / 2)) 150px calc(50vw - (var(--card-width) / 2)); }
-            .card-overlay { padding: 15px 15px 10px 15px; }
-            .card-title { font-size: 1.1rem; margin-bottom: 6px; } .card-meta { font-size: 0.70rem; padding: 5px 10px; }
-            .btn-play { width: 40px; height: 40px; } .btn-play::after { border-width: 6px 0 6px 10px; margin-left: 5px; }
-            #info-drawer { width: 100vw; right: -100vw; padding: 30px 20px; }
+            
+            .back-btn { font-size: 0.6rem; padding: 6px 10px; }
+            .lang-btn, .theme-btn { font-size: 0.7rem; padding: 6px 12px; min-width: 80px;}
+            
+            .logo-text { font-size: 7.5vw !important; } .govt-title { font-size: 4.5vw !important; }
+            
+            footer { padding: 12px 15px; flex-direction: column; gap: 8px; text-align: center; }
+            .footer-links { justify-content: center; flex-wrap: wrap; gap: 10px; }
+            
+            .video-track { padding: 170px calc(50vw - (var(--card-width) / 2)) 170px calc(50vw - (var(--card-width) / 2)); }
+            .card-overlay { padding: 15px; }
+            .card-title { font-size: 1.15rem; margin-bottom: 6px; } .card-meta { font-size: 0.6rem; padding: 0; background: transparent; border: none; box-shadow: none;}
+            .card-meta span.category-badge { padding: 3px 8px; font-size: 0.55rem;}
+            .btn-play { height: 36px; font-size: 0.75rem; padding: 0 14px; } .btn-play::after { border-width: 5px 0 5px 8px; margin-left: 4px; }
+            .action-btn { height: 28px; padding: 0 10px; font-size: 0.6rem;}
+            .card-top-actions { top: 12px; right: 12px; gap: 8px;}
+            
+            #info-drawer { width: 100vw; right: -100vw; padding: 30px 25px; }
+            .drawer-title { font-size: 1.6rem; }
         }
         
-        /* ================= VIDEO PLAYER (MODAL) & LOADER ================= */
-        .video-modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #000; z-index: 9999; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.8s ease, visibility 0.8s ease; }
+        /* ================= VIDEO PLAYER & FLAG LOADER ================= */
+        .video-modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #020617; z-index: 9999; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.4s ease, visibility 0.4s ease; }
         .video-modal.show { opacity: 1; visibility: visible; pointer-events: auto; }
-        .btn-close-modal { position: absolute; top: 30px; right: 40px; font-size: 2.5rem; color: #fff; background: rgba(255, 255, 255, 0.1); border-radius: 50%; width: 50px; height: 50px; display: flex; justify-content: center; align-items: center; border: 1px solid rgba(255, 255, 255, 0.2); cursor: pointer; z-index: 10002; transition: background 0.3s, transform 0.3s; }
-        .btn-close-modal:hover { background: var(--accent-color); transform: scale(1.1) rotate(90deg); border-color: transparent; }
-        @media (max-width: 768px) { .btn-close-modal { top: 15px; right: 20px; width: 40px; height: 40px; font-size: 2rem; } }
-        .saka-player-container { width: 100vw; height: 100vh; background-color: #000; overflow: hidden; position: relative; transform: scale(0.85); opacity: 0; transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s ease; }
+        .btn-close-modal { position: absolute; top: 25px; right: 30px; font-size: 1.5rem; color: #fff; background: #1e293b; border-radius: 4px; width: 45px; height: 45px; display: flex; justify-content: center; align-items: center; border: 1px solid #334155; cursor: pointer; z-index: 10002; transition: all 0.2s;}
+        .btn-close-modal:hover { background: #ef4444; border-color: #ef4444; }
+        @media (max-width: 768px) { .btn-close-modal { top: 15px; right: 15px; width: 36px; height: 36px; font-size: 1.2rem; } }
+        .saka-player-container { width: 100vw; height: 100vh; background-color: #000; overflow: hidden; position: relative; transform: scale(0.95); opacity: 0; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease; }
         .video-modal.show .saka-player-container { transform: scale(1); opacity: 1; }
-        .video-modal.closing .saka-player-container { transform: scale(0.3) translateX(-150vw); opacity: 0; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease; }
-        #saka-video { width: 100%; height: 100%; object-fit: cover; background: #000; }
+        .video-modal.closing .saka-player-container { transform: scale(0.95); opacity: 0; transition: transform 0.3s ease, opacity 0.3s ease; }
+        #saka-video { width: 100%; height: 100%; object-fit: contain; background: #000; }
         
-        /* FLAG COLORED CUSTOM LOADER */
-        .video-loader-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #000000; z-index: 5000; display: flex; justify-content: center; align-items: center; opacity: 1; pointer-events: none; transition: opacity 0.5s ease; }
+        .video-loader-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #020617; z-index: 5000; display: flex; justify-content: center; align-items: center; opacity: 1; pointer-events: none; transition: opacity 0.3s ease; }
         .video-loader-overlay.hidden { opacity: 0; display: none; }
-        .flag-loader-container { position: relative; width: 120px; height: 120px; display: flex; justify-content: center; align-items: center; }
-        .flag-loader-ring { position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 50%; border: 6px solid transparent; border-top-color: #ff9933; border-right-color: #ffffff; border-bottom-color: #138808; border-left-color: #ffffff; animation: spinLoader 1s linear infinite; box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); }
-        .flag-loader-logo { width: 65px; z-index: 2; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.8)); animation: pulseChakra 2s infinite alternate; }
-        @keyframes spinLoader { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        .flag-spinner-wrapper { position: relative; width: 100px; height: 100px; display: flex; justify-content: center; align-items: center; }
+        .flag-spinner-ring {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 50%;
+            background: conic-gradient(#ff9933 0deg 120deg, #ffffff 120deg 240deg, #138808 240deg 360deg);
+            -webkit-mask: radial-gradient(farthest-side, transparent 80%, black 82%); mask: radial-gradient(farthest-side, transparent 80%, black 82%);
+            animation: spinFast 1.2s linear infinite; box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+        
+        .flag-spinner-logo { width: 45px; z-index: 2; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.8)); animation: pulseLogo 2s infinite alternate;}
+        
+        @keyframes spinFast { 100% { transform: rotate(360deg); } }
+        @keyframes pulseLogo { 0% { transform: scale(0.9); opacity: 0.7;} 100% { transform: scale(1.1); opacity: 1;} }
     </style>
 </head>
-<body>
+<body data-theme="light">
 
-    <!-- GOVT LOGO SCREEN -->
+    <!-- ENTERPRISE SPLASH SCREEN -->
     <div id="logo-screen">
+        <div class="splash-grid"></div>
         <div class="govt-logo-container" id="company-logo">
-            <img src="https://cgasansol.github.io/psbzpimg/footer_logo.png" class="company-logo-img" alt="Paschim Bardhaman Zilla Parishad">
-            <h1 class="govt-title" data-eng="PASCHIM BARDHAMAN<br><span>ZILLA PARISHAD</span>" data-ben="পশ্চিম বর্ধমান<br><span>জেলা পরিষদ</span>">PASCHIM BARDHAMAN<br><span>ZILLA PARISHAD</span></h1>
+            <div class="logo-wrapper">
+                <img src="https://cgasansol.github.io/psbzpimg/footer_logo.png" class="company-logo-img" alt="Govt of West Bengal">
+            </div>
+            <div class="splash-text-wrapper">
+                <h1 class="govt-title" data-eng="PASCHIM BARDHAMAN<br><span>ZILLA PARISHAD</span>" data-ben="পশ্চিম বর্ধমান<br><span>জেলা পরিষদ</span>">PASCHIM BARDHAMAN<br><span>ZILLA PARISHAD</span></h1>
+            </div>
+            <div class="splash-loader-track"><div class="splash-loader-bar"></div></div>
+            <div class="splash-status" id="splash-status-text">INITIALIZING SYSTEM...</div>
         </div>
     </div>
 
-    <!-- TEXT SPLASH SCREEN -->
+    <!-- CINEMATIC TEXT SPLASH SCREEN -->
     <div id="intro-section">
         <div class="bar bar-top"></div><div class="bar bar-bottom"></div>
-        <div class="logo-text" style="font-size: 6vw;" data-eng="VIDEO GALLERY" data-ben="ভিডিও গ্যালারি">VIDEO GALLERY</div>
+        <div class="logo-text" style="font-size: 5.5vw;" data-eng="WELCOME TO VIDEO GALLERY" data-ben="ভিডিও গ্যালারিতে স্বাগতম">WELCOME TO VIDEO GALLERY</div>
     </div>
 
     <div id="black-transition"></div>
     
-    <!-- VIBRANT INDIAN FLAG BACKGROUND WITH CHAKRA -->
-    <div class="indian-flag-bg"></div>
+    <!-- REALISTIC INDIAN FLAG BACKGROUND -->
+    <div class="flag-wrapper">
+        <div class="indian-flag-bg"></div>
+        <div class="cloth-folds"></div>
+    </div>
     <div class="indian-flag-overlay"></div>
     <div class="chakra-wheel"></div>
 
     <div id="main-app">
-        <!-- HEADER STRUCTURE WITH LOGO & LANG TOGGLE -->
+        <!-- TOP BRAND LINE -->
+        <div class="top-brand-line"></div>
+
+        <!-- HEADER -->
         <header>
             <div class="header-logo-container">
                 <img src="https://cgasansol.github.io/psbzpimg/footer_logo.png" class="header-wb-logo" alt="Govt Logo">
@@ -263,8 +456,14 @@
                 </div>
             </div>
             <div class="header-right">
+                <a href="#" class="back-btn" id="back-portal-btn">
+                    <span data-eng="← MAIN PORTAL" data-ben="← মূল পোর্টাল">← MAIN PORTAL</span>
+                </a>
                 <div class="header-title" data-eng="VIDEO GALLERY" data-ben="ভিডিও গ্যালারি">VIDEO GALLERY</div>
-                <button class="lang-btn" id="lang-toggle">A / অ</button>
+                <div class="header-controls">
+                    <button class="theme-btn" id="theme-toggle">DARK MODE</button>
+                    <button class="lang-btn" id="lang-toggle">ENG | বাংলা</button>
+                </div>
             </div>
         </header>
 
@@ -277,13 +476,13 @@
                         <div class="content-card" data-id="0">
                             <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1549887552-cb1071d3e5ca?q=80&w=800&auto=format&fit=crop');"></div>
                             <div class="card-top-actions">
-                                <button class="action-btn info-btn" title="Information">ℹ️</button>
-                                <button class="action-btn share-btn" title="Share">🔗</button>
+                                <button class="action-btn info-btn"><span data-eng="INFO" data-ben="তথ্য">INFO</span></button>
+                                <button class="action-btn share-btn"><span data-eng="SHARE" data-ben="শেয়ার">SHARE</span></button>
                             </div>
                             <div class="card-overlay"><div class="card-content">
                                 <h3 class="card-title" data-eng="Maithon Dam Overview" data-ben="মাইথন ড্যাম ওভারভিউ">Maithon Dam Overview</h3>
-                                <div class="card-meta-container"><div class="card-meta"><span data-eng="E-TOURISM" data-ben="ই-ট্যুরিজম">E-TOURISM</span> <span class="meta-sub" data-eng="Paschim Bardhaman" data-ben="পশ্চিম বর্ধমান">Paschim Bardhaman</span></div></div>
-                                <div class="card-controls"><button class="btn-play"></button></div>
+                                <div class="card-meta-container"><div class="card-meta"><span class="category-badge" data-eng="E-TOURISM" data-ben="ই-ট্যুরিজম">E-TOURISM</span> <span class="meta-sub" data-eng="Paschim Bardhaman" data-ben="পশ্চিম বর্ধমান">Paschim Bardhaman</span></div></div>
+                                <div class="card-controls"><button class="btn-play">▶ <span data-eng="WATCH VIDEO" data-ben="ভিডিও দেখুন">WATCH VIDEO</span></button></div>
                             </div></div>
                         </div>
                     </div>
@@ -295,13 +494,13 @@
                         <div class="content-card" data-id="1">
                             <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=800&auto=format&fit=crop');"></div>
                             <div class="card-top-actions">
-                                <button class="action-btn info-btn" title="Information">ℹ️</button>
-                                <button class="action-btn share-btn" title="Share">🔗</button>
+                                <button class="action-btn info-btn"><span data-eng="INFO" data-ben="তথ্য">INFO</span></button>
+                                <button class="action-btn share-btn"><span data-eng="SHARE" data-ben="শেয়ার">SHARE</span></button>
                             </div>
                             <div class="card-overlay"><div class="card-content">
                                 <h3 class="card-title" data-eng="Garh Jungle Heritage" data-ben="গড় জঙ্গল হেরিটেজ">Garh Jungle Heritage</h3>
-                                <div class="card-meta-container"><div class="card-meta"><span data-eng="NATURE" data-ben="প্রকৃতি">NATURE</span> <span class="meta-sub" data-eng="Historical Sites" data-ben="ঐতিহাসিক স্থান">Historical Sites</span></div></div>
-                                <div class="card-controls"><button class="btn-play"></button></div>
+                                <div class="card-meta-container"><div class="card-meta"><span class="category-badge" data-eng="NATURE" data-ben="প্রকৃতি">NATURE</span> <span class="meta-sub" data-eng="Historical Sites" data-ben="ঐতিহাসিক স্থান">Historical Sites</span></div></div>
+                                <div class="card-controls"><button class="btn-play">▶ <span data-eng="WATCH VIDEO" data-ben="ভিডিও দেখুন">WATCH VIDEO</span></button></div>
                             </div></div>
                         </div>
                     </div>
@@ -313,13 +512,13 @@
                         <div class="content-card" data-id="2">
                             <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1604928141064-207cea6f5722?q=80&w=800&auto=format&fit=crop');"></div>
                             <div class="card-top-actions">
-                                <button class="action-btn info-btn" title="Information">ℹ️</button>
-                                <button class="action-btn share-btn" title="Share">🔗</button>
+                                <button class="action-btn info-btn"><span data-eng="INFO" data-ben="তথ্য">INFO</span></button>
+                                <button class="action-btn share-btn"><span data-eng="SHARE" data-ben="শেয়ার">SHARE</span></button>
                             </div>
                             <div class="card-overlay"><div class="card-content">
                                 <h3 class="card-title" data-eng="Churulia - Kazi Nazrul Islam" data-ben="চুরুলিয়া - কাজী নজরুল ইসলাম">Churulia - Kazi Nazrul Islam</h3>
-                                <div class="card-meta-container"><div class="card-meta"><span data-eng="CULTURE" data-ben="সংস্কৃতি">CULTURE</span> <span class="meta-sub" data-eng="Birthplace Tour" data-ben="জন্মস্থান ভ্রমণ">Birthplace Tour</span></div></div>
-                                <div class="card-controls"><button class="btn-play"></button></div>
+                                <div class="card-meta-container"><div class="card-meta"><span class="category-badge" data-eng="CULTURE" data-ben="সংস্কৃতি">CULTURE</span> <span class="meta-sub" data-eng="Birthplace Tour" data-ben="জন্মস্থান ভ্রমণ">Birthplace Tour</span></div></div>
+                                <div class="card-controls"><button class="btn-play">▶ <span data-eng="WATCH VIDEO" data-ben="ভিডিও দেখুন">WATCH VIDEO</span></button></div>
                             </div></div>
                         </div>
                     </div>
@@ -331,13 +530,13 @@
                         <div class="content-card" data-id="3">
                             <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1505051508008-923feaf90180?q=80&w=800&auto=format&fit=crop');"></div>
                             <div class="card-top-actions">
-                                <button class="action-btn info-btn" title="Information">ℹ️</button>
-                                <button class="action-btn share-btn" title="Share">🔗</button>
+                                <button class="action-btn info-btn"><span data-eng="INFO" data-ben="তথ্য">INFO</span></button>
+                                <button class="action-btn share-btn"><span data-eng="SHARE" data-ben="শেয়ার">SHARE</span></button>
                             </div>
                             <div class="card-overlay"><div class="card-content">
                                 <h3 class="card-title" data-eng="Panchet Dam Scenery" data-ben="পাঞ্চেত ড্যাম দৃশ্য">Panchet Dam Scenery</h3>
-                                <div class="card-meta-container"><div class="card-meta"><span data-eng="E-TOURISM" data-ben="ই-ট্যুরিজম">E-TOURISM</span> <span class="meta-sub" data-eng="River Valley" data-ben="নদী উপত্যকা">River Valley</span></div></div>
-                                <div class="card-controls"><button class="btn-play"></button></div>
+                                <div class="card-meta-container"><div class="card-meta"><span class="category-badge" data-eng="E-TOURISM" data-ben="ই-ট্যুরিজম">E-TOURISM</span> <span class="meta-sub" data-eng="River Valley" data-ben="নদী উপত্যকা">River Valley</span></div></div>
+                                <div class="card-controls"><button class="btn-play">▶ <span data-eng="WATCH VIDEO" data-ben="ভিডিও দেখুন">WATCH VIDEO</span></button></div>
                             </div></div>
                         </div>
                     </div>
@@ -349,13 +548,13 @@
                         <div class="content-card" data-id="4">
                             <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=800&auto=format&fit=crop');"></div>
                             <div class="card-top-actions">
-                                <button class="action-btn info-btn" title="Information">ℹ️</button>
-                                <button class="action-btn share-btn" title="Share">🔗</button>
+                                <button class="action-btn info-btn"><span data-eng="INFO" data-ben="তথ্য">INFO</span></button>
+                                <button class="action-btn share-btn"><span data-eng="SHARE" data-ben="শেয়ার">SHARE</span></button>
                             </div>
                             <div class="card-overlay"><div class="card-content">
                                 <h3 class="card-title" data-eng="Durgapur Barrage" data-ben="দুর্গাপুর ব্যারেজ">Durgapur Barrage</h3>
-                                <div class="card-meta-container"><div class="card-meta"><span data-eng="INFRASTRUCTURE" data-ben="পরিকাঠামো">INFRASTRUCTURE</span> <span class="meta-sub" data-eng="Damodar River" data-ben="দামোদর নদ">Damodar River</span></div></div>
-                                <div class="card-controls"><button class="btn-play"></button></div>
+                                <div class="card-meta-container"><div class="card-meta"><span class="category-badge" data-eng="INFRASTRUCTURE" data-ben="পরিকাঠামো">INFRASTRUCTURE</span> <span class="meta-sub" data-eng="Damodar River" data-ben="দামোদর নদ">Damodar River</span></div></div>
+                                <div class="card-controls"><button class="btn-play">▶ <span data-eng="WATCH VIDEO" data-ben="ভিডিও দেখুন">WATCH VIDEO</span></button></div>
                             </div></div>
                         </div>
                     </div>
@@ -367,13 +566,13 @@
                         <div class="content-card" data-id="5">
                             <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1601362840469-51e4d8d58785?q=80&w=800&auto=format&fit=crop');"></div>
                             <div class="card-top-actions">
-                                <button class="action-btn info-btn" title="Information">ℹ️</button>
-                                <button class="action-btn share-btn" title="Share">🔗</button>
+                                <button class="action-btn info-btn"><span data-eng="INFO" data-ben="তথ্য">INFO</span></button>
+                                <button class="action-btn share-btn"><span data-eng="SHARE" data-ben="শেয়ার">SHARE</span></button>
                             </div>
                             <div class="card-overlay"><div class="card-content">
                                 <h3 class="card-title" data-eng="Kalyaneshwari Temple" data-ben="কল্যাণেশ্বরী মন্দির">Kalyaneshwari Temple</h3>
-                                <div class="card-meta-container"><div class="card-meta"><span data-eng="PILGRIMAGE" data-ben="তীর্থস্থান">PILGRIMAGE</span> <span class="meta-sub" data-eng="Spiritual Tour" data-ben="আধ্যাত্মিক সফর">Spiritual Tour</span></div></div>
-                                <div class="card-controls"><button class="btn-play"></button></div>
+                                <div class="card-meta-container"><div class="card-meta"><span class="category-badge" data-eng="PILGRIMAGE" data-ben="তীর্থস্থান">PILGRIMAGE</span> <span class="meta-sub" data-eng="Spiritual Tour" data-ben="আধ্যাত্মিক সফর">Spiritual Tour</span></div></div>
+                                <div class="card-controls"><button class="btn-play">▶ <span data-eng="WATCH VIDEO" data-ben="ভিডিও দেখুন">WATCH VIDEO</span></button></div>
                             </div></div>
                         </div>
                     </div>
@@ -381,23 +580,41 @@
 
             </div>
         </div>
+
+        <!-- ENTERPRISE FOOTER -->
+        <footer>
+            <div class="footer-text" data-eng="&copy; 2026 Paschim Bardhaman Zilla Parishad. All Rights Reserved." data-ben="&copy; ২০২৬ পশ্চিম বর্ধমান জেলা পরিষদ। সর্বস্বত্ব সংরক্ষিত।">
+                &copy; 2026 Paschim Bardhaman Zilla Parishad. All Rights Reserved.
+            </div>
+            <div class="footer-links">
+                <a href="#" data-eng="Privacy Policy" data-ben="গোপনীয়তা নীতি">Privacy Policy</a>
+                <span style="color: #64748b;">|</span>
+                <a href="#" data-eng="Terms of Use" data-ben="ব্যবহারের শর্তাবলী">Terms of Use</a>
+                <span style="color: #64748b;">|</span>
+                <span class="footer-text" style="color: var(--accent-color);" data-eng="Created And Designed By Nexus Infotech Pvt. Ltd" data-ben="তৈরি ও ডিজাইন করেছে নেক্সাস ইনফোটেক প্রাইভেট লিমিটেড">Created And Designed By Nexus Infotech Pvt. Ltd</span>
+            </div>
+        </footer>
     </div>
 
-    <!-- INFO DRAWER -->
+    <!-- CORPORATE INFO DRAWER -->
     <div id="info-drawer-overlay"></div>
     <div id="info-drawer">
+        <img src="https://cgasansol.github.io/psbzpimg/footer_logo.png" class="drawer-watermark" alt="">
         <button class="drawer-close" id="close-drawer">&times;</button>
-        <div class="drawer-category" id="drawer-category">CATEGORY</div>
-        <h2 class="drawer-title" id="drawer-title">Title Here</h2>
-        <p class="drawer-desc" id="drawer-desc">Description will appear here.</p>
         
-        <div class="drawer-actions">
-            <button class="drawer-btn btn-primary" id="drawer-play-btn">▶ <span data-eng="Play Video" data-ben="ভিডিও চালান">Play Video</span></button>
-            <a href="#" target="_blank" class="drawer-btn btn-secondary" id="drawer-map-btn">📍 <span data-eng="Get Directions" data-ben="দিকনির্দেশ পান">Get Directions</span></a>
+        <div style="z-index: 2;">
+            <div class="drawer-category" id="drawer-category">CATEGORY</div>
+            <h2 class="drawer-title" id="drawer-title">Title Here</h2>
+            <p class="drawer-desc" id="drawer-desc">Description will appear here.</p>
             
-            <div class="social-share-row">
-                <a href="#" target="_blank" class="share-btn-wa" id="drawer-share-wa">📱 WhatsApp</a>
-                <a href="#" target="_blank" class="share-btn-fb" id="drawer-share-fb">🌐 Facebook</a>
+            <div class="drawer-actions">
+                <button class="drawer-btn btn-primary" id="drawer-play-btn">▶ <span data-eng="Play Video" data-ben="ভিডিও চালান">Play Video</span></button>
+                <a href="#" target="_blank" class="drawer-btn btn-secondary" id="drawer-map-btn">📍 <span data-eng="Get Directions" data-ben="দিকনির্দেশ পান">Get Directions</span></a>
+                
+                <div class="social-share-row">
+                    <a href="#" target="_blank" class="share-btn-wa" id="drawer-share-wa">WhatsApp</a>
+                    <a href="#" target="_blank" class="share-btn-fb" id="drawer-share-fb">Facebook</a>
+                </div>
             </div>
         </div>
     </div>
@@ -407,9 +624,9 @@
         <button class="btn-close-modal" id="close-video-modal">&times;</button>
         <div class="saka-player-container" id="saka-container">
             <div id="video-loader" class="video-loader-overlay">
-                <div class="flag-loader-container">
-                    <div class="flag-loader-ring"></div>
-                    <img src="https://cgasansol.github.io/psbzpimg/footer_logo.png" class="flag-loader-logo" alt="Loading...">
+                <div class="flag-spinner-wrapper">
+                    <div class="flag-spinner-ring"></div>
+                    <img src="https://cgasansol.github.io/psbzpimg/footer_logo.png" class="flag-spinner-logo" alt="Loading...">
                 </div>
             </div>
             <video id="saka-video" src="https://www.w3schools.com/html/mov_bbb.mp4" playsinline></video>
@@ -422,65 +639,49 @@
 
         // ================= DATABASE FOR INFO DRAWER =================
         const spotDetails = {
-            0: {
-                catEn: "E-Tourism", catBn: "ই-ট্যুরিজম",
-                titleEn: "Maithon Dam Overview", titleBn: "মাইথন ড্যাম ওভারভিউ",
-                descEn: "Known as the 'Kashmir of Koyalanchal', Maithon Dam is located on the Barakar River. It offers breathtaking views, boating facilities, and is a perfect weekend getaway for nature lovers.",
-                descBn: "বরাকর নদীর উপর অবস্থিত মাইথন ড্যাম 'কয়লাঞ্চলের কাশ্মীর' নামে পরিচিত। এটি মনোরম দৃশ্য, বোটিং এবং প্রকৃতি প্রেমীদের জন্য একটি নিখুঁত পর্যটন কেন্দ্র।",
-                map: "https://goo.gl/maps/placeholder"
-            },
-            1: {
-                catEn: "Nature", catBn: "প্রকৃতি",
-                titleEn: "Garh Jungle Heritage", titleBn: "গড় জঙ্গল হেরিটেজ",
-                descEn: "A dense forest region with rich historical significance, believed to be the ancient ashram of Medhas Muni and the legendary birthplace of Durga Puja in Bengal.",
-                descBn: "ঐতিহাসিক তাৎপর্যমণ্ডিত একটি ঘন বনভূমি, যা মেধস মুনির প্রাচীন আশ্রম এবং বাংলায় দুর্গাপূজার কিংবদন্তি জন্মস্থান বলে মনে করা হয়।",
-                map: "https://goo.gl/maps/placeholder"
-            },
-            2: {
-                catEn: "Culture", catBn: "সংস্কৃতি",
-                titleEn: "Churulia - Kazi Nazrul Islam", titleBn: "চুরুলিয়া - কাজী নজরুল ইসলাম",
-                descEn: "The sacred birthplace of the rebel poet Kazi Nazrul Islam. It houses a museum containing his original manuscripts, works, and personal belongings.",
-                descBn: "বিদ্রোহী কবি কাজী নজরুল ইসলামের পবিত্র জন্মভূমি। এখানে একটি জাদুঘর রয়েছে যেখানে তাঁর মূল পাণ্ডুলিপি এবং ব্যক্তিগত জিনিসপত্র সংরক্ষিত আছে।",
-                map: "https://goo.gl/maps/placeholder"
-            },
-            3: {
-                catEn: "E-Tourism", catBn: "ই-ট্যুরিজম",
-                titleEn: "Panchet Dam Scenery", titleBn: "পাঞ্চেত ড্যাম দৃশ্য",
-                descEn: "Built across the Damodar River, Panchet Dam is framed by the majestic Panchet Hill. It is a stunning example of engineering surrounded by serene landscapes.",
-                descBn: "দামোদর নদের উপর নির্মিত পাঞ্চেত ড্যাম মহিমান্বিত পাঞ্চেত পাহাড় দ্বারা বেষ্টিত। এটি শান্ত প্রাকৃতিক দৃশ্যের মাঝে প্রকৌশলের এক অত্যাশ্চর্য উদাহরণ।",
-                map: "https://goo.gl/maps/placeholder"
-            },
-            4: {
-                catEn: "Infrastructure", catBn: "পরিকাঠামো",
-                titleEn: "Durgapur Barrage", titleBn: "দুর্গাপুর ব্যারেজ",
-                descEn: "A major irrigation and water management barrage built on the Damodar river, creating a beautiful sunset viewpoint and a hub for local fisheries.",
-                descBn: "দামোদর নদের উপর নির্মিত একটি প্রধান সেচ ও জল ব্যবস্থাপনা ব্যারেজ, যা একটি সুন্দর সূর্যাস্ত দেখার স্থান এবং স্থানীয় মৎস্য চাষের কেন্দ্র তৈরি করেছে।",
-                map: "https://goo.gl/maps/placeholder"
-            },
-            5: {
-                catEn: "Pilgrimage", catBn: "তীর্থস্থান",
-                titleEn: "Kalyaneshwari Temple", titleBn: "কল্যাণেশ্বরী মন্দির",
-                descEn: "A 500-year-old ancient and highly revered temple dedicated to Goddess Kalyaneshwari, situated near the banks of the Barakar River.",
-                descBn: "বরাকর নদীর তীরে অবস্থিত মা কল্যাণেশ্বরীকে নিবেদিত একটি ৫০০ বছরের প্রাচীন এবং অত্যন্ত শ্রদ্ধেয় মন্দির।",
-                map: "https://goo.gl/maps/placeholder"
-            }
+            0: { catEn: "E-Tourism", catBn: "ই-ট্যুরিজম", titleEn: "Maithon Dam Overview", titleBn: "মাইথন ড্যাম ওভারভিউ", descEn: "Known as the 'Kashmir of Koyalanchal', Maithon Dam is located on the Barakar River. It offers breathtaking views, boating facilities, and is a perfect weekend getaway for nature lovers.", descBn: "বরাকর নদীর উপর অবস্থিত মাইথন ড্যাম 'কয়লাঞ্চলের কাশ্মীর' নামে পরিচিত। এটি মনোরম দৃশ্য, বোটিং এবং প্রকৃতি প্রেমীদের জন্য একটি নিখুঁত পর্যটন কেন্দ্র।", map: "https://goo.gl/maps/placeholder" },
+            1: { catEn: "Nature", catBn: "প্রকৃতি", titleEn: "Garh Jungle Heritage", titleBn: "গড় জঙ্গল হেরিটেজ", descEn: "A dense forest region with rich historical significance, believed to be the ancient ashram of Medhas Muni and the legendary birthplace of Durga Puja in Bengal.", descBn: "ঐতিহাসিক তাৎপর্যমণ্ডিত একটি ঘন বনভূমি, যা মেধস মুনির প্রাচীন আশ্রম এবং বাংলায় দুর্গাপূজার কিংবদন্তি জন্মস্থান বলে মনে করা হয়।", map: "https://goo.gl/maps/placeholder" },
+            2: { catEn: "Culture", catBn: "সংস্কৃতি", titleEn: "Churulia - Kazi Nazrul Islam", titleBn: "চুরুলিয়া - কাজী নজরুল ইসলাম", descEn: "The sacred birthplace of the rebel poet Kazi Nazrul Islam. It houses a museum containing his original manuscripts, works, and personal belongings.", descBn: "বিদ্রোহী কবি কাজী নজরুল ইসলামের পবিত্র জন্মভূমি। এখানে একটি জাদুঘর রয়েছে যেখানে তাঁর মূল পাণ্ডুলিপি এবং ব্যক্তিগত জিনিসপত্র সংরক্ষিত আছে।", map: "https://goo.gl/maps/placeholder" },
+            3: { catEn: "E-Tourism", catBn: "ই-ট্যুরিজম", titleEn: "Panchet Dam Scenery", titleBn: "পাঞ্চেত ড্যাম দৃশ্য", descEn: "Built across the Damodar River, Panchet Dam is framed by the majestic Panchet Hill. It is a stunning example of engineering surrounded by serene landscapes.", descBn: "দামোদর নদের উপর নির্মিত পাঞ্চেত ড্যাম মহিমান্বিত পাঞ্চেত পাহাড় দ্বারা বেষ্টিত। এটি শান্ত প্রাকৃতিক দৃশ্যের মাঝে প্রকৌশলের এক অত্যাশ্চর্য উদাহরণ।", map: "https://goo.gl/maps/placeholder" },
+            4: { catEn: "Infrastructure", catBn: "পরিকাঠামো", titleEn: "Durgapur Barrage", titleBn: "দুর্গাপুর ব্যারেজ", descEn: "A major irrigation and water management barrage built on the Damodar river, creating a beautiful sunset viewpoint and a hub for local fisheries.", descBn: "দামোদর নদের উপর নির্মিত একটি প্রধান সেচ ও জল ব্যবস্থাপনা ব্যারেজ, যা একটি সুন্দর সূর্যাস্ত দেখার স্থান এবং স্থানীয় মৎস্য চাষের কেন্দ্র তৈরি করেছে।", map: "https://goo.gl/maps/placeholder" },
+            5: { catEn: "Pilgrimage", catBn: "তীর্থস্থান", titleEn: "Kalyaneshwari Temple", titleBn: "কল্যাণেশ্বরী মন্দির", descEn: "A 500-year-old ancient and highly revered temple dedicated to Goddess Kalyaneshwari, situated near the banks of the Barakar River.", descBn: "বরাকর নদীর তীরে অবস্থিত মা কল্যাণেশ্বরীকে নিবেদিত একটি ৫০০ বছরের প্রাচীন এবং অত্যন্ত শ্রদ্ধেয় মন্দির।", map: "https://goo.gl/maps/placeholder" }
         };
 
-        // ================= LANGUAGE TOGGLE LOGIC =================
+        // ================= LANGUAGE & THEME TOGGLE LOGIC =================
         let currentLang = 'eng';
         const langToggleBtn = document.getElementById('lang-toggle');
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        let currentTheme = 'light'; 
         
+        function updateThemeBtnText() {
+            if(currentTheme === 'light') {
+                themeToggleBtn.innerText = currentLang === 'eng' ? 'DARK MODE' : 'ডার্ক মোড';
+            } else {
+                themeToggleBtn.innerText = currentLang === 'eng' ? 'LIGHT MODE' : 'লাইট মোড';
+            }
+        }
+
         function updateLanguage() {
             document.querySelectorAll('[data-eng]').forEach(el => {
-                el.innerHTML = currentLang === 'eng' ? el.getAttribute('data-eng') : el.getAttribute('data-ben');
-                if(currentLang === 'ben') el.classList.add('ben-text');
-                else el.classList.remove('ben-text');
+                el.style.opacity = 0;
+                setTimeout(() => {
+                    el.innerHTML = currentLang === 'eng' ? el.getAttribute('data-eng') : el.getAttribute('data-ben');
+                    if(currentLang === 'ben') el.classList.add('ben-text'); else el.classList.remove('ben-text');
+                    el.style.opacity = 1; el.style.transition = "opacity 0.2s ease";
+                }, 150);
             });
+            if(currentLang === 'ben') langToggleBtn.classList.add('active-ben'); else langToggleBtn.classList.remove('active-ben');
+            updateThemeBtnText();
         }
-        
-        langToggleBtn.addEventListener('click', () => {
-            currentLang = currentLang === 'eng' ? 'ben' : 'eng';
-            updateLanguage();
+        langToggleBtn.addEventListener('click', () => { currentLang = currentLang === 'eng' ? 'ben' : 'eng'; updateLanguage(); });
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (currentTheme === 'dark') {
+                currentTheme = 'light'; document.body.setAttribute('data-theme', 'light');
+            } else {
+                currentTheme = 'dark'; document.body.removeAttribute('data-theme');
+            }
+            updateThemeBtnText();
         });
 
         // ================= BGM CONTROLLER =================
@@ -508,20 +709,6 @@
         BGM.audio.addEventListener('ended', () => { setTimeout(() => { BGM.audio.currentTime = 0; BGM.play(); }, 4000); });
 
         function preInitAudio() { if (!audioCtx) audioCtx = new AudioContext(); }
-        function playCinematicWhoosh() {
-            if (!audioCtx) return;
-            if (audioCtx.state === 'suspended') { audioCtx.resume().catch(() => {}); return; }
-            const time = audioCtx.currentTime; const bufferSize = audioCtx.sampleRate * 0.8;
-            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate); const data = buffer.getChannelData(0);
-            for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1; 
-            const noise = audioCtx.createBufferSource(); noise.buffer = buffer;
-            const noiseFilter = audioCtx.createBiquadFilter(); noiseFilter.type = 'bandpass';
-            noiseFilter.frequency.setValueAtTime(80, time); noiseFilter.frequency.exponentialRampToValueAtTime(600, time + 0.15); noiseFilter.frequency.exponentialRampToValueAtTime(80, time + 0.6);   
-            const osc = audioCtx.createOscillator(); osc.type = 'sine'; osc.frequency.setValueAtTime(100, time); osc.frequency.exponentialRampToValueAtTime(25, time + 0.6); 
-            const masterGain = audioCtx.createGain(); masterGain.gain.setValueAtTime(0, time); masterGain.gain.linearRampToValueAtTime(0.35, time + 0.03); masterGain.gain.exponentialRampToValueAtTime(0.01, time + 0.8); 
-            noise.connect(noiseFilter); noiseFilter.connect(masterGain); osc.connect(masterGain); masterGain.connect(audioCtx.destination);
-            noise.start(time); osc.start(time); noise.stop(time + 0.8); osc.stop(time + 0.8);
-        }
 
         let isAnimatingEntry = true; let currentActiveIndex = 0; 
         
@@ -529,6 +716,10 @@
             preInitAudio(); updateLanguage();
             const logoScreen = document.getElementById('logo-screen'); const intro = document.getElementById('intro-section');
             const mainApp = document.getElementById('main-app'); const blackTransition = document.getElementById('black-transition');
+
+            const bootStatuses = ["ESTABLISHING SECURE CONNECTION...", "AUTHENTICATING CREDENTIALS...", "LOADING MEDIA ASSETS...", "INITIALIZING E-TOURISM PORTAL..."];
+            let statusEl = document.getElementById('splash-status-text'); let c = 0;
+            let bootIntv = setInterval(() => { c++; if(c < bootStatuses.length) statusEl.innerText = bootStatuses[c]; else clearInterval(bootIntv); }, 800);
 
             setTimeout(() => {
                 logoScreen.style.opacity = '0'; 
@@ -538,14 +729,13 @@
                         intro.style.opacity = '0'; 
                         setTimeout(() => {
                             intro.style.display = 'none'; blackTransition.style.opacity = '0'; mainApp.classList.add('show-app');
-                            BGM.audio.volume = 0; BGM.play();
-                            currentActiveIndex = getCenterCardIndex(); 
+                            BGM.audio.volume = 0; BGM.play(); currentActiveIndex = getCenterCardIndex(); 
                             document.getElementById('video-track').classList.add('run-intro'); updateCarousel3D(); 
-                            setTimeout(() => { isAnimatingEntry = false; blackTransition.style.display = 'none'; }, 3000); 
-                        }, 600); 
-                    }, 1200); 
-                }, 600); 
-            }, 1800); 
+                            setTimeout(() => { isAnimatingEntry = false; blackTransition.style.display = 'none'; }, 2000); 
+                        }, 400); 
+                    }, 2800); 
+                }, 400); 
+            }, 3800); 
         });
 
         const slider = document.getElementById('video-track'); const wrappers = document.querySelectorAll('.card-wrapper');
@@ -562,177 +752,78 @@
         function updateCarousel3D() {
             const screenCenter = window.innerWidth / 2; const maxDistance = window.innerWidth * 1.1; 
             const newCenterIndex = getCenterCardIndex();
-            if (newCenterIndex !== currentActiveIndex && !isAnimatingEntry) { playCinematicWhoosh(); currentActiveIndex = newCenterIndex; }
+            if (newCenterIndex !== currentActiveIndex && !isAnimatingEntry) { currentActiveIndex = newCenterIndex; }
             wrappers.forEach(wrapper => {
                 const rect = wrapper.getBoundingClientRect(); const wrapperCenter = rect.left + rect.width / 2;
-                const offset = wrapperCenter - screenCenter; const distance = Math.abs(offset);
-                const card = wrapper.querySelector('.content-card');
+                const offset = wrapperCenter - screenCenter; const distance = Math.abs(offset); const card = wrapper.querySelector('.content-card');
                 let scale, rotateY, translateZ, opacity, zIndex;
                 if (distance < wrapper.offsetWidth / 1.5) {
-                    card.classList.add('active-card'); scale = 1.15; rotateY = 0; translateZ = 150; opacity = 1; zIndex = 100;
+                    card.classList.add('active-card'); scale = 1; rotateY = 0; translateZ = 50; opacity = 1; zIndex = 100;
                 } else {
                     card.classList.remove('active-card'); const direction = offset > 0 ? -1 : 1; 
-                    scale = Math.max(0.75, 1 - (distance / maxDistance)); rotateY = Math.min(Math.abs(distance / 25), 45) * direction; 
-                    translateZ = -150; opacity = Math.max(0.3, 1 - (distance / (maxDistance * 0.6))); zIndex = Math.round(50 - distance / 20);
+                    scale = Math.max(0.85, 1 - (distance / maxDistance)); rotateY = Math.min(Math.abs(distance / 25), 35) * direction; 
+                    translateZ = -100; opacity = Math.max(0.4, 1 - (distance / (maxDistance * 0.8))); zIndex = Math.round(50 - distance / 20);
                 }
-                card.style.transform = `translate3d(0, 0, ${translateZ}px) scale(${scale}) rotateY(${rotateY}deg)`;
-                card.style.opacity = opacity; wrapper.style.zIndex = zIndex; 
+                card.style.transform = `translate3d(0, 0, ${translateZ}px) scale(${scale}) rotateY(${rotateY}deg)`; card.style.opacity = opacity; wrapper.style.zIndex = zIndex; 
             });
         }
 
         let ticking = false;
-        slider.addEventListener('scroll', () => {
-            if (isAnimatingEntry) return; 
-            if (!ticking) { window.requestAnimationFrame(() => { updateCarousel3D(); ticking = false; }); ticking = true; }
-        });
+        slider.addEventListener('scroll', () => { if (isAnimatingEntry) return; if (!ticking) { window.requestAnimationFrame(() => { updateCarousel3D(); ticking = false; }); ticking = true; }});
         window.addEventListener('resize', () => { requestAnimationFrame(updateCarousel3D); });
 
-        // DRAG & FALLBACK LOGIC
-        let isDown = false; let isDragging = false; let startX, scrollLeft, mouseDownX; let snapTimeout;
-        let hasInteracted = false;
-        function handleUserInteraction() {
-            preInitAudio();
-            if (!hasInteracted && document.getElementById('main-app').classList.contains('show-app')) {
-                if (BGM.audio.paused) BGM.play();
-                hasInteracted = true;
-                window.removeEventListener('mousedown', handleUserInteraction); window.removeEventListener('touchstart', handleUserInteraction); window.removeEventListener('keydown', handleUserInteraction);
-            }
-        }
-        window.addEventListener('mousedown', handleUserInteraction); window.addEventListener('touchstart', handleUserInteraction, {once: true}); window.addEventListener('keydown', handleUserInteraction);
+        // ================= DRAG LOGIC =================
+        let isDown = false; let isDraggingMain = false; let startX, scrollLeft, mouseDownX; let snapTimeout; let hasInteracted = false;
+        function handleUserInteraction() { preInitAudio(); if (!hasInteracted && document.getElementById('main-app').classList.contains('show-app')) { if (BGM.audio.paused) BGM.play(); hasInteracted = true; window.removeEventListener('pointerdown', handleUserInteraction); window.removeEventListener('keydown', handleUserInteraction); } }
+        window.addEventListener('pointerdown', handleUserInteraction, {once: true}); window.addEventListener('keydown', handleUserInteraction, {once:true});
 
-        slider.addEventListener('mousedown', (e) => {
-            if (isAnimatingEntry) return; isDown = true; isDragging = false; mouseDownX = e.pageX;
-            slider.classList.add('active'); slider.style.scrollSnapType = 'none'; startX = e.pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft; clearTimeout(snapTimeout);
-        });
-        slider.addEventListener('mousemove', (e) => {
-            if (!isDown || isAnimatingEntry) return; e.preventDefault(); 
-            if (Math.abs(e.pageX - mouseDownX) > 5) isDragging = true;
-            const walk = ((e.pageX - slider.offsetLeft) - startX) * 1.5; slider.scrollLeft = scrollLeft - walk; updateCarousel3D(); 
-        });
-        slider.addEventListener('touchstart', (e) => {
-            if (isAnimatingEntry) return; isDown = true; isDragging = false; mouseDownX = e.touches[0].pageX;
-            slider.classList.add('active'); slider.style.scrollSnapType = 'none'; startX = e.touches[0].pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft; clearTimeout(snapTimeout);
-        }, {passive: true});
-        slider.addEventListener('touchmove', (e) => {
-            if (!isDown || isAnimatingEntry) return; 
-            if (Math.abs(e.touches[0].pageX - mouseDownX) > 5) isDragging = true;
-            const walk = ((e.touches[0].pageX - slider.offsetLeft) - startX) * 1.5; slider.scrollLeft = scrollLeft - walk; updateCarousel3D(); 
-        }, {passive: true});
+        slider.addEventListener('mousedown', (e) => { if (isAnimatingEntry) return; isDown = true; isDraggingMain = false; mouseDownX = e.pageX; slider.classList.add('active'); slider.style.scrollSnapType = 'none'; startX = e.pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft; clearTimeout(snapTimeout); });
+        slider.addEventListener('mousemove', (e) => { if (!isDown || isAnimatingEntry) return; e.preventDefault(); if (Math.abs(e.pageX - mouseDownX) > 10) isDraggingMain = true; const walk = ((e.pageX - slider.offsetLeft) - startX) * 1.5; slider.scrollLeft = scrollLeft - walk; updateCarousel3D(); });
+        slider.addEventListener('touchstart', (e) => { if (isAnimatingEntry) return; isDown = true; isDraggingMain = false; mouseDownX = e.touches[0].pageX; slider.classList.add('active'); slider.style.scrollSnapType = 'none'; startX = e.touches[0].pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft; clearTimeout(snapTimeout); }, {passive: true});
+        slider.addEventListener('touchmove', (e) => { if (!isDown || isAnimatingEntry) return; if (Math.abs(e.touches[0].pageX - mouseDownX) > 10) isDraggingMain = true; const walk = ((e.touches[0].pageX - slider.offsetLeft) - startX) * 1.5; slider.scrollLeft = scrollLeft - walk; updateCarousel3D(); }, {passive: true});
 
-        const scrollToCardIndex = (index) => {
-            if (index < 0 || index >= wrappers.length) return;
-            const targetCard = wrappers[index]; const targetScroll = targetCard.offsetLeft - ((window.innerWidth - targetCard.offsetWidth) / 2);
-            slider.style.scrollSnapType = 'none'; slider.scrollTo({ left: targetScroll, behavior: 'smooth' });
-            clearTimeout(snapTimeout); snapTimeout = setTimeout(() => { slider.style.scrollSnapType = 'x mandatory'; }, 600);
-        };
-
-        const stopDragAndSnap = () => { if (!isDown) return; isDown = false; slider.classList.remove('active'); scrollToCardIndex(getCenterCardIndex()); };
+        const scrollToCardIndex = (index) => { if (index < 0 || index >= wrappers.length) return; const targetCard = wrappers[index]; const targetScroll = targetCard.offsetLeft - ((window.innerWidth - targetCard.offsetWidth) / 2); slider.style.scrollSnapType = 'none'; slider.scrollTo({ left: targetScroll, behavior: 'smooth' }); clearTimeout(snapTimeout); snapTimeout = setTimeout(() => { slider.style.scrollSnapType = 'x mandatory'; }, 400); };
+        const stopDragAndSnap = () => { if (!isDown) return; isDown = false; slider.classList.remove('active'); scrollToCardIndex(getCenterCardIndex()); setTimeout(() => { isDraggingMain = false; }, 50); };
+        
         slider.addEventListener('mouseup', stopDragAndSnap); slider.addEventListener('mouseleave', stopDragAndSnap); slider.addEventListener('touchend', stopDragAndSnap);
-        window.addEventListener('keydown', (e) => {
-            if(!document.getElementById('main-app').classList.contains('show-app') || isAnimatingEntry) return;
-            if (e.key === 'ArrowRight') scrollToCardIndex(getCenterCardIndex() + 1); else if (e.key === 'ArrowLeft') scrollToCardIndex(getCenterCardIndex() - 1);
-        });
+        window.addEventListener('keydown', (e) => { if(!document.getElementById('main-app').classList.contains('show-app') || isAnimatingEntry) return; if (e.key === 'ArrowRight') scrollToCardIndex(getCenterCardIndex() + 1); else if (e.key === 'ArrowLeft') scrollToCardIndex(getCenterCardIndex() - 1); });
 
-        // ================= FEATURE 3 & 7: INFO DRAWER & SHARE LOGIC =================
-        const drawer = document.getElementById('info-drawer');
-        const drawerOverlay = document.getElementById('info-drawer-overlay');
-        const closeDrawerBtn = document.getElementById('close-drawer');
-        const drawerPlayBtn = document.getElementById('drawer-play-btn');
-        let currentDrawerVideoId = null;
+        // ================= INFO DRAWER =================
+        const drawer = document.getElementById('info-drawer'); const drawerOverlay = document.getElementById('info-drawer-overlay'); const closeDrawerBtn = document.getElementById('close-drawer'); const drawerPlayBtn = document.getElementById('drawer-play-btn');
 
         function openDrawer(id) {
-            currentDrawerVideoId = id;
-            const data = spotDetails[id];
-            
-            document.getElementById('drawer-category').textContent = currentLang === 'eng' ? data.catEn : data.catBn;
-            
-            const titleEl = document.getElementById('drawer-title');
-            titleEl.setAttribute('data-eng', data.titleEn); titleEl.setAttribute('data-ben', data.titleBn);
-            titleEl.textContent = currentLang === 'eng' ? data.titleEn : data.titleBn;
-            if(currentLang === 'ben') titleEl.classList.add('ben-text'); else titleEl.classList.remove('ben-text');
-
-            const descEl = document.getElementById('drawer-desc');
-            descEl.setAttribute('data-eng', data.descEn); descEl.setAttribute('data-ben', data.descBn);
-            descEl.textContent = currentLang === 'eng' ? data.descEn : data.descBn;
-            if(currentLang === 'ben') descEl.classList.add('ben-text'); else descEl.classList.remove('ben-text');
-
+            const data = spotDetails[id]; document.getElementById('drawer-category').textContent = currentLang === 'eng' ? data.catEn : data.catBn;
+            const titleEl = document.getElementById('drawer-title'); titleEl.setAttribute('data-eng', data.titleEn); titleEl.setAttribute('data-ben', data.titleBn); titleEl.textContent = currentLang === 'eng' ? data.titleEn : data.titleBn; if(currentLang === 'ben') titleEl.classList.add('ben-text'); else titleEl.classList.remove('ben-text');
+            const descEl = document.getElementById('drawer-desc'); descEl.setAttribute('data-eng', data.descEn); descEl.setAttribute('data-ben', data.descBn); descEl.textContent = currentLang === 'eng' ? data.descEn : data.descBn; if(currentLang === 'ben') descEl.classList.add('ben-text'); else descEl.classList.remove('ben-text');
             document.getElementById('drawer-map-btn').href = data.map;
-            
-            // Share URLs Update
-            const pageUrl = encodeURIComponent(window.location.href);
-            const shareText = encodeURIComponent(`Explore ${data.titleEn} at Paschim Bardhaman Video Gallery! `);
-            document.getElementById('drawer-share-wa').href = `https://api.whatsapp.com/send?text=${shareText}${pageUrl}`;
-            document.getElementById('drawer-share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
-
+            const pageUrl = encodeURIComponent(window.location.href); const shareText = encodeURIComponent(`Explore ${data.titleEn} at Paschim Bardhaman Video Gallery! `);
+            document.getElementById('drawer-share-wa').href = `https://api.whatsapp.com/send?text=${shareText}${pageUrl}`; document.getElementById('drawer-share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
             drawer.classList.add('open'); drawerOverlay.classList.add('open');
         }
-
         function closeDrawer() { drawer.classList.remove('open'); drawerOverlay.classList.remove('open'); }
-        closeDrawerBtn.addEventListener('click', closeDrawer);
-        drawerOverlay.addEventListener('click', closeDrawer);
+        closeDrawerBtn.addEventListener('click', closeDrawer); drawerOverlay.addEventListener('click', closeDrawer);
 
-        // Social Share on Cards
-        document.querySelectorAll('.share-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const id = e.target.closest('.content-card').getAttribute('data-id');
-                const data = spotDetails[id];
-                const pageUrl = encodeURIComponent(window.location.href);
-                const shareText = encodeURIComponent(`Explore ${data.titleEn}! `);
-                window.open(`https://api.whatsapp.com/send?text=${shareText}${pageUrl}`, '_blank');
-            });
-        });
+        document.querySelectorAll('.share-btn').forEach(btn => { btn.addEventListener('click', (e) => { e.stopPropagation(); const id = e.target.closest('.content-card').getAttribute('data-id'); const data = spotDetails[id]; const pageUrl = encodeURIComponent(window.location.href); const shareText = encodeURIComponent(`Explore ${data.titleEn}! `); window.open(`https://api.whatsapp.com/send?text=${shareText}${pageUrl}`, '_blank'); }); });
+        document.querySelectorAll('.info-btn').forEach(btn => { btn.addEventListener('click', (e) => { e.stopPropagation(); const id = e.target.closest('.content-card').getAttribute('data-id'); openDrawer(id); }); });
 
-        // Info Button on Cards
-        document.querySelectorAll('.info-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const id = e.target.closest('.content-card').getAttribute('data-id');
-                openDrawer(id);
-            });
-        });
-
-        // ================= VIDEO MODAL LOGIC =================
-        const modal = document.getElementById('video-modal');
-        const closeVideoBtn = document.getElementById('close-video-modal');
-        const video = document.getElementById('saka-video');
-        const videoLoader = document.getElementById('video-loader');
+        // ================= VIDEO MODAL =================
+        const modal = document.getElementById('video-modal'); const closeVideoBtn = document.getElementById('close-video-modal'); const video = document.getElementById('saka-video'); const videoLoader = document.getElementById('video-loader');
         let fakeLoadTimeout; let isFakeLoading = false;
 
         function triggerVideoPlay() {
-            preInitAudio(); playCinematicWhoosh(); BGM.pause();
-            modal.classList.remove('closing'); modal.classList.add('show');
+            preInitAudio(); BGM.pause(); modal.classList.remove('closing'); modal.classList.add('show');
             isFakeLoading = true; videoLoader.classList.remove('hidden'); videoLoader.style.display = 'flex';
-            
-            const randomDelay = Math.floor(Math.random() * (10000 - 1000 + 1)) + 1000;
-            fakeLoadTimeout = setTimeout(() => {
-                isFakeLoading = false; videoLoader.classList.add('hidden');
-                video.play().catch(e => console.warn("Video Play Blocked", e)); 
-            }, randomDelay);
+            const randomDelay = Math.floor(Math.random() * (6000 - 1500 + 1)) + 1500; 
+            fakeLoadTimeout = setTimeout(() => { isFakeLoading = false; videoLoader.classList.add('hidden'); video.play().catch(e => console.warn("Blocked")); }, randomDelay);
         }
 
-        // Play from Card Main Click
-        document.querySelectorAll('.content-card').forEach(card => {
-            card.addEventListener('click', (e) => {
-                // Prevent play if clicked on info or share button
-                if(e.target.classList.contains('info-btn') || e.target.classList.contains('share-btn')) return;
-                if (isDragging || isAnimatingEntry) return; 
-                triggerVideoPlay();
-            });
-        });
-
-        // Play from Info Drawer
+        document.querySelectorAll('.content-card').forEach(card => { card.addEventListener('click', (e) => { if(e.target.closest('.action-btn') || e.target.closest('.btn-play')) return; if (isDraggingMain || isAnimatingEntry) return; triggerVideoPlay(); }); });
+        document.querySelectorAll('.btn-play').forEach(btn => { btn.addEventListener('click', (e) => { e.stopPropagation(); if (isDraggingMain || isAnimatingEntry) return; triggerVideoPlay(); }); });
         drawerPlayBtn.addEventListener('click', () => { closeDrawer(); setTimeout(triggerVideoPlay, 300); });
-
-        closeVideoBtn.addEventListener('click', () => {
-            preInitAudio(); playCinematicWhoosh(); 
-            clearTimeout(fakeLoadTimeout); isFakeLoading = false; BGM.play();
-            modal.classList.remove('show'); modal.classList.add('closing'); 
-            setTimeout(() => { video.pause(); video.currentTime = 0; modal.classList.remove('closing'); }, 800);
-        });
+        closeVideoBtn.addEventListener('click', () => { preInitAudio(); clearTimeout(fakeLoadTimeout); isFakeLoading = false; BGM.play(); modal.classList.remove('show'); modal.classList.add('closing'); setTimeout(() => { video.pause(); video.currentTime = 0; modal.classList.remove('closing'); }, 400); });
 
         video.addEventListener('playing', () => { if(!isFakeLoading) videoLoader.classList.add('hidden'); });
-        video.addEventListener('waiting', () => { if(!isFakeLoading) { videoLoader.classList.remove('hidden'); videoLoader.style.display = 'flex'; } });
+        video.addEventListener('waiting', () => { if(!isFakeLoading) { videoLoader.classList.add('hidden'); videoLoader.style.display = 'flex'; } });
 
     </script>
 </body>
